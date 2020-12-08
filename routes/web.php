@@ -12,11 +12,18 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+/*
+ * Escola
+ */
+Route::get('escola', 'EscolaController@index');
+Route::post('escola/inserir', 'EscolaController@store');
+Route::get('escola/list', 'EscolaController@list');
+Route::get('escola/editar/{id}', 'EscolaController@edit');
+Route::post('escola/update/{id}', 'EscolaController@update');
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+/*
+ * Rede
+ */
 Route::get('rede', 'RedeController@index');
 Route::post('rede/inserir', 'RedeController@store');
 Route::get('rede/list', 'RedeController@list');
