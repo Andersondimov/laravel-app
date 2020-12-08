@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 /*
+ * Perfil
+ */
+Route::post('perfil/inserir', 'PerfilController@store');
+Route::get('perfil', 'PerfilController@index');
+Route::get('perfil/list', 'PerfilController@list');
+Route::get('perfil/editar/{id}', 'PerfilController@edit');
+Route::post('perfil/update/{id}', 'PerfilController@update');
+
+/*
  * Escola
  */
 Route::get('escola', 'EscolaController@index');
