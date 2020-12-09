@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Escola;
+use DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\HomeController;
 
@@ -11,8 +12,13 @@ class EscolaController extends Controller
 {
     public function index()
     {
-        $escola = Escola::orderBy('EscolaDTAtivacao', 'desc')->paginate(10);
-        return view('escola/escola', ['escola' => $escola]);
+        $Redes =DB::table('Rede')
+                ->select(
+                    'Rede.RedeID',
+                    'Rede.Rede'
+                )
+                ->get();
+        return view('escola/escola', compact('Redes'));
     }
 
     public function create()
@@ -52,14 +58,32 @@ class EscolaController extends Controller
 
     public function show()
     {
-        $Escola = new Escola;
-        $Escola = Escola::all();
+        return view('myarticlesview',['articles'=>$articles]);
     }
 
     public function list()
     {
-        $Escola = new Escola;
-        $Escolas = Escola::get();
+        $Escolas =DB::table('Escola')
+                ->join('Rede','Escola.RedeID', '=', 'Rede.RedeID')
+                ->select(
+                    'Escola.EscolaID',
+                    'Escola.Escola',
+                    'Escola.EscolaCod',
+                    'Escola.EscolaStatus',
+                    'Escola.EscolaDTAtivacao',
+                    'Escola.EscolaDTInativacao',
+                    'Escola.EscolaDTBloqueio',
+                    'Escola.EscolaValorFixo',
+                    'Escola.EscolaValorVaviavel',
+                    'Escola.EscolaPontuacaoIni',
+                    'Escola.EscolaMotivoBloqueio',
+                    'Escola.EscolaCelular',
+                    'Escola.EscolaCNPJ',
+                    'Escola.EscolaCelularPix',
+                    'Escola.RedeID',
+                    'Rede.Rede'
+                )
+                ->get();
         return view('escola/show', compact('Escolas'));
     }
 

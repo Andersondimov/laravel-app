@@ -8,49 +8,43 @@
     <body>
             @csrf
         <div class="bd-example">
-            <h1 class="bd-title" id="content">Escola</h1>
+            <h1 class="bd-title" id="content">PerfilTela</h1>
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>Escola</th>
-                    <th>Cod. Escola</th>
-                    <th>Escola CNPJ</th>
-                    <th>Rede</th>
+                    <th>PerfilTela</th>
                     <th>Status</th>
                     <th>Atualizar</th>
                 </tr>
                 </thead>
                 <tbody>
-                @if(count($Escolas)>0)
-                    @foreach ( $Escolas as $escola )
+                @if(count($PerfilTelas)>0)
+                    @foreach ( $PerfilTelas as $perfiltela )
                         <tr>
-                            <td>{{ $escola->Escola }}</td>
-                            <td>{{ $escola->EscolaCod }}</td>
-                            <td>{{ $escola->EscolaCNPJ }}</td>
-                            <td>{{ $escola->Rede }}</td>
+                            <td>{{ $perfiltela->PerfilTela }}</td>
                             <td>
-                                @if($escola->EscolaStatus == 1)
+                                @if($perfiltela->PerfilTelaStatus == 1)
                                     Ativo
-                                @elseif($escola->EscolaStatus == 2)
+                                @elseif($perfiltela->PerfilTelaStatus == 2)
                                     Inativo
-                                @else($escola->EscolaStatus == 3)
+                                @else($perfiltela->PerfilTelaStatus == 3)
                                     Bloqueado
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ url('escola/editar/'.$escola->EscolaID) }}">Alterar</a>
+                                <a href="{{ url('perfiltela/editar/'.$perfiltela->PerfilTelaID) }}">Alterar</a>
                             </td>
                         </tr>
                     @endforeach
                 @else
                     <tr>
-                        <td colspan="6">Nenhuma Escola Cadastrada</td>
+                        <td colspan="4">Nenhum PerfilTela Cadastrada</td>
                     </tr>
                 @endif
                 </tbody>
             </table>
             <div class="form-group">
-                <form role="form" method="get" action="{{action('EscolaController@index')}}">
+                <form role="form" method="get" action="{{action('PerfilTelaController@index')}}">
                     <button type="submit" class="btn btn-primary">NOVO</button>
                 </form>
             </div>

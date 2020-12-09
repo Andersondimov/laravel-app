@@ -13,6 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 /*
+ * PerfilTela
+ */
+Route::post('perfiltela/inserir', 'PerfilTelaController@store');
+Route::get('perfiltela', 'PerfilTelaController@index');
+Route::get('perfiltela/list', 'PerfilTelaController@list');
+Route::get('perfiltela/editar/{id}', 'PerfilTelaController@edit');
+Route::post('perfiltela/update/{id}', 'PerfilTelaController@update');
+
+
+/*
  * Tela
  */
 Route::post('tela/inserir', 'TelaController@store');
