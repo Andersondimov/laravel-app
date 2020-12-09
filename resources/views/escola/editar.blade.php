@@ -18,8 +18,8 @@
                 <div class="form-group">
                     <label for="RedeID">Rede</label>
                     <select class="form-control" name="RedeID">
-                        <option value="14" @if(isset($escola) && $escola->RedeID == 14)selected @endif>CNA</option>
-                        <option value="15" @if(isset($escola) && $escola->RedeID == 15)selected @endif>WIZARD</option>
+                        <option value="1" @if(isset($escola) && $escola->RedeID == 1)selected @endif>CNA</option>
+                        <option value="1" @if(isset($escola) && $escola->RedeID == 1)selected @endif>WIZARD</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -47,10 +47,6 @@
                     <input type="text" class="form-control" name="EscolaValorVaviavel"  @if(isset($escola))value="{{ old('', $escola->EscolaValorVaviavel) }}"@endif />
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Pontuação Inicial</label>
-                    <input type="number" class="form-control" name="EscolaPontuacaoIni"  @if(isset($escola))value="{{ old('', $escola->EscolaPontuacaoIni) }}"@endif />
-                </div>
-                <div class="form-group">
                     <label for="exampleInputEmail1">Telefone (Somente números))</label>
                     <input type="text" class="form-control" name="EscolaTelefone"  @if(isset($escola))value="{{ old('', $escola->EscolaTelefone) }}"@endif />
                 </div>
@@ -68,6 +64,7 @@
                         <option value="1" @if(isset($escola) && $escola->EscolaStatus == 1)selected @endif>Ativo</option>
                         <option value="2" @if(isset($escola) && $escola->EscolaStatus == 2)selected @endif>Inativo</option>
                         <option value="3" @if(isset($escola) && $escola->EscolaStatus == 3)selected @endif>Bloqueado</option>
+                        <option value="4" @if(isset($escola) && $escola->EscolaStatus == 4)selected @endif>Prospect</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -77,19 +74,25 @@
                     <div class="form-group row">
                         <div class="col-sm-10">
                             <input type="text" id="disabledTextInput" class="form-control"
-                                   value="Data Ativação: {{ \Carbon\Carbon::parse($escola->EscolaDTAtivacao)->format('d/m/Y H:i:s') }}">
+                            value="Data Cadastro: {{ \Carbon\Carbon::parse($escola->EscolaDTCadastro)->format('d/m/Y H:i:s') }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-10">
                             <input type="text" id="disabledTextInput" class="form-control"
-                                   value="Data Inativação: {{ \Carbon\Carbon::parse($escola->EscolaDTInativacao)->format('d/m/Y H:i:s') }}">
+                            value="Data Ativação: {{ \Carbon\Carbon::parse($escola->EscolaDTAtivacao)->format('d/m/Y H:i:s') }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-10">
                             <input type="text" id="disabledTextInput" class="form-control"
-                                   value="Data Bloqueio: {{ \Carbon\Carbon::parse($escola->EscolaDTBloqueio)->format('d/m/Y H:i:s') }}">
+                            value="Data Inativação: {{ \Carbon\Carbon::parse($escola->EscolaDTInativacao)->format('d/m/Y H:i:s') }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <input type="text" id="disabledTextInput" class="form-control"
+                            value="Data Bloqueio: {{ \Carbon\Carbon::parse($escola->EscolaDTBloqueio)->format('d/m/Y H:i:s') }}">
                         </div>
                     </div>
                 </fieldset>

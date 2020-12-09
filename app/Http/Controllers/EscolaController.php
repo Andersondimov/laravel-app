@@ -37,7 +37,6 @@ class EscolaController extends Controller
         }
         $escola->EscolaValorFixo = $request->EscolaValorFixo;
         $escola->EscolaValorVaviavel = $request->EscolaValorVaviavel;
-        $escola->EscolaPontuacaoIni = $request->EscolaPontuacaoIni;
         if(isset($request->EscolaTelefone) && $request->EscolaTelefone != '' && $request->EscolaTelefone) {
             $escola->EscolaTelefone = $request->EscolaTelefone;
         }
@@ -75,7 +74,6 @@ class EscolaController extends Controller
                     'Escola.EscolaDTBloqueio',
                     'Escola.EscolaValorFixo',
                     'Escola.EscolaValorVaviavel',
-                    'Escola.EscolaPontuacaoIni',
                     'Escola.EscolaMotivoBloqueio',
                     'Escola.EscolaCelular',
                     'Escola.EscolaCNPJ',
@@ -105,7 +103,6 @@ class EscolaController extends Controller
         }
         $escola->EscolaValorFixo = $request->EscolaValorFixo;
         $escola->EscolaValorVaviavel = $request->EscolaValorVaviavel;
-        $escola->EscolaPontuacaoIni = $request->EscolaPontuacaoIni;
         if(isset($request->EscolaTelefone) && $request->EscolaTelefone != '' && $request->EscolaTelefone) {
             $escola->EscolaTelefone = $request->EscolaTelefone;
         }
@@ -122,6 +119,9 @@ class EscolaController extends Controller
             $escola->EscolaMotivoBloqueio = $request->EscolaMotivoBloqueio;
         }
         $escola->RedeID = $request->RedeID;
+
+        if($escola->EscolaStatus == 4)
+            $escola->EscolaDTCadastro = date('Y-m-d H:i:s');
 
         if($escola->EscolaStatus == 2)
             $escola->EscolaDTInativacao = date('Y-m-d H:i:s');

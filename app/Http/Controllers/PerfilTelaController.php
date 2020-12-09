@@ -46,19 +46,7 @@ class PerfilTelaController extends Controller
         $perfiltela = PerfilTela::findOrFail($PerfilTelaID);
         return view('perfiltela/editar', compact('perfiltela'));
     }
-
-    public function edit($PerfilID)
-    {
-        $perfil = Perfil::findOrFail($PerfilID);
-        return view('perfil/editar', compact('perfil'));
-    }
-
-    public function edit($TelaID)
-    {
-        $tela = Tela::findOrFail($TelaID);
-        return view('tela/editar', compact('tela'));
-    }
-
+    
     public function update(Request $request, $id)
     {
         $perfiltela = PerfilTela::findOrFail($id);

@@ -33,8 +33,10 @@
                                     Ativo
                                 @elseif($escola->EscolaStatus == 2)
                                     Inativo
-                                @else($escola->EscolaStatus == 3)
+                                @elseif($escola->EscolaStatus == 3)
                                     Bloqueado
+                                @else($escola->EscolaStatus == 4)
+                                    Prospect
                                 @endif
                             </td>
                             <td>

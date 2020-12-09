@@ -50,10 +50,6 @@
                     <input type="text" class="form-control" name="EscolaValorVaviavel" />
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Pontuação Inicial</label>
-                    <input type="number" class="form-control" name="EscolaPontuacaoIni" />
-                </div>
-                <div class="form-group">
                     <label for="exampleInputEmail1">Telefone (Somente números))</label>
                     <input type="text" class="form-control" name="EscolaTelefone" />
                 </div>
@@ -65,6 +61,11 @@
                     <label for="exampleInputEmail1">Celular Pix (Somente números))</label>
                     <input type="text" class="form-control" name="EscolaCelularPix" />
                 </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Dia Vencimento</label>
+                    <input type="number" class="form-control" name="DiaVencimento" />
+                </div>
+                </div>
             </div>
             <div class="form-group">
                 <label for="Status">Status</label>
@@ -72,12 +73,18 @@
                     <option value="1">Ativo</option>
                     <option value="2">Inativo</option>
                     <option value="3">Bloqueado</option>
+                    <option value="4">Prospect</option>
                 </select>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">OK</button>
             </div>
             <fieldset disabled>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Cadastro:   --/--/---- 00:00:00">
+                    </div>
+                </div>
                 <div class="form-group row">
                     <div class="col-sm-10">
                         <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Ativação:   --/--/---- 00:00:00">
@@ -91,6 +98,11 @@
                 <div class="form-group row">
                     <div class="col-sm-10">
                         <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Bloqueio:   --/--/---- 00:00:00">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Prospect:   --/--/---- 00:00:00">
                     </div>
                 </div>
             </fieldset>
