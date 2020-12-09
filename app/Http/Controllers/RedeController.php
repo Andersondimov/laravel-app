@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Rede;
 use Illuminate\Http\Request;
-use App\Http\Controllers\HomeController;
+use App\Http\Requests\RedeCreate;
 
 
 class RedeController extends Controller
@@ -20,13 +20,16 @@ class RedeController extends Controller
         return view('rede.create');
     }
 
-    public function store(Request $request)
+    public function store(RedeCreate $request)
     {
+        $validated = $request->validated();
+
         $rede = new Rede;
-        $rede->Rede = $request->Rede;
-        $rede->RedeCod = $request->RedeCod;
-        $rede->RedeStatus = $request->RedeStatus;
+        $rede->Rede = request('Rede');
+        $rede->RedeCod = request('RedeCod');
+        $rede->RedeStatus = request('RedeStatus');
         $rede->save();
+
         return redirect()->back()
             ->with('status', 'Rede criada com sucesso!');
     }

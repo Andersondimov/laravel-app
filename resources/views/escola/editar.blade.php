@@ -18,8 +18,9 @@
                 <div class="form-group">
                     <label for="RedeID">Rede</label>
                     <select class="form-control" name="RedeID">
-                        <option value="14" @if(isset($escola) && $escola->RedeID == 14)selected @endif>CNA</option>
-                        <option value="15" @if(isset($escola) && $escola->RedeID == 15)selected @endif>WIZARD</option>
+                        @foreach ( $escola->Rede as $Rede )
+                            <option value="{{$Rede->RedeID}}">{{$Rede->Rede}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group">

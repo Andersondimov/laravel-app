@@ -11,6 +11,14 @@
             {{ session('status') }}
         </div>
     @endif
+    <div class="error">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+    </div>
+
     <form role="form" method="post" action="{{action('RedeController@store')}}">
         @csrf
     <div class="bd-example">
