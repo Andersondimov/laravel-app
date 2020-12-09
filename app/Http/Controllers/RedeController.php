@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Rede;
 use Illuminate\Http\Request;
-use App\Http\Requests\RedeCreate;
+use App\Http\Requests\Rede\RedeCreate;
+use App\Http\Requests\Rede\RedeAlter;
 
 
 class RedeController extends Controller
@@ -53,12 +54,14 @@ class RedeController extends Controller
         return view('rede/editar', compact('rede'));
     }
 
-    public function update(Request $request, $id)
+    public function update(RedeAlter $request, $id)
     {
+        $validated = $request->validated();
+
         $rede = Rede::findOrFail($id);
-        $rede->Rede = $request->Rede;
-        $rede->RedeCod = $request->RedeCod;
-        $rede->RedeStatus = $request->RedeStatus;
+        $rede->Rede = request('Rede');
+        $rede->RedeCod = request('RedeCod');
+        $rede->RedeStatus = request('RedeStatus');
 
         if($rede->RedeStatus == 2)
             $rede->RedeDTInativacao = date('Y-m-d H:i:s');
