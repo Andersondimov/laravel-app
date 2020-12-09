@@ -88,6 +88,12 @@ class EscolaController extends Controller
     public function edit($EscolaID)
     {
         $escola = Escola::findOrFail($EscolaID);
+        $escola['Rede'] = DB::table('Rede')
+        ->select(
+            'Rede.RedeID',
+            'Rede.Rede'
+        )
+        ->get();
         return view('escola/editar', compact('escola'));
     }
 
