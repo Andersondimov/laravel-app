@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 /*
+* Usuario
+ */
+Route::post('usuario/inserir', 'UsuarioController@store');
+Route::get('usuario', 'UsuarioController@index');
+Route::get('usuario/list', 'UsuarioController@list');
+Route::get('usuario/editar/{id}', 'UsuarioController@edit');
+Route::post('usuario/update/{id}', 'UsuarioController@update');
+
+/*
  * PerfilTela
  */
 Route::post('perfiltela/inserir', 'PerfilTelaController@store');

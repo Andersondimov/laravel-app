@@ -8,51 +8,49 @@
     <body>
             @csrf
         <div class="bd-example">
-            <h1 class="bd-title" id="content">Escola</h1>
+            <h1 class="bd-title" id="content">Usuário</h1>
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>Escola</th>
-                    <th>Cod. Escola</th>
-                    <th>Escola CNPJ</th>
-                    <th>Rede</th>
+                    <th>Usuario</th>
+                    <th>Perfil</th>
+                    <th>Login</th>
+                    <th>Email</th>
                     <th>Status</th>
                     <th>Atualizar</th>
                 </tr>
                 </thead>
                 <tbody>
-                @if(count($Escolas)>0)
-                    @foreach ( $Escolas as $escola )
+                @if(count($Usuarios)>0)
+                    @foreach ( $Usuarios as $usuario )
                         <tr>
-                            <td>{{ $escola->Escola }}</td>
-                            <td>{{ $escola->EscolaCod }}</td>
-                            <td>{{ $escola->EscolaCNPJ }}</td>
-                            <td>{{ $escola->Rede }}</td>
+                            <td>{{ $usuario->UsuarioNome }}</td>
+                            <td>{{ $usuario->Perfil }}</td>
+                            <td>{{ $usuario->UsuarioLogin }}</td>
+                            <td>{{ $usuario->UsuarioEmail }}</td>
                             <td>
-                                @if($escola->EscolaStatus == 1)
+                                @if($usuario->UsuarioStatus == 1)
                                     Ativo
-                                @elseif($escola->EscolaStatus == 2)
+                                @elseif($usuario->UsuarioStatus == 2)
                                     Inativo
-                                @elseif($escola->EscolaStatus == 3)
+                                @else($usuario->UsuarioStatus == 3)
                                     Bloqueado
-                                @else($escola->EscolaStatus == 4)
-                                    Prospect
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ url('escola/editar/'.$escola->EscolaID) }}">Alterar</a>
+                                <a href="{{ url('usuario/editar/'.$usuario->UsuarioID) }}">Alterar</a>
                             </td>
                         </tr>
                     @endforeach
                 @else
                     <tr>
-                        <td colspan="6">Nenhuma Escola Cadastrada</td>
+                        <td colspan="6">Nenhum Usuário Cadastrado</td>
                     </tr>
                 @endif
                 </tbody>
             </table>
             <div class="form-group">
-                <form role="form" method="get" action="{{action('EscolaController@index')}}">
+                <form role="form" method="get" action="{{action('UsuarioController@index')}}">
                     <button type="submit" class="btn btn-primary">NOVO</button>
                 </form>
             </div>

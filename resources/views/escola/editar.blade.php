@@ -26,7 +26,8 @@
                     <label for="RedeID">Rede</label>
                     <select class="form-control" name="RedeID">
                         @foreach ( $escola->Rede as $Rede )
-                            <option value="{{$Rede->RedeID}}">{{$Rede->Rede}}</option>
+                            <option @if ($Rede->RedeID == $escola->RedeID) selected @endif value="{{$Rede->RedeID}}">{{$Rede->Rede}}</option>
+                            
                         @endforeach
                     </select>
                 </div>
