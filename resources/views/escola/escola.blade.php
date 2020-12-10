@@ -45,8 +45,8 @@
                     <input type="text" class="form-control" name="EscolaSenha" value="NOVA@1234"/>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Escola CNPJ (Somente números)</label>
-                    <input type="text" class="form-control" name="EscolaCNPJ" />
+                    <label for="exampleInputEmail1">Escola CNPJ</label>
+                    <input type="text" class="form-control" name="EscolaCNPJ" id="campoCNPJ" />
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Valor Fixo</label>
@@ -63,23 +63,23 @@
                 <div class="form-group">
                     <label for="exampleInputEmail1">Data Expiração</label>
                     <div class="input-group date" id="calendario" data-provide="datepicker">
-                        <input type="text" class="form-control" name="EscolaDTExpiracao" placeholder="Data Expiração">
+                        <input type="text" class="form-control" name="EscolaDTExpiracao" placeholder="dd/mm/aaaa" />
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-th"></span>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Telefone (Somente números)</label>
-                    <input type="text" class="form-control" name="EscolaTelefone" />
+                    <label for="exampleInputEmail1">Telefone</label>
+                    <input type="text" id="campoTelefone" class="form-control" name="EscolaTelefone" />
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Celular (Somente números)</label>
-                    <input type="text" class="form-control" name="EscolaCelular" />
+                    <label for="exampleInputEmail1">Celular</label>
+                    <input type="text" class="form-control" name="EscolaCelular" id="campoCelular" />
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Celular Pix (Somente números)</label>
-                    <input type="text" class="form-control" name="EscolaCelularPix" />
+                    <label for="exampleInputEmail1">Celular Pix</label>
+                    <input type="text" class="form-control" id="campoCelularPix" name="EscolaCelularPix" />
                 </div>
                 <div class="form-group">
                     <label for="Status">Status</label>
@@ -125,10 +125,16 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
 
         <!-- crio atributo data-value para armazenar penultima data escolhida -->
 
         <script>
+            $("#campoTelefone").mask("(99) 9999-9999");
+            $("#campoCelular").mask("(99) 09999-9999");
+            $("#campoCelularPix").mask("(99) 09999-9999");
+            $("#campoCNPJ").mask("99.999.999/9999-99");
+
             $('#calendario').datepicker({
                 format: "dd/mm/yyyy",
                 language: "pt-BR",
