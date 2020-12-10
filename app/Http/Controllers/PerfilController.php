@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Perfil;
 use Illuminate\Http\Request;
+use App\Http\Requests\Perfil\PerfilCreate;
+use App\Http\Requests\Perfil\PerfilAlter;
 
 class PerfilController extends Controller
 {
@@ -18,8 +20,10 @@ class PerfilController extends Controller
         return view('perfil.create');
     }
 
-    public function store(Request $request)
+    public function store(PerfilCreate $request)
     {
+        $validated = $request->validated();
+
         $perfil = new Perfil;
         $perfil->Perfil = $request->Perfil;
         $perfil->PerfilCod = $request->PerfilCod;
@@ -48,12 +52,17 @@ class PerfilController extends Controller
         return view('perfil/editar', compact('perfil'));
     }
 
-    public function update(Request $request, $id)
+    public function update(PerfilAlter $request, $id)
     {
+        $validated = $request->validated();
+
         $perfil = Perfil::findOrFail($id);
         $perfil->Perfil = $request->Perfil;
         $perfil->PerfilCod = $request->PerfilCod;
         $perfil->PerfilStatus = $request->PerfilStatus;
+
+        if($perfil->PerfilStatus == 1)
+            $perfil->PerfilDTAtivacao = date('Y-m-d H:i:s');
 
         if($perfil->PerfilStatus == 2)
             $perfil->PerfilDTInativacao = date('Y-m-d H:i:s');

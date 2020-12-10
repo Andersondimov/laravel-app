@@ -26,20 +26,18 @@
         <form>
             <div class="form-group">
                 <label for="exampleInputEmail1">Nome da Rede</label>
-                <input type="text" class="form-control" name="Rede" @if(isset($adrs_dtls))value="{{ old('', $adrs_dtls->Rede) }}"@endif placeholder="Name" />
+                <input type="text" class="form-control" name="Rede" placeholder="Name" />
             </div>
             <div class="form-group">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Cod. Rede</label>
-                    <input type="text" class="form-control" name="RedeCod" @if(isset($adrs_dtls))value="{{ old('', $adrs_dtls->RedeCod) }}"@endif placeholder="Cod." />
+                    <input type="text" class="form-control" name="RedeCod" placeholder="Cod. Rede" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="Status">Status</label>
                 <select class="form-control" name="RedeStatus">
-                    <option value="1" @if(isset($adrs_dtls) && $adrs_dtls->RedeCod == 1)checked @endif>Ativo</option>
-                    <option value="2" @if(isset($adrs_dtls) && $adrs_dtls->RedeCod == 2)checked @endif>Inativo</option>
-                    <option value="3" @if(isset($adrs_dtls) && $adrs_dtls->RedeCod == 3)checked @endif>Bloqueado</option>
+                    <option value="1">Ativo</option>
                 </select>
             </div>
             <div class="form-group">

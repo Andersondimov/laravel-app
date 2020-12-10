@@ -11,6 +11,13 @@
             {{ session('status') }}
         </div>
     @endif
+    <div class="error">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
     <form role="form" method="post" action="{{action('PerfilController@store')}}">
         @csrf
     <div class="bd-example">
@@ -18,20 +25,18 @@
         <form>
             <div class="form-group">
                 <label for="exampleInputEmail1">Nome do Perfil</label>
-                <input type="text" class="form-control" name="Perfil" @if(isset($adrs_dtls))value="{{ old('', $adrs_dtls->Perfil) }}"@endif placeholder="Name" />
+                <input type="text" class="form-control" name="Perfil" placeholder="Name" />
             </div>
             <div class="form-group">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Cod. Perfil</label>
-                    <input type="text" class="form-control" name="PerfilCod" @if(isset($adrs_dtls))value="{{ old('', $adrs_dtls->PerfilCod) }}"@endif placeholder="Cod." />
+                    <input type="text" class="form-control" name="PerfilCod" placeholder="Cod. Perfil" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="Status">Status</label>
                 <select class="form-control" name="PerfilStatus">
-                    <option value="1" @if(isset($adrs_dtls) && $adrs_dtls->PerfilCod == 1)checked @endif>Ativo</option>
-                    <option value="2" @if(isset($adrs_dtls) && $adrs_dtls->PerfilCod == 2)checked @endif>Inativo</option>
-                    <option value="3" @if(isset($adrs_dtls) && $adrs_dtls->PerfilCod == 3)checked @endif>Bloqueado</option>
+                    <option value="1">Ativo</option>
                 </select>
             </div>
             <div class="form-group">

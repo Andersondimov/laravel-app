@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Rede\RedeCreate;
 use App\Http\Requests\Rede\RedeAlter;
 
-
 class RedeController extends Controller
 {
     public function index()
@@ -62,6 +61,9 @@ class RedeController extends Controller
         $rede->Rede = request('Rede');
         $rede->RedeCod = request('RedeCod');
         $rede->RedeStatus = request('RedeStatus');
+
+        if($rede->RedeStatus == 1)
+            $rede->RedeDTAtivacao = date('Y-m-d H:i:s');
 
         if($rede->RedeStatus == 2)
             $rede->RedeDTInativacao = date('Y-m-d H:i:s');

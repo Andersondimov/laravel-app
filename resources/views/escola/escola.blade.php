@@ -11,6 +11,13 @@
             {{ session('status') }}
         </div>
     @endif
+    <div class="error">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
     <form role="form" method="post" action="{{action('EscolaController@store')}}">
         @csrf
     <div class="bd-example">
@@ -38,7 +45,7 @@
                     <input type="text" class="form-control" name="EscolaSenha" value="NOVA@1234"/>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Escola CNPJ</label>
+                    <label for="exampleInputEmail1">Escola CNPJ (Somente números)</label>
                     <input type="text" class="form-control" name="EscolaCNPJ" />
                 </div>
                 <div class="form-group">
@@ -50,34 +57,40 @@
                     <input type="text" class="form-control" name="EscolaValorVaviavel" />
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Telefone (Somente números))</label>
+                    <label for="exampleInputEmail1">Dia Vencimento</label>
+                    <input type="number" class="form-control" min="1" max="30" name="EscolaDiaVencimento" />
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Data Expiração</label>
+                    <div class="input-group date" id="calendario" data-provide="datepicker">
+                        <input type="text" class="form-control" name="EscolaDTExpiracao" placeholder="Data Expiração">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Telefone (Somente números)</label>
                     <input type="text" class="form-control" name="EscolaTelefone" />
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Celular (Somente números))</label>
+                    <label for="exampleInputEmail1">Celular (Somente números)</label>
                     <input type="text" class="form-control" name="EscolaCelular" />
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Celular Pix (Somente números))</label>
+                    <label for="exampleInputEmail1">Celular Pix (Somente números)</label>
                     <input type="text" class="form-control" name="EscolaCelularPix" />
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Dia Vencimento</label>
-                    <input type="number" class="form-control" name="DiaVencimento" />
+                    <label for="Status">Status</label>
+                    <select class="form-control" name="EscolaStatus">
+                        <option value="1">Ativo</option>
+                        <option value="4">Prospect</option>
+                    </select>
                 </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">OK</button>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="Status">Status</label>
-                <select class="form-control" name="EscolaStatus">
-                    <option value="1">Ativo</option>
-                    <option value="2">Inativo</option>
-                    <option value="3">Bloqueado</option>
-                    <option value="4">Prospect</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">OK</button>
             </div>
             <fieldset disabled>
                 <div class="form-group row">
@@ -108,6 +121,41 @@
             </fieldset>
         </form>
     </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+
+        <!-- crio atributo data-value para armazenar penultima data escolhida -->
+
+        <script>
+            $('#calendario').datepicker({
+                format: "dd/mm/yyyy",
+                language: "pt-BR",
+                startDate: '+0d'
+            }).on("change", function(e){
+
+                //Pego o valor selecionado anteriormente
+                var oldValue = $(this).attr("data-value");
+
+                //Se não for a primeira alteração devo comparar as datas:
+                if(oldValue != ""){
+                    date1 = novaData(oldValue);
+                    date2 = novaData($(this).val());
+
+                }
+
+                //Salvo a nova data selecionada no atributo data-value
+                $(this).attr("data-value", $(this).val());
+            });
+
+            //Evita problemas com timezone ao definir a data
+            function novaData(dataString){
+                var partes = dataString.split('-');
+                var data = new Date(partes[0], partes[1] - 1, partes[2]);
+                return data;
+            }
+        </script>
 
     </body>
 </html>

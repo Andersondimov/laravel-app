@@ -11,6 +11,13 @@
     {{ session('status') }}
 </div>
 @endif
+<div class="error">
+    <ul>
+        @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
 <form role="form" method="post" action="{{url('tela/update/'.$tela->TelaID)}}">
     @csrf
     <div class="bd-example">
@@ -34,20 +41,20 @@
             <fieldset disabled>
                 <div class="form-group row">
                     <div class="col-sm-10">
-                        <input type="text" id="disabledTextInput" class="form-control"
-                        value="Data Ativação: {{ \Carbon\Carbon::parse($tela->TelaDTAtivacao)->format('d/m/Y H:i:s') }}">
+                        <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Ativação:   --/--/---- 00:00:00"
+                               @if(isset($tela->TelaDTAtivacao) && $tela->TelaDTAtivacao != '') value="Data Ativação: {{ \Carbon\Carbon::parse($tela->TelaDTAtivacao)->format('d/m/Y H:i:s') }} "@endif>
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-10">
-                        <input type="text" id="disabledTextInput" class="form-control"
-                        value="Data Inativação: {{ \Carbon\Carbon::parse($tela->TelaDTInativacao)->format('d/m/Y H:i:s') }}">
+                        <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Inativação:   --/--/---- 00:00:00"
+                               @if(isset($tela->TelaDTInativacao) && $tela->TelaDTInativacao != '') value="Data Inativação: {{ \Carbon\Carbon::parse($tela->TelaDTInativacao)->format('d/m/Y H:i:s') }} "@endif>
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-10">
-                        <input type="text" id="disabledTextInput" class="form-control"
-                        value="Data Bloqueio: {{ \Carbon\Carbon::parse($tela->TelaDTBloqueio)->format('d/m/Y H:i:s') }}">
+                        <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Bloqueio:   --/--/---- 00:00:00"
+                               @if(isset($tela->TelaDTBloqueio) && $tela->TelaDTBloqueio != '') value="Data Bloqueio: {{ \Carbon\Carbon::parse($tela->TelaDTBloqueio)->format('d/m/Y H:i:s') }} "@endif>
                     </div>
                 </div>
             </fieldset>

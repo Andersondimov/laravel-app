@@ -11,6 +11,13 @@
             {{ session('status') }}
         </div>
     @endif
+    <div class="error">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
     <form role="form" method="post" action="{{action('TelaController@store')}}">
         @csrf
     <div class="bd-example">
@@ -18,7 +25,7 @@
         <form>
             <div class="form-group">
                 <label for="exampleInputEmail1">Nome da Tela</label>
-                <input type="text" class="form-control" name="Tela" @if(isset($adrs_dtls))value="{{ old('', $adrs_dtls->Tela) }}"@endif placeholder="Name" />
+                <input type="text" class="form-control" name="Tela" placeholder="Name" />
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">OK</button>

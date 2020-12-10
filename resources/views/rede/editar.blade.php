@@ -47,20 +47,20 @@
             <fieldset disabled>
                 <div class="form-group row">
                     <div class="col-sm-10">
-                        <input type="text" id="disabledTextInput" class="form-control"
-                               value="Data Ativação: {{ \Carbon\Carbon::parse($rede->RedeDTAtivacao)->format('d/m/Y H:i:s') }}">
+                        <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Ativação:   --/--/---- 00:00:00"
+                                @if(isset($rede->RedeDTAtivacao) && $rede->RedeDTAtivacao != '') value="Data Ativação: {{ \Carbon\Carbon::parse($rede->RedeDTAtivacao)->format('d/m/Y H:i:s') }} "@endif>
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-10">
-                        <input type="text" id="disabledTextInput" class="form-control"
-                               value="Data Inativação: {{ \Carbon\Carbon::parse($rede->RedeDTInativacao)->format('d/m/Y H:i:s') }}">
+                        <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Inativação:   --/--/---- 00:00:00"
+                               @if(isset($rede->RedeDTInativacao) && $rede->RedeDTInativacao != '') value="Data Inativação: {{ \Carbon\Carbon::parse($rede->RedeDTInativacao)->format('d/m/Y H:i:s') }} "@endif>
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-10">
-                        <input type="text" id="disabledTextInput" class="form-control"
-                               value="Data Bloqueio: {{ \Carbon\Carbon::parse($rede->RedeDTBloqueio)->format('d/m/Y H:i:s') }}">
+                        <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Bloqueio:   --/--/---- 00:00:00"
+                               @if(isset($rede->RedeDTBloqueio) && $rede->RedeDTBloqueio != '') value="Data Bloqueio: {{ \Carbon\Carbon::parse($rede->RedeDTBloqueio)->format('d/m/Y H:i:s') }} "@endif>
                     </div>
                 </div>
             </fieldset>

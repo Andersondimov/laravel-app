@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Tela;
 use Illuminate\Http\Request;
+use App\Http\Requests\Tela\TelaCreate;
+use App\Http\Requests\Tela\TelaAlter;
 
 class TelaController extends Controller
 {
@@ -18,11 +20,13 @@ class TelaController extends Controller
         return view('tela.create');
     }
 
-    public function store(Request $request)
+    public function store(TelaCreate $request)
     {
+        $validated = $request->validated();
+
         $tela = new Tela;
         $tela->Tela = $request->Tela;
-        $tela->TelaStatus = $request->TelaStatus;
+        $tela->TelaStatus = 1;
         $tela->save();
         return redirect()->back()
             ->with('status', 'Tela criada com sucesso!');
@@ -47,11 +51,16 @@ class TelaController extends Controller
         return view('tela/editar', compact('tela'));
     }
 
-    public function update(Request $request, $id)
+    public function update(TelaAlter $request, $id)
     {
+        $validated = $request->validated();
+
         $tela = Tela::findOrFail($id);
         $tela->Tela = $request->Tela;
         $tela->TelaStatus = $request->TelaStatus;
+
+        if($tela->TelaStatus == 1)
+            $tela->TelaDTAtivacao = date('Y-m-d H:i:s');
 
         if($tela->TelaStatus == 2)
             $tela->TelaDTInativacao = date('Y-m-d H:i:s');
