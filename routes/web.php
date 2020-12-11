@@ -12,6 +12,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+/*
+* InformativoAcesso
+ */
+Route::post('informativoacesso/inserir', 'InformativoAcessoController@store');
+Route::get('informativoacesso', 'InformativoAcessoController@index');
+Route::get('informativoacesso/list', 'InformativoAcessoController@list');
+Route::get('informativoacesso/editar/{id}', 'InformativoAcessoController@edit');
+Route::post('informativoacesso/update/{id}', 'InformativoAcessoController@update');
+
+
 /*
 * Usuario
  */
