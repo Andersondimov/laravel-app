@@ -8,7 +8,14 @@ class PerfilTela extends Model
 {
     public $timestamps = false;
     protected $primaryKey = 'PerfilTelaID';
-    protected $fillable = ['PerfilTela', 'PerfilTelaStatus'];
-    protected $guarded = ['PerfilTelaID', 'PerfilTelaDTAtivacao', 'PerfilTelaDTInativacao', 'PerfilTelaDTBloqueio'];
+    protected $fillable = [
+        'PerfilTela',  
+        'PerfilTelaStatus',
+        'PerfilTelaDTAtivacao',
+        'PerfilTelaDTInativacao',
+        'PerfilTelaDTBloqueio',
+        'TelaID',
+        'PerfilID'];
+    protected $guarded = ['PerfilTelaID'];
     protected $table = 'PerfilTela';
 }

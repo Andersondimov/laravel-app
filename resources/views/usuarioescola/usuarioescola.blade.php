@@ -11,27 +11,14 @@
             {{ session('status') }}
         </div>
     @endif
-    <div class="error">
-        <ul>
-            @foreach($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    <form role="form" method="post" action="{{action('TelaController@store')}}">
+    <form role="form" method="post" action="{{action('UsuarioEscolaController@store')}}">
         @csrf
     <div class="bd-example">
-        <h1 class="bd-title" id="content">Tela</h1>
+        <h1 class="bd-title" id="content">UsuarioEscola</h1>
         <form>
             <div class="form-group">
-                <label for="exampleInputEmail1">Nome da Tela</label>
-                <input type="text" class="form-control" name="Tela" placeholder="Name" />
-            </div>
-            <div class="form-group">
-                <label for="Status">Status</label>
-                <select class="form-control" name="PerfilTelaStatus">
-                    <option value="1">Ativo</option>
-                </select>
+                <label for="exampleInputEmail1">Nome da UsuarioEscola</label>
+                <input type="text" class="form-control" name="UsuarioEscola" @if(isset($adrs_dtls))value="{{ old('', $adrs_dtls->UsuarioEscola) }}"@endif placeholder="Name" />
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">OK</button>

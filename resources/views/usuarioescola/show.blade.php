@@ -8,43 +8,43 @@
     <body>
             @csrf
         <div class="bd-example">
-            <h1 class="bd-title" id="content">Tela</h1>
+            <h1 class="bd-title" id="content">UsuarioEscola</h1>
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>Tela</th>
+                    <th>UsuarioEscola</th>
                     <th>Status</th>
                     <th>Atualizar</th>
                 </tr>
                 </thead>
                 <tbody>
-                @if(count($Telas)>0)
-                    @foreach ( $Telas as $tela )
+                @if(count($UsuarioEscolas)>0)
+                    @foreach ( $UsuarioEscolas as $usuarioescola )
                         <tr>
-                            <td>{{ $tela->Tela }}</td>
+                            <td>{{ $usuarioescola->UsuarioEscola }}</td>
                             <td>
-                                @if($tela->TelaStatus == 1)
+                                @if($usuarioescola->UsuarioEscolaStatus == 1)
                                     Ativo
-                                @elseif($tela->TelaStatus == 2)
+                                @elseif($usuarioescola->UsuarioEscolaStatus == 2)
                                     Inativo
-                                @else($tela->TelaStatus == 3)
+                                @else($usuarioescola->UsuarioEscolaStatus == 3)
                                     Bloqueado
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ url('tela/editar/'.$tela->TelaID) }}">Alterar</a>
+                                <a href="{{ url('usuarioescola/editar/'.$usuarioescola->UsuarioEscolaID) }}">Alterar</a>
                             </td>
                         </tr>
                     @endforeach
                 @else
                     <tr>
-                        <td colspan="3">Nenhuma Tela Cadastrada</td>
+                        <td colspan="4">Nenhum UsuarioEscola Cadastrado</td>
                     </tr>
                 @endif
                 </tbody>
             </table>
             <div class="form-group">
-                <form role="form" method="get" action="{{action('TelaController@index')}}">
+                <form role="form" method="get" action="{{action('UsuarioEscolaController@index')}}">
                     <button type="submit" class="btn btn-primary">NOVO</button>
                 </form>
             </div>

@@ -12,35 +12,37 @@
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>PerfilTela</th>
+                    <th>Perfil</th>
+                    <th>Tela</th>
                     <th>Status</th>
                     <th>Atualizar</th>
                 </tr>
                 </thead>
                 <tbody>
-                @if(count($PerfilTelas)>0)
-                    @foreach ( $PerfilTelas as $perfiltela )
-                        <tr>
-                            <td>{{ $perfiltela->PerfilTela }}</td>
-                            <td>
-                                @if($perfiltela->PerfilTelaStatus == 1)
-                                    Ativo
-                                @elseif($perfiltela->PerfilTelaStatus == 2)
-                                    Inativo
-                                @else($perfiltela->PerfilTelaStatus == 3)
-                                    Bloqueado
-                                @endif
-                            </td>
-                            <td>
-                                <a href="{{ url('perfiltela/editar/'.$perfiltela->PerfilTelaID) }}">Alterar</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                @else
+                    @if(count($PerfilTelas)>0)
+                        @foreach ( $PerfilTelas as $perfiltela )
+                            <tr>
+                                <td>{{ $perfiltela->Perfil }}</td>
+                                <td>{{ $perfiltela->Tela }}</td>
+                                <td>
+                                    @if($perfiltela->PerfilTelaStatus == 1)
+                                        Ativo
+                                    @elseif($perfiltela->PerfilTelaStatus == 2)
+                                        Inativo
+                                    @else($perfiltela->PerfilTelaStatus == 3)
+                                        Bloqueado
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{ url('perfiltela/editar/'.$perfiltela->PerfilTelaID) }}">Alterar</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
                     <tr>
-                        <td colspan="4">Nenhum PerfilTela Cadastrada</td>
+                        <td colspan="4">Nenhum PerfilTela Cadastrado</td>
                     </tr>
-                @endif
+                    @endif
                 </tbody>
             </table>
             <div class="form-group">

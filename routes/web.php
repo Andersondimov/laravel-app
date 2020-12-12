@@ -14,13 +14,31 @@ use Illuminate\Support\Facades\Route;
 */
 
 /*
+* UsuarioEscola
+ */
+Route::post('usuarioescola/inserir', 'UsuarioEscolaController@store');
+Route::get('usuarioescola', 'UsuarioEscolaController@index');
+Route::get('usuarioescola/list', 'UsuarioEscolaController@list');
+Route::get('usuarioescola/editar/{id}', 'UsuarioEscolaController@edit');
+Route::post('usuarioescola/update/{id}', 'UsuarioEscolaController@update');
+
+/*
+ * PerfilTela
+ */
+Route::post('perfiltela/inserir', 'PerfilTelaController@store');
+Route::get('perfiltela', 'PerfilTelaController@index');
+Route::get('perfiltela/list', 'PerfilTelaController@list');
+Route::get('perfiltela/editar/{id}', 'PerfilTelaController@edit');
+Route::post('perfiltela/update/{id}', 'PerfilTelaController@update');
+
+/*
 * InformativoAcesso
  */
 Route::post('informativoacesso/inserir', 'InformativoAcessoController@store');
 Route::get('informativoacesso', 'InformativoAcessoController@index');
 Route::get('informativoacesso/list', 'InformativoAcessoController@list');
 Route::get('informativoacesso/editar/{id}', 'InformativoAcessoController@edit');
-Route::post('informativoacesso/update/{id}', 'InformativoAcessoController@update');
+Route::post('informativoacesso/update/{id}', 'InformativoAcessoController@update')->name('informativoacesso.update');
 
 
 /*
@@ -31,15 +49,6 @@ Route::get('usuario', 'UsuarioController@index');
 Route::get('usuario/list', 'UsuarioController@list');
 Route::get('usuario/editar/{id}', 'UsuarioController@edit');
 Route::post('usuario/update/{id}', 'UsuarioController@update');
-
-/*
- * PerfilTela
- */
-Route::post('perfiltela/inserir', 'PerfilTelaController@store');
-Route::get('perfiltela', 'PerfilTelaController@index');
-Route::get('perfiltela/list', 'PerfilTelaController@list');
-Route::get('perfiltela/editar/{id}', 'PerfilTelaController@edit');
-Route::post('perfiltela/update/{id}', 'PerfilTelaController@update');
 
 
 /*

@@ -30,7 +30,6 @@ class EscolaController extends Controller
     public function store(EscolaCreate $request)
     {
         $validated = $request->validated();
-
         $escola = new Escola;
         $escola->Escola = $request->Escola;
         $escola->EscolaCod = $request->EscolaCod;
@@ -55,8 +54,8 @@ class EscolaController extends Controller
         if(isset($request->EscolaDiaVencimento) && $request->EscolaDiaVencimento != '' && $request->EscolaDiaVencimento) {
             $escola->EscolaDiaVencimento = $request->EscolaDiaVencimento;
         }
-        if(isset($request->EscolaDiaVencimento) && $request->EscolaDiaVencimento != '' && $request->EscolaDiaVencimento) {
-            $escola->EscolaDiaVencimento = $request->EscolaDiaVencimento;
+        if(isset($request->EscolaMotivoBloqueio) && $request->EscolaMotivoBloqueio != '' && $request->EscolaMotivoBloqueio) {
+            $escola->EscolaMotivoBloqueio = $request->EscolaMotivoBloqueio;
         }
         if(isset($request->EscolaDTExpiracao) && $request->EscolaDTExpiracao != '' && $request->EscolaDTExpiracao) {
             $dt = explode('/',$request->EscolaDTExpiracao);

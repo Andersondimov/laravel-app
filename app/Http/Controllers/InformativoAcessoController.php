@@ -4,89 +4,68 @@ namespace App\Http\Controllers;
 
 use App\InformativoAcesso;
 use DB;
+use App\Escola;
 use Illuminate\Http\Request;
 use App\Http\Requests\InformativoAcesso\InformativoAcessoCreate;
 use App\Http\Requests\InformativoAcesso\InformativoAcessoAlter;
+use Carbon\Carbon;
 
 class InformativoAcessoController extends Controller
 {
     public function index()
     {
-        $Perfis =DB::table('Escola')
-                ->select(
-                    'Escola.EscolaID',
-                    'Escola.Escola'
-                )
-                ->get();
-        return view('informativoacesso/informativoacesso', compact('Escolas'));
+        $informativoacesso = new InformativoAcesso();
+        $escolas = Escola::orderBy('Escola')->get();
+        return view('informativoacesso.create', compact('escolas','informativoacesso'));
     }
 
     public function create()
     {
-        return view('informativoacesso.create');
+        $escolas = Escola::orderBy('Escola')->get();
+        return view('informativoacesso.create', compact('escolas'));
     }
 
     public function store(InformativoAcessoCreate $request)
     {
-        $validated = $request->validated();
 
-        $informativoacesso = new InformativoAcesso;
-        $informativoacesso->EscolaID = request('EscolaID');
-        $informativoacesso->InformativoAcessoDTIni = request('InformativoAcessoDTIni');
-        $informativoacesso->InformativoAcessoDTFim = sha1(request('InformativoAcessoDTFim'));
+        $validated = $request->validated();
+        $validated['InformativoAcessoDTFim'] = Carbon::createFromFormat('Y-m-d', $validated['InformativoAcessoDTFim'])->format('d/m/Y');
+        $validated['InformativoAcessoDTIni'] = Carbon::createFromFormat('Y-m-d', $validated['InformativoAcessoDTIni'])->format('d/m/Y');
+        $informativoAcesso = InformativoAcesso::create($validated );
+        return redirect()->action('InformativoAcessoController@edit',$informativoAcesso);
         
     }
 
     public function show()
     {
-        $InformativoAcessos = new InformativoAcesso;
-        $InformativoAcessos = InformativoAcesso::all();
+        return view('myarticlesview',['articles'=>$articles]);
     }
 
     public function list()
     {
-        $Usuarios =DB::table('InformativoAcesso')
-                ->join('Escola','InformativoAcesso.EscolaID', '=', 'Escola.EscolaID')
-                ->select(
-                    'InformativoAcesso.InformativoAcessoID',
-                    'InformativoAcesso.InformativoAcessoDTIni',
-                    'InformativoAcesso.InformativoAcessoDTFim',
-                    'InformativoAcesso.EscolaID',
-                    'Escola.Escola'
-                )
-                ->get();
-        return view('InformativoAcesso/show', compact('InformativoAcessos'));
+        $InformativoAcessos = InformativoAcesso::all();
+        return view('informativoacesso.show', compact('InformativoAcessos'));
     }
 
     public function edit($InformativoAcessoID)
     {
-        $informativoacesso = InformativoAcesso::findOrFail($InformativoAcessoID);
-        $informativoacesso['Escola'] = DB::table('Escola')
-        ->select(
-            'Escola.EscolaID',
-            'Escola.Escola'
-        )
-        ->get();
-        return view('informativoacesso/editar', compact('informativoacesso'));
+        $escolas = Escola::orderBy('Escola')->get();
+        $informativoacesso = InformativoAcesso::find($InformativoAcessoID);
+        return view('informativoacesso/editar', compact('informativoacesso','escolas'));
     }
-
     public function update(InformativoAcessoAlter $request, $id)
     {
         $validated = $request->validated();
-
-        $informativoacesso = new InformativoAcesso;
-        
-        $informativoacesso = InformativoAcesso::findOrFail($id);
-
-        $informativoacesso->EscolaID = request('EscolaID');
-        $informativoacesso->InformativoAcessoDTIni = request('InformativoAcessoDTIni');
-        if(isset($request->InformativoAcessoDTIni) && $request->InformativoAcessoDTIni){
-            $informativoacesso->InformativoAcessoDTIni = sha1(request('InformativoAcessoDTIni'));
-        }
-        $informativoacesso->InformativoAcessoDTFim = request('InformativoAcessoDTFim');
-        if(isset($request->InformativoAcessoDTFim) && $request->InformativoAcessoDTFim){
-            $informativoacesso->InformativoAcessoDTFim = request('InformativoAcessoDTFim');
-        }
+        $validated['InformativoAcessoDTFim'] = Carbon::createFromFormat('Y-m-d', $validated['InformativoAcessoDTFim'])->format('d/m/Y');
+        $validated['InformativoAcessoDTIni'] = Carbon::createFromFormat('Y-m-d', $validated['InformativoAcessoDTIni'])->format('d/m/Y');
+        InformativoAcesso::find($id)->update($validated);
+        return redirect()->back()->with('status', 'InformativoAcesso alterado com sucesso!');
     }
 
+    public function destroy($id)
+    {
+        $informativoacesso = InformativoAcesso::findOrFail($id);
+        $informativoacesso->delete();
+        return redirect()->route('informativoacesso.index')->with('alert-success', 'InformativoAcesso deletado com sucesso!');
+    }
 }
