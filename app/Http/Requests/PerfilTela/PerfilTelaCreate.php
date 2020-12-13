@@ -25,7 +25,8 @@ class PerfilTelaCreate extends FormRequest
     {
         return [
 
-            'PerfilTelaStatus' => 'required|'
+            'PerfilTelaStatus' => 'required|',
+            'TelaID' => 'required|'
         ];
     }
 
@@ -33,7 +34,8 @@ class PerfilTelaCreate extends FormRequest
     {
         return [
 
-            'PerfilTelaStatus.required' => 'O campo PerfilTelaStatus é obrigatório'
+            'PerfilTelaStatus.required' => 'O campo Status é obrigatório',
+            'TelaID.required' => 'Deve selecionar ao menos uma tela',
         ];
     }
 

@@ -33,7 +33,7 @@ class UsuarioEscolaController extends Controller
         
         $usuarioescola->save();
         return redirect()->back()
-            ->with('status', 'UsuarioEscola criado com sucesso!');
+            ->with('status', 'Usuario Escola criado com sucesso!');
     }
 
     public function show()
@@ -77,7 +77,7 @@ class UsuarioEscolaController extends Controller
 
         $usuarioescola->save();
         return redirect()->back()
-            ->with('status', 'UsuarioEscola alterado com sucesso!');
+            ->with('status', 'Usuario Escola alterado com sucesso!');
 
     }
 
@@ -85,6 +85,6 @@ class UsuarioEscolaController extends Controller
     {
         $usuarioescola = UsuarioEscola::findOrFail($id);
         $usuarioescola->delete();
-        return redirect()->route('usuarioescola.index')->with('alert-success', 'UsuarioEscola deletado com sucesso!');
+        return redirect()->route('usuarioescola.index')->with('alert-success', 'Usuario Escola deletado com sucesso!');
     }
 }

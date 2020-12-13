@@ -8,12 +8,13 @@
     <body>
             @csrf
         <div class="bd-example">
-            <h1 class="bd-title" id="content">UsuarioEscola</h1>
+            <h1 class="bd-title" id="content">Usuario Escola</h1>
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>UsuarioEscola</th>
                     <th>Status</th>
+                    <th>UsuarioID</th>
+                    <th>EscolaID</th>
                     <th>Atualizar</th>
                 </tr>
                 </thead>

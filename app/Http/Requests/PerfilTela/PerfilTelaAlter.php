@@ -34,7 +34,7 @@ class PerfilTelaAlter extends FormRequest
     {
         return [
 
-            'PerfilTelaStatus.required' => 'O campo PerfilTelaStatus é obrigatório'
+            'PerfilTelaStatus.required' => 'O campo Status é obrigatório'
         ];
     }
 

@@ -17,8 +17,32 @@
         <h1 class="bd-title" id="content">UsuarioEscola</h1>
         <form>
             <div class="form-group">
-                <label for="exampleInputEmail1">Nome da UsuarioEscola</label>
+                <label for="exampleInputEmail1">Nome da Usuario</label>
                 <input type="text" class="form-control" name="UsuarioEscola" @if(isset($adrs_dtls))value="{{ old('', $adrs_dtls->UsuarioEscola) }}"@endif placeholder="Name" />
+            </div>
+            <div class="form-group">
+                <label for="UsuarioID">Usuario</label>
+                <select class="form-control" name="UsuarioID">
+                    @foreach ( $usuarios as $Usuario )
+                        <option value="{{$Usuario->UsuarioID}}">{{$Usuario->Usuario}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </form>
+        <form>
+            <div class="form-group">
+                <label for="EscolaID">Escola</label>
+                <select class="form-control" name="EscolaID">
+                    @foreach ( $Escolas as $Escola )
+                        <option value="{{$Escola->ID}}">{{$Escola->Escola}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Status">Status</label>
+                <select class="form-control" name="PerfilTelaStatus">
+                    <option value="1">Ativo</option>
+                </select>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">OK</button>

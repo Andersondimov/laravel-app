@@ -8,12 +8,11 @@
     <body>
             @csrf
         <div class="bd-example">
-            <h1 class="bd-title" id="content">PerfilTela</h1>
+            <h1 class="bd-title" id="content">Perfil Tela</h1>
             <table class="table table-bordered">
                 <thead>
                 <tr>
                     <th>Perfil</th>
-                    <th>Tela</th>
                     <th>Status</th>
                     <th>Atualizar</th>
                 </tr>
@@ -23,7 +22,6 @@
                         @foreach ( $PerfilTelas as $perfiltela )
                             <tr>
                                 <td>{{ $perfiltela->Perfil }}</td>
-                                <td>{{ $perfiltela->Tela }}</td>
                                 <td>
                                     @if($perfiltela->PerfilTelaStatus == 1)
                                         Ativo
@@ -34,13 +32,13 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ url('perfiltela/editar/'.$perfiltela->PerfilTelaID) }}">Alterar</a>
+                                    <a href="{{ url('perfiltela/editar/'.$perfiltela->PerfilID) }}">Alterar</a>
                                 </td>
                             </tr>
                         @endforeach
                     @else
                     <tr>
-                        <td colspan="4">Nenhum PerfilTela Cadastrado</td>
+                        <td colspan="6">Nenhum Perfil Tela Cadastrado</td>
                     </tr>
                     @endif
                 </tbody>

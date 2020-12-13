@@ -21,25 +21,23 @@
     <form role="form" method="post" action="{{action('PerfilTelaController@store')}}">
         @csrf
     <div class="bd-example">
-        <h1 class="bd-title" id="content">PerfilTela</h1>
-        <form>
+        <h1 class="bd-title" id="content">Perfil Tela</h1>
             <div class="form-group">
                 <label for="PerfilID">Perfil</label>
                 <select class="form-control" name="PerfilID">
-                    @foreach ( $Perfils as $Perfil )
+                    @foreach ( $Dados->PerfilID as $Perfil )
                         <option value="{{$Perfil->PerfilID}}">{{$Perfil->Perfil}}</option>
                     @endforeach
                 </select>
             </div>
-        </form>
-        <form>
             <div class="form-group">
                 <label for="TelaID">Tela</label>
-                <select class="form-control" name="TelaID">
-                    @foreach ( $Telas as $Tela )
-                        <option value="{{$Tela->TelaID}}">{{$Tela->Tela}}</option>
+                <div class="form-check">
+                    @foreach ( $Dados->TelaID as $Tela )
+                    <input type="checkbox" class="form-check-input" name="TelaID[{{$Tela->TelaID}}]" value="{{$Tela->TelaID}}">
+                    <label class="form-check-label" for="exampleCheck1">{{$Tela->Tela}}</label><br>
                     @endforeach
-                </select>
+                </div>
             </div>
             <div class="form-group">
                     <label for="Status">Status</label>
@@ -71,46 +69,7 @@
         </form>
     </div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
-
-        <!-- crio atributo data-value para armazenar penultima data escolhida -->
-
-        <script>
-            $("#campoTelefone").mask("(99) 9999-9999");
-            $("#campoCelular").mask("(99) 09999-9999");
-            $("#campoCelularPix").mask("(99) 09999-9999");
-            $("#campoCNPJ").mask("99.999.999/9999-99");
-
-            $('#calendario').datepicker({
-                format: "dd/mm/yyyy",
-                language: "pt-BR",
-                startDate: '+0d'
-            }).on("change", function(e){
-
-                //Pego o valor selecionado anteriormente
-                var oldValue = $(this).attr("data-value");
-
-                //Se não for a primeira alteração devo comparar as datas:
-                if(oldValue != ""){
-                    date1 = novaData(oldValue);
-                    date2 = novaData($(this).val());
-
-                }
-
-                //Salvo a nova data selecionada no atributo data-value
-                $(this).attr("data-value", $(this).val());
-            });
-
-            //Evita problemas com timezone ao definir a data
-            function novaData(dataString){
-                var partes = dataString.split('-');
-                var data = new Date(partes[0], partes[1] - 1, partes[2]);
-                return data;
-            }
-        </script>
+    
 
     </body>
 </html>

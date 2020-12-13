@@ -13,21 +13,22 @@ class PerfilTelaController extends Controller
 {
     public function index()
     {
-        $Perfils =DB::table('Perfil')
+        $Dados = new PerfilTela;
+        $Dados->PerfilID =DB::table('Perfil')
                 ->select(
                     'Perfil.PerfilID',
                     'Perfil.Perfil'
                 )
                 ->get();
-        return view('perfiltela/perfiltela', compact('Perfils'));
-
-        $Telas =DB::table('Tela')
+        $Dados->TelaID =DB::table('Tela')
                 ->select(
                     'Tela.TelaID',
                     'Tela.Tela'
                 )
                 ->get();
-        return view('perfiltela/perfiltela', compact('Telas'));
+        
+        return view('perfiltela/perfiltela', compact('Dados'));
+
     }
 
     public function create()
@@ -38,9 +39,17 @@ class PerfilTelaController extends Controller
     public function store(PerfilTelaCreate $request)
     {
         $validated = $request->validated();
-        $perfiltela = new PerfilTela;
-        $perfiltela->PerfilTela = $request->PerfilTela;
-        $perfiltela->PerfilTelaStatus = $request->PerfilTelaStatus;
+
+        foreach($request->TelaID as $telaID){
+            $perfiltela = new PerfilTela;
+            $perfiltela->PerfilTelaStatus = $request->PerfilTelaStatus;
+            $perfiltela->TelaID = $telaID;
+            $perfiltela->PerfilID = $request->PerfilID;
+
+            $perfiltela->save();
+        }
+        return redirect()->back()
+            ->with('status', 'Telas relacionadas com o perfil com sucesso!');
         
     }
 
@@ -54,82 +63,78 @@ class PerfilTelaController extends Controller
         $PerfilTelas =DB::table('PerfilTela')
                 ->join('Perfil','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
                 ->select(
-                    'PerfilTela.PerfilTelaID',
                     'PerfilTela.PerfilTelaStatus',
-                    'PerfilTela.PerfilTelaDTAtivacao',
-                    'PerfilTela.PerfilTelaDTInativacao',
-                    'PerfilTela.PerfilTelaDTBloqueio',
                     'PerfilTela.PerfilID',
                     'Perfil.Perfil'
-                )
-                ->get();
-        return view('perfiltela/show', compact('PerfilTelas'));
-
-        $PerfilTelas =DB::table('PerfilTela')
-                ->join('Tela','PerfilTela.TelaID', '=', 'Tela.TelaID')
-                ->select(
-                    'PerfilTela.PerfilTelaID',
-                    'PerfilTela.PerfilTelaStatus',
-                    'PerfilTela.PerfilTelaDTAtivacao',
-                    'PerfilTela.PerfilTelaDTInativacao',
-                    'PerfilTela.PerfilTelaDTBloqueio',
-                    'PerfilTela.TelaID',
-                    'Tela.Tela'
-                )
+                )->groupby('Perfil.Perfil','PerfilTela.PerfilID', 'PerfilTela.PerfilTelaStatus')
                 ->get();
         return view('perfiltela/show', compact('PerfilTelas'));
     }
 
     public function edit($PerfilTelaID)
     {
-        $perfiltela = PerfilTela::findOrFail($ID);
-        $perfiltela->PerfilTelaID = $request->PerfilTelaID;
-        $perfiltela->PerfilTelaStatus = $request->PerfilTelaStatus;
-        
-        $escola['Perfil'] = DB::table('Perfil')
+        $PerfilTelas['IDS'] =DB::table('PerfilTela')
+        ->join('Perfil','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
+        ->join('Tela','PerfilTela.TelaID', '=', 'Tela.TelaID')
+        ->where('Perfil.PerfilID', $PerfilTelaID)
         ->select(
-            'Perfil.PerfilID',
+            'PerfilTela.PerfilTelaStatus',
+            'PerfilTela.PerfilTelaDTAtivacao',
+            'PerfilTela.PerfilTelaDTInativacao',
+            'PerfilTela.PerfilTelaDTBloqueio',
+            'PerfilTela.PerfilID',
+            'Perfil.Perfil'
+        )->groupby(
+            'PerfilTela.PerfilTelaStatus',
+            'PerfilTela.PerfilTelaDTAtivacao',
+            'PerfilTela.PerfilTelaDTInativacao',
+            'PerfilTela.PerfilTelaDTBloqueio',
+            'PerfilTela.PerfilID',
             'Perfil.Perfil'
         )
         ->get();
-        return view('perfiltela/editar', compact('perfiltela'));
-
-        $perfiltela = PerfilTela::findOrFail($ID);
-        $perfiltela->PerfilTelaID = $request->PerfilTelaID;
-        $perfiltela->PerfilTelaStatus = $request->PerfilTelaStatus;
-
-        $escola['Tela'] = DB::table('Tela')
+        $PerfilTelas[] =DB::table('PerfilTela')
+        ->join('Perfil','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
+        ->join('Tela','PerfilTela.TelaID', '=', 'Tela.TelaID')
+        ->where('Perfil.PerfilID', $PerfilTelaID)
         ->select(
+            'PerfilTela.PerfilTelaID',
+            'PerfilTela.PerfilTelaStatus',
+            'PerfilTela.PerfilTelaDTAtivacao',
+            'PerfilTela.PerfilTelaDTInativacao',
+            'PerfilTela.PerfilTelaDTBloqueio',
             'Tela.TelaID',
-            'Tela.Tela'
+            'Tela.Tela',
+            'PerfilTela.PerfilID',
+            'Perfil.Perfil'
         )
         ->get();
-        return view('perfiltela/editar', compact('perfiltela'));
+        $PerfilTelas['Telas'] =DB::table('Tela')
+                ->select(
+                    'Tela.TelaID',
+                    'Tela.Tela'
+                )
+                ->get();
+        return view('perfiltela/editar', compact('PerfilTelas'));
     }
 
     public function update(PerfilTelaAlter $request, $id)
     {
         $validated = $request->validated();
-        $perfiltela = PerfilTela::findOrFail($id);
-        $perfiltela->PerfilTela = $request->PerfilTela;
-        $perfiltela->PerfilTelaStatus = $request->PerfilTelaStatus;
-        
-        $perfiltela->PerfilID = $request->PerfilID;
-        $perfiltela->TelaID = $request->TelaID;
 
-        if($perfiltela->PerfilTelaStatus == 1)
-            $perfiltela->PerfilTelaDTAtivacao = date('Y-m-d H:i:s');
+        DB::table('PerfilTela')->where('PerfilID', $id)->delete();
 
-        if($perfiltela->PerfilTelaStatus == 2)
-            $perfiltela->PerfilTelaDTInativacao = date('Y-m-d H:i:s');
+        if(isset($request->TelaID) && count($request->TelaID) > 0){
+            foreach($request->TelaID as $telaID){
+                $perfiltela = new PerfilTela;
+                $perfiltela->PerfilTelaStatus = $request->PerfilTelaStatus;
+                $perfiltela->TelaID = $telaID;
+                $perfiltela->PerfilID = $id;
 
-        if($perfiltela->PerfilTelaStatus == 3)
-            $perfiltela->PerfilTelaDTBloqueio = date('Y-m-d H:i:s');
-
-        $perfiltela->save();
-        return redirect()->back()
-            ->with('status', 'PerfilTela alterada com sucesso!');
-
+                $perfiltela->save();
+            }
+        }
+        return redirect()->action('PerfilTelaController@list');
     }
 
     public function destroy($id)

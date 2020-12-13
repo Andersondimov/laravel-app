@@ -18,37 +18,40 @@
                 @endforeach
             </ul>
         </div>
-        <form role="form" method="post" action="{{url('perfiltela/update/'.$perfiltela->PerfilTelaID)}}">
+        <form role="form" method="post" action="{{url('perfiltela/update/'.$PerfilTelas['IDS'][0]->PerfilID)}}">
             @csrf
             <div class="bd-example">
-                <h1 class="bd-title" id="content">PerfilTela</h1>
+                <h1 class="bd-title" id="content">Perfil Tela</h1>
                 <div class="form-group">
                     <label for="PerfilID">Perfil</label>
-                    <select class="form-control" name="PerfilID">
-                        @foreach ( $perfiltela->Perfil as $Perfil )
-                            <option @if ($Perfil->PerfilID == $perfiltela->PerfilID) selected @endif value="{{$Perfil->PerfilID}}">{{$Perfil->Perfil}}</option>
-                        @endforeach
+                    <select class="form-control">
+                        <option selected>{{$PerfilTelas['IDS'][0]->Perfil}}
+                        </option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="TelaID">Tela</label>
-                    <select class="form-control" name="TelaID">
-                        @foreach ( $perfiltela->Tela as $Tela )
-                            <option @if ($Tela->TelaID == $perfiltela->TelaID) selected @endif value="{{$Tela->TelaID}}">{{$Tela->Tela}}</option>
+                    <div class="form-check">
+                        
+                        @foreach ( $PerfilTelas['Telas'] as $Tela )
+                            <input type="checkbox" class="form-check-input" name="TelaID[{{$Tela->TelaID}}]" value="{{$Tela->TelaID}}"
+                            @if(isset($PerfilTelas[0]) && count($PerfilTelas[0]) > 0)
+                                @foreach ( $PerfilTelas[0] as $PerfilTela )
+                                    @if($Tela->TelaID == $PerfilTela->TelaID) checked @endif
+                                @endforeach
+                            @endif
+                            >
+                            <label class="form-check-label" for="exampleCheck1">{{$Tela->Tela}}</label><br>
                         @endforeach
-                    </select>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="Status">Status</label>
                     <select class="form-control" name="PerfilTelaStatus">
-                        <option value="1" @if(isset($perfiltela) && $perfiltela->PerfilTelaStatus == 1)selected @endif>Ativo</option>
-                        <option value="2" @if(isset($perfiltela) && $perfiltela->PerfilTelaStatus == 2)selected @endif>Inativo</option>
-                        <option value="3" @if(isset($perfiltela) && $perfiltela->PerfilTelaStatus == 3)selected @endif>Bloqueado</option>
+                        <option value="1" @if(isset($PerfilTelas['IDS'][0]->PerfilTelaStatus) && $PerfilTelas['IDS'][0]->PerfilTelaStatus == 1)selected @endif>Ativo</option>
+                        <option value="2" @if(isset($PerfilTelas['IDS'][0]->PerfilTelaStatus) && $PerfilTelas['IDS'][0]->PerfilTelaStatus == 2)selected @endif>Inativo</option>
+                        <option value="3" @if(isset($PerfilTelas['IDS'][0]->PerfilTelaStatus) && $PerfilTelas['IDS'][0]->PerfilTelaStatus == 3)selected @endif>Bloqueado</option>
                     </select>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Motivo Bloqueio</label>
-                    <input type="text" class="form-control" name="PerfilTelaMotivoBloqueio"  @if(isset($perfiltela))value="{{ old('', $perfiltela->PerfilTelaMotivoBloqueio) }}"@endif />
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">OK</button>
@@ -57,19 +60,19 @@
                     <div class="form-group row">
                         <div class="col-sm-10">
                             <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Ativação:   --/--/---- 00:00:00"
-                                @if(isset($perfiltela->PerfilTelaDTAtivacao) && $perfiltela->PerfilTelaDTAtivacao != '') value="Data Ativação: {{ \Carbon\Carbon::parse($perfiltela->PerfilTelaDTAtivacao)->format('d/m/Y H:i:s') }} "@endif>
+                                @if(isset($PerfilTelas['IDS'][0]->PerfilTelaDTAtivacao) && $PerfilTelas['IDS'][0]->PerfilTelaDTAtivacao != '') value="Data Ativação: {{ \Carbon\Carbon::parse($PerfilTelas['IDS'][0]->PerfilTelaDTAtivacao)->format('d/m/Y H:i:s') }} "@endif>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-10">
                             <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Inativação:   --/--/---- 00:00:00"
-                                @if(isset($perfiltela->PerfilTelaDTInativacao) && $perfiltela->PerfilTelaDTInativacao != '') value="Data Inativação: {{ \Carbon\Carbon::parse($perfiltela->PerfilTelaDTInativacao)->format('d/m/Y H:i:s') }} "@endif>
+                                @if(isset($PerfilTelas['IDS'][0]->PerfilTelaDTInativacao) && $PerfilTelas['IDS'][0]->PerfilTelaDTInativacao != '') value="Data Inativação: {{ \Carbon\Carbon::parse($PerfilTelas['IDS'][0]->PerfilTelaDTInativacao)->format('d/m/Y H:i:s') }} "@endif>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-10">
                             <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Bloqueio:   --/--/---- 00:00:00"
-                                @if(isset($perfiltela->PerfilTelaDTBloqueio) && $perfiltela->PerfilTelaDTBloqueio != '') value="Data Bloqueio: {{ \Carbon\Carbon::parse($perfiltela->PerfilTelaDTBloqueio)->format('d/m/Y H:i:s') }} "@endif>
+                                @if(isset($PerfilTelas['IDS'][0]->PerfilTelaDTBloqueio) && $PerfilTelas['IDS'][0]->PerfilTelaDTBloqueio != '') value="Data Bloqueio: {{ \Carbon\Carbon::parse($PerfilTelas['IDS'][0]->PerfilTelaDTBloqueio)->format('d/m/Y H:i:s') }} "@endif>
                         </div>
                     </div>
                 </fieldset>
