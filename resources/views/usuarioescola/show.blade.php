@@ -6,6 +6,11 @@
         <link href="https://getbootstrap.com/docs/4.0/assets/css/docs.min.css" rel="stylesheet">
     </head>
     <body>
+        @if (session('status'))
+            <div class="alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
             @csrf
         <div class="bd-example">
             <h1 class="bd-title" id="content">Usuario Escola</h1>

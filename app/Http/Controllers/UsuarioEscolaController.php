@@ -49,7 +49,7 @@ class UsuarioEscolaController extends Controller
             $usuarioescola->save();
         }
         return redirect()->back()
-            ->with('status', 'Telas relacionadas com o perfil com sucesso!');
+            ->with('status', 'Usuários relacionados a escola com sucesso!');
         
     }
 
@@ -75,7 +75,6 @@ class UsuarioEscolaController extends Controller
     {
         $UsuarioEscolas['IDS'] =DB::table('UsuarioEscola')
         ->join('Escola','UsuarioEscola.EscolaID', '=', 'Escola.EscolaID')
-        ->join('Usuario','UsuarioEscola.UsuarioID', '=', 'Usuario.UsuarioNome')
         ->where('Escola.EscolaID', $UsuarioEscolaID)
         ->select(
             'UsuarioEscola.UsuarioEscolaStatus',
@@ -93,9 +92,10 @@ class UsuarioEscolaController extends Controller
             'Escola.Escola'
         )
         ->get();
-        $PerfilTelas[] =DB::table('UsuarioEscola')
+
+        $UsuarioEscolas[] =DB::table('UsuarioEscola')
         ->join('Escola','UsuarioEscola.EscolaID', '=', 'Escola.EscolaID')
-        ->join('Usuario','UsuarioEscola.UsuarioID', '=', 'Usuario.UsuarioNome')
+        ->join('Usuario','UsuarioEscola.UsuarioID', '=', 'Usuario.UsuarioID')
         ->where('Escola.EscolaID', $UsuarioEscolaID)
         ->select(
             'UsuarioEscola.UsuarioEscolaID',
@@ -103,9 +103,10 @@ class UsuarioEscolaController extends Controller
             'UsuarioEscola.UsuarioEscolaDTAtivacao',
             'UsuarioEscola.UsuarioEscolaDTInativacao',
             'UsuarioEscola.UsuarioEscolaDTBloqueio',
-            'Usuario.UsuarioID',
             'UsuarioEscola.EscolaID',
-            'Escola.Escola'
+            'Escola.Escola',
+            'Usuario.UsuarioID',
+            'Usuario.UsuarioNome'
         )
         ->get();
         $UsuarioEscolas['Usuarios'] =DB::table('Usuario')
@@ -115,6 +116,53 @@ class UsuarioEscolaController extends Controller
                 )
                 ->get();
         return view('usuarioescola/editar', compact('UsuarioEscolas'));
+
+
+        $PerfilTelas['IDS'] =DB::table('PerfilTela')
+        ->join('Perfil','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
+        ->join('Tela','PerfilTela.TelaID', '=', 'Tela.TelaID')
+        ->where('Perfil.PerfilID', $PerfilTelaID)
+        ->select(
+            'PerfilTela.PerfilTelaStatus',
+            'PerfilTela.PerfilTelaDTAtivacao',
+            'PerfilTela.PerfilTelaDTInativacao',
+            'PerfilTela.PerfilTelaDTBloqueio',
+            'PerfilTela.PerfilID',
+            'Perfil.Perfil'
+        )->groupby(
+            'PerfilTela.PerfilTelaStatus',
+            'PerfilTela.PerfilTelaDTAtivacao',
+            'PerfilTela.PerfilTelaDTInativacao',
+            'PerfilTela.PerfilTelaDTBloqueio',
+            'PerfilTela.PerfilID',
+            'Perfil.Perfil'
+        )
+        ->get();
+        $PerfilTelas[] =DB::table('PerfilTela')
+        ->join('Perfil','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
+        ->join('Tela','PerfilTela.TelaID', '=', 'Tela.TelaID')
+        ->where('Perfil.PerfilID', $PerfilTelaID)
+        ->select(
+            'PerfilTela.PerfilTelaID',
+            'PerfilTela.PerfilTelaStatus',
+            'PerfilTela.PerfilTelaDTAtivacao',
+            'PerfilTela.PerfilTelaDTInativacao',
+            'PerfilTela.PerfilTelaDTBloqueio',
+            'Tela.TelaID',
+            'Tela.Tela',
+            'PerfilTela.PerfilID',
+            'Perfil.Perfil'
+        )
+        ->get();
+        $PerfilTelas['Telas'] =DB::table('Tela')
+                ->select(
+                    'Tela.TelaID',
+                    'Tela.Tela'
+                )
+                ->get();
+        return view('perfiltela/editar', compact('PerfilTelas'));
+
+
     }
 
     public function update(UsuarioEscolaAlter $request, $id)
@@ -133,7 +181,8 @@ class UsuarioEscolaController extends Controller
                 $usuarioescola->save();
             }
         }
-        return redirect()->action('UsuarioEscolaController@list');
+        return redirect()->action('UsuarioEscolaController@list')
+            ->with('status', 'Usuários relacionados a escola com sucesso!');
     }
 
     public function destroy($id)

@@ -18,7 +18,7 @@
                 @endforeach
             </ul>
         </div>
-        <form role="form" method="post" action="{{url('usuarioescola/update/'.$UsuarioEscolas['IDS'][0]->UsuarioID)}}">
+        <form role="form" method="post" action="{{url('usuarioescola/update/'.$UsuarioEscolas['IDS'][0]->EscolaID)}}">
             @csrf
             <div class="bd-example">
                 <h1 class="bd-title" id="content">Usuario Escola</h1>
@@ -40,7 +40,7 @@
                                 @endforeach
                             @endif
                             >
-                            <label class="form-check-label" for="exampleCheck1">{{$Usuario->Usuario}}</label><br>
+                            <label class="form-check-label" for="exampleCheck1">{{$Usuario->UsuarioNome}}</label><br>
                         @endforeach
                     </div>
                 </div>
