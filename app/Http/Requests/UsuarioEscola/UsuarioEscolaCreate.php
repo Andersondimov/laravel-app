@@ -25,23 +25,17 @@ class UsuarioEscolaCreate extends FormRequest
     {
         return [
 
-            'UsuarioEscola' => 'required|',
             'UsuarioEscolaStatus' => 'required|',
-            'EscolaID' => 'required|',
-            'UsuarioID' => 'required|'
-            
+            'UsuarioNome' => 'required|'
         ];
-        
     }
 
     public function messages()
     {
         return [
 
-            'UsuarioEscola.required' => 'O campo UsuarioEscola é obrigatório',
-            'UsuarioEscolaStatus.required' => 'O campo UsuarioEscolaStatus é obrigatório',
-            'EscolaID.required' => 'O campo EscolaID é obrigatório',
-            'UsuarioID' => 'O campo UsuarioID é obrigatótio'
+            'UsuarioEscolaStatus.required' => 'O campo Status é obrigatório',
+            'UsuarioNome.required' => 'Deve selecionar ao menos um usuario',
         ];
     }
 

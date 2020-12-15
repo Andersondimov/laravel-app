@@ -22,7 +22,7 @@ class PerfilTelaController extends Controller
                 ->get();
         $Dados->TelaID =DB::table('Tela')
                 ->select(
-                    'Tela.TelaID',
+                    'Tela.TelaID',   
                     'Tela.Tela'
                 )
                 ->get();

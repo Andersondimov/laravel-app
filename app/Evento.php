@@ -6,7 +6,28 @@ use Illuminate\Database\Eloquent\Model;
 
 class Evento extends Model
 {
-    protected $fillable = ['name', 'description', 'quantity', 'price'];
-    protected $guarded = ['id', 'created_at', 'update_at'];
-    protected $table = 'products';
+    public $timestamps = false;
+    protected $primaryKey = 'EventoID';
+
+    protected $fillable = 
+    [
+
+        'Evento', 
+        'EventoCod', 
+        'UsuarioStatus', 
+
+    
+    ];
+
+    protected $guarded = 
+    [
+
+        'EventoID', 
+        'EventoDTAtivacao', 
+        'EventoDTInativacao', 
+        'EventoDTBloqueio'
+    
+    ];
+    
+    protected $table = 'Evento';
 }

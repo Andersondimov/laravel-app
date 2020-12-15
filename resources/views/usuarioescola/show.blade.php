@@ -12,36 +12,35 @@
             <table class="table table-bordered">
                 <thead>
                 <tr>
+                    <th>Escola</th>
                     <th>Status</th>
-                    <th>UsuarioID</th>
-                    <th>EscolaID</th>
                     <th>Atualizar</th>
                 </tr>
                 </thead>
                 <tbody>
-                @if(count($UsuarioEscolas)>0)
-                    @foreach ( $UsuarioEscolas as $usuarioescola )
-                        <tr>
-                            <td>{{ $usuarioescola->UsuarioEscola }}</td>
-                            <td>
-                                @if($usuarioescola->UsuarioEscolaStatus == 1)
-                                    Ativo
-                                @elseif($usuarioescola->UsuarioEscolaStatus == 2)
-                                    Inativo
-                                @else($usuarioescola->UsuarioEscolaStatus == 3)
-                                    Bloqueado
-                                @endif
-                            </td>
-                            <td>
-                                <a href="{{ url('usuarioescola/editar/'.$usuarioescola->UsuarioEscolaID) }}">Alterar</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                @else
+                    @if(count($UsuarioEscolas)>0)
+                        @foreach ( $UsuarioEscolas as $usuarioescola )
+                            <tr>
+                                <td>{{ $usuarioescola->Escola }}</td>
+                                <td>
+                                    @if($usuarioescola->UsuarioEscolaStatus == 1)
+                                        Ativo
+                                    @elseif($usuarioescola->UsuarioEscolaStatus == 2)
+                                        Inativo
+                                    @else($usuarioescola->UsuarioEscolaStatus == 3)
+                                        Bloqueado
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{ url('usuarioescola/editar/'.$usuarioescola->EscolaID) }}">Alterar</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
                     <tr>
-                        <td colspan="4">Nenhum UsuarioEscola Cadastrado</td>
+                        <td colspan="6">Nenhuma Escola Cadastrado</td>
                     </tr>
-                @endif
+                    @endif
                 </tbody>
             </table>
             <div class="form-group">

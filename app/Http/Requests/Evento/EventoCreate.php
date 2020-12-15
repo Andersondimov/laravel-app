@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\UsuarioEscola;
+namespace App\Http\Requests\Evento;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UsuarioEscolaAlter extends FormRequest
+class EventoCreate extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +24,16 @@ class UsuarioEscolaAlter extends FormRequest
     public function rules()
     {
         return [
-
-            
-            'UsuarioEscolaStatus' => 'required|'
+            'Evento' => 'required|',
+            'EventoCod' => 'required|'
         ];
     }
 
     public function messages()
     {
         return [
-
-            'UsuarioEscolaStatus.required' => 'O campo Status é obrigatório'
+            'Evento.required' => 'O campo Nome da Evento é obrigatório',
+            'EventoCod.required' => 'O campo Cod. Evento é obrigatório'
         ];
     }
 

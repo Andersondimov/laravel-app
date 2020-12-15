@@ -11,41 +11,43 @@
             {{ session('status') }}
         </div>
     @endif
+    <div class="error">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
     <form role="form" method="post" action="{{action('UsuarioEscolaController@store')}}">
         @csrf
     <div class="bd-example">
-        <h1 class="bd-title" id="content">UsuarioEscola</h1>
-        <form>
+        <h1 class="bd-title" id="content">Usuario Escola</h1>
             <div class="form-group">
-                <label for="exampleInputEmail1">Nome da Usuario</label>
-                <input type="text" class="form-control" name="UsuarioEscola" @if(isset($adrs_dtls))value="{{ old('', $adrs_dtls->UsuarioEscola) }}"@endif placeholder="Name" />
-            </div>
-            <div class="form-group">
-                <label for="UsuarioID">Usuario</label>
-                <select class="form-control" name="UsuarioID">
-                    @foreach ( $usuarios as $Usuario )
-                        <option value="{{$Usuario->UsuarioID}}">{{$Usuario->Usuario}}</option>
-                    @endforeach
-                </select>
-            </div>
-        </form>
-        <form>
-            <div class="form-group">
-                <label for="EscolaID">Escola</label>
+                <label for="EscolaID">Escolas</label>
                 <select class="form-control" name="EscolaID">
-                    @foreach ( $Escolas as $Escola )
-                        <option value="{{$Escola->ID}}">{{$Escola->Escola}}</option>
+                    @foreach ( $Dados->EscolaID as $Escola )
+                        <option value="{{$Escola->EscolaID}}">{{$Escola->Escola}}</option>
                     @endforeach
                 </select>
             </div>
             <div class="form-group">
-                <label for="Status">Status</label>
-                <select class="form-control" name="PerfilTelaStatus">
-                    <option value="1">Ativo</option>
-                </select>
+                <label for="UsuarioID">Usuarios</label>
+                <div class="form-check">
+                    @foreach ( $Dados->UsuarioNome as $Usuario )
+                    <input type="checkbox" class="form-check-input" name="UsuarioNome[{{$Usuario->UsuarioID}}]" value="{{$Usuario->UsuarioID}}">
+                    <label class="form-check-label" for="exampleCheck1">{{$Usuario->UsuarioNome}}</label><br>
+                    @endforeach
+                </div>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">OK</button>
+                    <label for="Status">Status</label>
+                    <select class="form-control" name="UsuarioEscolaStatus">
+                        <option value="1">Ativo</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">OK</button>
+                </div>
             </div>
             <fieldset disabled>
                 <div class="form-group row">
@@ -66,6 +68,8 @@
             </fieldset>
         </form>
     </div>
+
+    
 
     </body>
 </html>
