@@ -86,6 +86,8 @@ Route::get('escola', 'EscolaController@index');
 Route::post('escola/inserir', 'EscolaController@store');
 Route::get('escola/list', 'EscolaController@list');
 Route::get('escola/editar/{id}', 'EscolaController@edit');
+Route::get('escola/editarparams/{id}', 'EscolaController@editarparams');
+Route::post('escola/updateparams/{id}', 'EscolaController@updateparams');
 Route::post('escola/update/{id}', 'EscolaController@update');
 
 /*

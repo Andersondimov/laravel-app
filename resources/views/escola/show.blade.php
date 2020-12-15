@@ -18,6 +18,7 @@
                     <th>Rede</th>
                     <th>Status</th>
                     <th>Atualizar</th>
+                    <th>Parametros</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -42,11 +43,14 @@
                             <td>
                                 <a href="{{ url('escola/editar/'.$escola->EscolaID) }}">Alterar</a>
                             </td>
+                            <td>
+                                <a href="{{ url('escola/editarparams/'.$escola->EscolaID) }}">Parametros</a>
+                            </td>
                         </tr>
                     @endforeach
                 @else
                     <tr>
-                        <td colspan="6">Nenhuma Escola Cadastrada</td>
+                        <td colspan="7">Nenhuma Escola Cadastrada</td>
                     </tr>
                 @endif
                 </tbody>

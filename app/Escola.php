@@ -20,6 +20,7 @@ class Escola extends Model
         'EscolaDTBloqueio',
         'EscolaDTProspect',
         'EscolaSenha',
+        'EscolaEmail',
         'EscolaValorFixo',
         'EscolaValorVaviavel',
         'EscolaMotivoBloqueio',

@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a4ccd3e9-14aa-4b74-bc7e-2cb165b1ecee" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Escola/EscolaAlterParams.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/escola/parametro.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/informativoacesso/editar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/informativoacesso/editar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/informativoacesso/input.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/informativoacesso/input.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/informativoacesso/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/informativoacesso/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Escola.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Escola.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/EventoEscola.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/EventoEscola.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EscolaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EscolaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/escola/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/escola/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,10 +137,16 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Requests/Escola" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Http/Requests/Escola" />
+      <recent name="$PROJECT_DIR$/resources/views/escola" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -154,6 +164,7 @@
       <updated>1607448528229</updated>
       <workItem from="1607448529475" duration="881000" />
       <workItem from="1607907735664" duration="4297000" />
+      <workItem from="1608008393395" duration="7211000" />
     </task>
     <servers />
   </component>
