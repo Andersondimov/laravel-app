@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 
 
@@ -29,6 +30,13 @@ class Escola extends Model
         'RedeID',
         'EscolaDiaVencimento',
         'EscolaDTExpiracao'];
+    protected $casts = [
+        'EscolaDTExpiracao' => 'date'
+    ];
+    public function setEscolaDTExpiracaoAttribute($value)
+    {
+        $this->attributes['EscolaDTExpiracao'] = Carbon::createFromFormat('d/m/Y', $value);
+    }
     protected $guarded = ['EscolaID'];
     protected $table = 'Escola';
 }

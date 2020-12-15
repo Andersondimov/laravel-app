@@ -1,12 +1,13 @@
 <div class="bd-example">
     <div class="form-group">
-        <label for="EscolaID">Escolas</label>
-        <select name="EscolaID" id="">
+        <label for="informativo">Escola</label>
+        <select class="form-control" name="EscolaID">
             @foreach ($escolas as $escola)
                 <option value="{{$escola->EscolaID}}"  {{$informativoacesso->EscolaID == $escola->EscolaID ? 'selected' : ''}} >{{$escola->Escola}}</option>
             @endforeach
         </select>
     </div>
+
     <div class="form-group">
         <label for="informativo">Informativo de Acesso</label>
         <input type="text" class="form-control" value="{{$informativoacesso->InformativoAcesso}}"  name="InformativoAcesso" placeholder="Acesso" />

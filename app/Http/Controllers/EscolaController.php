@@ -7,6 +7,7 @@ use DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\Escola\EscolaCreate;
 use App\Http\Requests\Escola\EscolaAlter;
+use Carbon\Carbon;
 
 
 class EscolaController extends Controller
@@ -58,8 +59,7 @@ class EscolaController extends Controller
             $escola->EscolaMotivoBloqueio = $request->EscolaMotivoBloqueio;
         }
         if(isset($request->EscolaDTExpiracao) && $request->EscolaDTExpiracao != '' && $request->EscolaDTExpiracao) {
-            $dt = explode('/',$request->EscolaDTExpiracao);
-            $escola->EscolaDTExpiracao = $dt[2].'-'.$dt[1].'-'.$dt[0].' 00:00:00';
+            $escola->EscolaDTExpiracao = Carbon::createFromFormat('Y-m-d', $request->EscolaDTExpiracao)->format('d/m/Y');
         }
         if($escola->EscolaStatus != 4)
             $escola->EscolaDTAtivacao = date('Y-m-d H:i:s');
@@ -104,11 +104,6 @@ class EscolaController extends Controller
         $escola = Escola::findOrFail($EscolaID);
         $escola->EscolaValorFixo = str_replace(".",',',$escola->EscolaValorFixo);
         $escola->EscolaValorVaviavel = str_replace(".",',',$escola->EscolaValorVaviavel);
-        if(isset($escola->EscolaDTExpiracao) && $escola->EscolaDTExpiracao != '') {
-            $dt = explode('-', $escola->EscolaDTExpiracao);
-            $dtDia = explode(' ', $dt[2]);
-            $escola->EscolaDTExpiracao = $dtDia[0] . '/' . $dt[1] . '/' . $dt[0];
-        }
         $escola['Rede'] = DB::table('Rede')
         ->select(
             'Rede.RedeID',
@@ -151,9 +146,9 @@ class EscolaController extends Controller
             $escola->EscolaMotivoBloqueio = $request->EscolaMotivoBloqueio;
         }
         if(isset($request->EscolaDTExpiracao) && $request->EscolaDTExpiracao != '' && $request->EscolaDTExpiracao) {
-            $dt = explode('/',$request->EscolaDTExpiracao);
-            $escola->EscolaDTExpiracao = $dt[2].'-'.$dt[1].'-'.$dt[0].' 00:00:00';
+            $escola->EscolaDTExpiracao = Carbon::createFromFormat('Y-m-d', $request->EscolaDTExpiracao)->format('d/m/Y');
         }
+        
         $escola->RedeID = $request->RedeID;
 
         if($escola->EscolaStatus == 1)

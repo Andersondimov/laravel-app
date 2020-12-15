@@ -61,9 +61,9 @@
                     <input type="number" class="form-control" min="1" max="30" name="EscolaDiaVencimento" />
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Data Expiração</label>
-                    <div class="input-group date" id="calendario" data-provide="datepicker">
-                        <input type="text" class="form-control" name="EscolaDTExpiracao" placeholder="dd/mm/aaaa" />
+                    <label for="DataFIm">Data Expiração</label>
+                    <div class="input-group " id="calendarioFim">
+                        <input type="date" class="form-control" name="EscolaDTExpiracao" placeholder="dd/mm/aaaa" />
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-th"></span>
                         </div>
@@ -127,40 +127,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
 
-        <!-- crio atributo data-value para armazenar penultima data escolhida -->
-
         <script>
             $("#campoTelefone").mask("(99) 9999-9999");
             $("#campoCelular").mask("(99) 09999-9999");
             $("#campoCelularPix").mask("(99) 09999-9999");
             $("#campoCNPJ").mask("99.999.999/9999-99");
 
-            $('#calendario').datepicker({
-                format: "dd/mm/yyyy",
-                language: "pt-BR",
-                startDate: '+0d'
-            }).on("change", function(e){
-
-                //Pego o valor selecionado anteriormente
-                var oldValue = $(this).attr("data-value");
-
-                //Se não for a primeira alteração devo comparar as datas:
-                if(oldValue != ""){
-                    date1 = novaData(oldValue);
-                    date2 = novaData($(this).val());
-
-                }
-
-                //Salvo a nova data selecionada no atributo data-value
-                $(this).attr("data-value", $(this).val());
-            });
-
-            //Evita problemas com timezone ao definir a data
-            function novaData(dataString){
-                var partes = dataString.split('-');
-                var data = new Date(partes[0], partes[1] - 1, partes[2]);
-                return data;
-            }
         </script>
 
     </body>
