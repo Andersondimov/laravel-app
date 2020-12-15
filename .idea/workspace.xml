@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a4ccd3e9-14aa-4b74-bc7e-2cb165b1ecee" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Escola/EscolaAlterParams.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/escola/parametro.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Escola.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Escola.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/EventoEscola.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/EventoEscola.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EscolaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EscolaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/escola/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/escola/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/escola/parametro.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/escola/parametro.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +158,7 @@
       <updated>1607448528229</updated>
       <workItem from="1607448529475" duration="881000" />
       <workItem from="1607907735664" duration="4297000" />
-      <workItem from="1608008393395" duration="7211000" />
+      <workItem from="1608008393395" duration="7387000" />
     </task>
     <servers />
   </component>

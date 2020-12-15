@@ -21,7 +21,7 @@
         <form role="form" method="post" action="{{url('escola/updateparams/'.$escola->EscolaID)}}">
             @csrf
             <div class="bd-example">
-                <h1 class="bd-title" id="content">Escola</h1>
+                <h1 class="bd-title" id="content">Cadastro de Parâmetros – Escola</h1>
                 <fieldset disabled>
                     <div class="form-group">
                         <label for="RedeID">Rede</label>
