@@ -12,6 +12,7 @@
                 @endforeach
             </ul>
         </div>
+        <h1 class="bd-title" id="content">Informativo de Acesso</h1>
         <form role="form" method="post" action="{{route('informativoacesso.update',$informativoacesso->InformativoAcessoID)}}">
             @csrf
             @include('informativoacesso.input')

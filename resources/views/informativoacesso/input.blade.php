@@ -2,7 +2,6 @@
     <div class="form-group">
         <label for="EscolaID">Escolas</label>
         <select name="EscolaID" id="">
-            <option value="">Selecione</option>
             @foreach ($escolas as $escola)
                 <option value="{{$escola->EscolaID}}"  {{$informativoacesso->EscolaID == $escola->EscolaID ? 'selected' : ''}} >{{$escola->Escola}}</option>
             @endforeach
@@ -13,7 +12,7 @@
         <input type="text" class="form-control" value="{{$informativoacesso->InformativoAcesso}}"  name="InformativoAcesso" placeholder="Acesso" />
     </div>
     <div class="form-group">
-        <label for="dataInicio">Data de Inicia</label>
+        <label for="dataInicio">Data de Inicio</label>
         <div class="input-group " id="calendarioInicio" >
             <input type="date" class="form-control" value="{{$informativoacesso->InformativoAcessoDTIni ? $informativoacesso->InformativoAcessoDTIni->format('Y-m-d') : ''}}" name="InformativoAcessoDTIni" placeholder="dd/mm/aaaa" />
             <div class="input-group-addon">
