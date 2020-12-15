@@ -24,7 +24,7 @@ class PontoCreate extends FormRequest
     public function rules()
     {
         return [
-            'Ponto' => 'required|',
+        
             'PontoStatus' => 'required|',
             'UsuarioEscolaID' => 'required|'
         ];
@@ -33,7 +33,7 @@ class PontoCreate extends FormRequest
     public function messages()
     {
         return [
-            'Ponto.required' => 'O campo Pontos é obrigatório',
+        
             'PontoStatus.required' => 'O campo Ponto Status é obrigatório',
             'UsuarioEscolaID.required' => 'O campo Usuario Escola é obrigatório'
             

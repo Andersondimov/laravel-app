@@ -30,11 +30,7 @@
                     @endforeach
                 </select>
             </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Quantidade de Pontos</label>
-                <input type="decimal" class="form-control" name="PontoQuantidade" @if(isset($ponto))
-                    value="{{ old('', $ponto->PontoQuantidade) }}"@endif placeholder="Pontos" />
-            </div>
+            
             <div class="form-group">
                 <label for="Ponto">Status</label>
                 <select class="form-control" name="PontoStatus">
