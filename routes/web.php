@@ -12,6 +12,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+/*
+* AlunoCompra
+ */
+Route::post('alunocompra/inserir', 'AlunoCompraController@store');
+Route::get('alunocompra', 'AlunoCompraController@index');
+Route::get('alunocompra/list', 'AlunoCompraController@list');
+Route::get('alunocompra/editar/{id}', 'AlunoCompraController@edit');
+Route::post('alunocompra/update/{id}', 'AlunoCompraController@update');
+
 /*
 * Ponto
  */
