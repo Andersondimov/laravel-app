@@ -26,7 +26,6 @@ class AlunoCompraAlter extends FormRequest
         return [
 
             'AlunoCompraQuantidade' => 'required|',
-            'AlunoCompraStatus' => 'required|',
             'UsuarioEscolaID' => 'required|'
             
         ];
@@ -37,7 +36,6 @@ class AlunoCompraAlter extends FormRequest
         return [
 
             'AlunoCompraQuantidade.required' => 'O campo Quantidade Comprado é obrigatório',
-            'AlunoCompraStatus.required' => 'O campo Status é obrigatório',
             'UsuarioEscolaID.required' => 'O campo Usuario Escola é obrigatório'
             
             

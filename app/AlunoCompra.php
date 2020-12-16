@@ -13,8 +13,7 @@ class AlunoCompra extends Model
     [
 
          
-        'AlunoCompra', 
-        'AlunoCompraStatus', 
+        'AlunoCompra',  
         'AlunoCompraQuantidade'
     
     ];
@@ -23,8 +22,7 @@ class AlunoCompra extends Model
     [
 
         'AlunoCompraID',
-        'AlunoCompraDTAtivacao', 
-        'AlunoCompraDTInativacao', 
+        'AlunoCompraDTAtivacao' 
     
     ];
     

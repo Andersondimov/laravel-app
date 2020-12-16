@@ -23,22 +23,18 @@
         <div class="bd-example">
             <h1 class="bd-title" id="content">Aluno Compra</h1>
             <form>
-                <div class="form-group">.$alunocompra->AlunoCompraID
                 <div class="form-group">
-                    <label for="Status">Status</label>
-                    <select class="form-control" name="AlunoCompraStatus">
-                        <option value ="1">Ativo</option>
+                    <label for="UsuarioEscolaID">Usuario Escola</label>
+                    <select class="form-control" name="UsuarioEscolaID" >
+                        @foreach ( $UsuarioEscolas as $UsuarioEscola )
+                            <option value ="{{$UsuarioEscola->UsuarioEscolaID}}">
+                                {{$UsuarioEscola->UsuarioNome}} </option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Pontos</label>
                     <input type="text" class="form-control" name="AlunoCompraQuantidade"  />
-                </div>
-                <div class="form-group">
-                    <label for="Status">Status</label>
-                    <select class="form-control" name="AlunoCompraStatus">
-                        <option value="1">Ativo</option>
-                    </select>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">OK</button>
@@ -48,12 +44,7 @@
                         <div class="col-sm-10">
                             <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Ativação:   --/--/---- 00:00:00">
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-10">
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Inativação: --/--/---- 00:00:00">
-                        </div>
-                    </div>
+                    </div>            
                 </fieldset>
             </form>
         </div>

@@ -19,11 +19,11 @@ class AlunoCompraController extends Controller
                 ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
                 ->select(
                     'UsuarioEscola.UsuarioEscolaID',
-                    'Usuario.UsuarioNome',
-                    'Escola.Escola'
+                    'UsuarioEscola.UsuarioID',
+                    'Usuario.UsuarioNome'
+
                 )
-                ->where('Perfil.PerfilCod', '!=', 'al')
-                ->orderby('Escola.Escola', 'ASC')
+              
                 ->get();
         return view('alunocompra/alunocompra', compact('UsuarioEscolas'));
     }
@@ -41,8 +41,6 @@ class AlunoCompraController extends Controller
         $alunocompra->UsuarioEscolaID = request('UsuarioEscolaID');
         $alunocompra->AlunoCompraQuantidade = request('AlunoCompraQuantidade');
         
-        $alunocompra->AlunoCompraStatus = request('AlunoCompraStatus');
-        $alunocompra->save();
 
         return redirect()->back()
             ->with('status', 'Aluno Comprou com sucesso!');
@@ -58,16 +56,17 @@ class AlunoCompraController extends Controller
     {
         $AlunoCompras =DB::table('AlunoCompra')
                 ->join('UsuarioEscola','AlunoCompra.UsuarioEscolaID', '=', 'UsuarioEscola.UsuarioEscolaID')
-                ->join('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
+                ->join('Usuario','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')                
                 ->select(
                     'AlunoCompra.AlunoCompraID',
                     'AlunoCompra.AlunoCompraQuantidade',
                     'AlunoCompra.AlunoCompraStatus',
                     'AlunoCompra.AlunoCompraDTAtivacao',
-                    'AlunoCompra.AlunoCompraDTInativacao',
                     'AlunoCompra.UsuarioEscolaID',
+                    'UsuarioEscola.UsuarioEscolaID',
                     'UsuarioEscola.UsuarioID',
-                    'Escola.Escola'
+                    'Usuario.UsuarioNome'
+
                 )
                 ->get();
         return view('alunocompra/show', compact('AlunoCompras'));
@@ -77,17 +76,15 @@ class AlunoCompraController extends Controller
     {
         $alunocompra = AlunoCompra::findOrFail($AlunoCompraID);
         $alunocompra['UsuarioEscola'] = DB::table('UsuarioEscola')
+        ->join('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
+        ->join('Usuario','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
         ->select(
             'UsuarioEscola.UsuarioEscolaID',
-            'UsuarioEscola.UsuarioID'
-        )
-        ->get();
-        $alunocompra['Usuarios'] = DB::table('Usuario')
-        ->select(
-            'Usuario.UsuarioID',
+            'UsuarioEscola.UsuarioID',
             'Usuario.UsuarioNome'
         )
         ->get();
+
         return view('alunocompra/editar', compact('alunocompra'));
     }
 
@@ -100,15 +97,12 @@ class AlunoCompraController extends Controller
         $alunocompra = AlunoCompra::findOrFail($id);
 
         $alunocompra->UsuarioEscolaID = request('UsuarioEscolaID');
-        $alunocompra->AlunoCompraQuantidade = request('PontoQuantidade');
-        
+        $alunocompra->AlunoCompraQuantidade = request('AlunoCompraQuantidade');
+                
         $alunocompra->AlunoCompraStatus = request('AlunoCompraStatus');
 
         if($alunocompra->AlunoCompraStatus == 1)
             $alunocompra->AlunoCompraDTAtivacao = date('Y-m-d H:i:s');
-
-        if($alunocompra->AlunoCompraStatus == 2)
-            $alunocompra->AlunoCompraDTInativacao = date('Y-m-d H:i:s');
 
         $alunocompra->save();
         return redirect()->back()

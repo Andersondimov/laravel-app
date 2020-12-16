@@ -12,30 +12,21 @@
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>Escola</th>
+                    <th>Usuario Nome</th>
                     <th>Quantidade Adquirido</th>
-                    <th>Status</th>
                     <th>Atualizar</th>
                 </tr>
                 </thead>
                 <tbody>
                 @if(count($AlunoCompras)>0)
                     @foreach ( $AlunoCompras as $alunocompra )
-                            <tr>
-                                <td>{{ $alunocompra->Escola}}</td>
-                                <td>{{ $alunocompra->AlunoCompraQuantidade }}</td>
-                                
-                                <td>
-                                    @if($alunocompra->AlunoCompraStatus == 1)
-                                        Ativo
-                                    @else($alunocompra->AlunoCompraStatus == 2)
-                                        Inativo
-                                    @endif
-                                </td>
-                                <td>
-                                    <a href="{{ url('alunocompra/editar/'.$alunocompra->AlunoCompraID) }}">Alterar</a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>{{ $alunocompra->UsuarioNome }}</td>
+                            <td>{{ $alunocompra->AlunoCompraQuantidade }}</td>
+                            <td>
+                                <a href="{{ url('alunocompra/editar/'.$alunocompra->AlunoCompraID) }}">Alterar</a>
+                            </td>
+                        </tr>
                     @endforeach
                 @else
                     <tr>
