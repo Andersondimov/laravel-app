@@ -38,7 +38,7 @@
                         @endforeach
                     @else
                     <tr>
-                        <td colspan="6">Nenhum Perfil Tela Cadastrado</td>
+                        <td colspan="3">Nenhum Perfil Tela Cadastrado</td>
                     </tr>
                     @endif
                 </tbody>

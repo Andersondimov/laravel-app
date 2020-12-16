@@ -12,6 +12,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+/*
+* Ponto
+ */
+Route::post('ponto/inserir', 'PontoController@store');
+Route::get('ponto', 'PontoController@index');
+Route::get('ponto/list', 'PontoController@list');
+Route::get('ponto/editar/{id}', 'PontoController@edit');
+Route::post('ponto/update/{id}', 'PontoController@update');
 
 /*
 * Evento
