@@ -23,10 +23,11 @@
             @csrf
             <h1 class="bd-title" id="content">Aluno Compra</h1>
             <div class="form-group">
-                <label for="UsuarioEscolaID">UsuarioEscola</label>
+                <label for="UsuarioEscolaID">Nome Usuario</label>
                 <select class="form-control" name="UsuarioEscolaID">
                     @foreach ( $alunocompra->UsuarioEscola as $UsuarioEscola )
-                        <option @if ($UsuarioEscola->UsuarioEscolaID == $alunocompra->UsuarioEscolaID) selected @endif value="{{$UsuarioEscola->UsuarioEscolaID}}">{{$UsuarioEscola->UsuarioID}}</option>
+                        <option @if ($UsuarioEscola->UsuarioEscolaID == $alunocompra->UsuarioEscolaID) selected @endif 
+                            value="{{$UsuarioEscola->UsuarioEscolaID}}">{{$UsuarioEscola->UsuarioNome}}</option>
                     @endforeach
                 </select>
             </div>

@@ -12,7 +12,7 @@
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>UsuarioEscola</th>
+                    <th>Escola</th>
                     <th>Quantidade</th>
                     <th>Status</th>
                     <th>Atualizar</th>
@@ -22,7 +22,7 @@
                 @if(count($Pontos)>0)
                     @foreach ( $Pontos as $ponto )
                         <tr>
-                            <td>{{ $ponto->UsuarioID }}</td>
+                            <td>{{ $ponto->Escola}}</td>
                             <td>{{ $ponto->PontoQuantidade }}</td>
                             <td>
                                 @if($ponto->PontoStatus == 1)

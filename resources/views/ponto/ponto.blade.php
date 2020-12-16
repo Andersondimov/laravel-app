@@ -27,7 +27,8 @@
                     <label for="UsuarioEscolaID">Usuario Escola</label>
                     <select class="form-control" name="UsuarioEscolaID" >
                         @foreach ( $UsuarioEscolas as $UsuarioEscola )
-                            <option value="{{$UsuarioEscola->UsuarioEscolaID}}">{{$UsuarioEscola->UsuarioID}}</option>
+                            <option value ="{{$UsuarioEscola->UsuarioEscolaID}}">
+                                {{$UsuarioEscola->Escola.' - '.$UsuarioEscola->UsuarioNome}}</option>
                         @endforeach
                     </select>
                 </div>

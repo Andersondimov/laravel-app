@@ -12,7 +12,7 @@
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>UsuarioEscola</th>
+                    <th>Escola</th>
                     <th>Quantidade Adquirido</th>
                     <th>Status</th>
                     <th>Atualizar</th>
@@ -21,20 +21,21 @@
                 <tbody>
                 @if(count($AlunoCompras)>0)
                     @foreach ( $AlunoCompras as $alunocompra )
-                        <tr>
-                            <td>{{ $alunocompra->UsuarioID }}</td>
-                            <td>{{ $alunocompra->AlunoCompraQuantidade }}</td>
-                            <td>
-                                @if($alunocompra->AlunoCompraStatus == 1)
-                                    Ativo
-                                @else($alunocompra->AlunoCompraStatus == 2)
-                                    Inativo
-                                @endif
-                            </td>
-                            <td>
-                                <a href="{{ url('alunocompra/editar/'.$alunocompra->AlunoCompraID) }}">Alterar</a>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>{{ $alunocompra->Escola}}</td>
+                                <td>{{ $alunocompra->AlunoCompraQuantidade }}</td>
+                                
+                                <td>
+                                    @if($alunocompra->AlunoCompraStatus == 1)
+                                        Ativo
+                                    @else($alunocompra->AlunoCompraStatus == 2)
+                                        Inativo
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{ url('alunocompra/editar/'.$alunocompra->AlunoCompraID) }}">Alterar</a>
+                                </td>
+                            </tr>
                     @endforeach
                 @else
                     <tr>

@@ -14,10 +14,16 @@ class AlunoCompraController extends Controller
     public function index()
     {
         $UsuarioEscolas =DB::table('UsuarioEscola')
+                ->join('Usuario','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
+                ->join('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
+                ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
                 ->select(
                     'UsuarioEscola.UsuarioEscolaID',
-                    'UsuarioEscola.UsuarioID'
+                    'Usuario.UsuarioNome',
+                    'Escola.Escola'
                 )
+                ->where('Perfil.PerfilCod', '!=', 'al')
+                ->orderby('Escola.Escola', 'ASC')
                 ->get();
         return view('alunocompra/alunocompra', compact('UsuarioEscolas'));
     }
@@ -52,6 +58,7 @@ class AlunoCompraController extends Controller
     {
         $AlunoCompras =DB::table('AlunoCompra')
                 ->join('UsuarioEscola','AlunoCompra.UsuarioEscolaID', '=', 'UsuarioEscola.UsuarioEscolaID')
+                ->join('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
                 ->select(
                     'AlunoCompra.AlunoCompraID',
                     'AlunoCompra.AlunoCompraQuantidade',
@@ -59,7 +66,8 @@ class AlunoCompraController extends Controller
                     'AlunoCompra.AlunoCompraDTAtivacao',
                     'AlunoCompra.AlunoCompraDTInativacao',
                     'AlunoCompra.UsuarioEscolaID',
-                    'UsuarioEscola.UsuarioID'
+                    'UsuarioEscola.UsuarioID',
+                    'Escola.Escola'
                 )
                 ->get();
         return view('alunocompra/show', compact('AlunoCompras'));
@@ -74,6 +82,12 @@ class AlunoCompraController extends Controller
             'UsuarioEscola.UsuarioID'
         )
         ->get();
+        $alunocompra['Usuarios'] = DB::table('Usuario')
+        ->select(
+            'Usuario.UsuarioID',
+            'Usuario.UsuarioNome'
+        )
+        ->get();
         return view('alunocompra/editar', compact('alunocompra'));
     }
 
@@ -86,7 +100,7 @@ class AlunoCompraController extends Controller
         $alunocompra = AlunoCompra::findOrFail($id);
 
         $alunocompra->UsuarioEscolaID = request('UsuarioEscolaID');
-        $alunocompra->AlunoCompraQuantidade = request('AlunoCompraQuantidade');
+        $alunocompra->AlunoCompraQuantidade = request('PontoQuantidade');
         
         $alunocompra->AlunoCompraStatus = request('AlunoCompraStatus');
 

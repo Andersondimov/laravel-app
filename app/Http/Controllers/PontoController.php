@@ -13,10 +13,16 @@ class PontoController extends Controller
     public function index()
     {
         $UsuarioEscolas =DB::table('UsuarioEscola')
+                ->join('Usuario','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
+                ->join('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
+                ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
                 ->select(
                     'UsuarioEscola.UsuarioEscolaID',
-                    'UsuarioEscola.UsuarioID'
+                    'Usuario.UsuarioNome',
+                    'Escola.Escola'
                 )
+                ->where('Perfil.PerfilCod', '!=', 'al')
+                ->orderby('Escola.Escola', 'ASC')
                 ->get();
         return view('ponto/ponto', compact('UsuarioEscolas'));
     }
@@ -51,6 +57,7 @@ class PontoController extends Controller
     {
         $Pontos =DB::table('Ponto')
                 ->join('UsuarioEscola','Ponto.UsuarioEscolaID', '=', 'UsuarioEscola.UsuarioEscolaID')
+                ->join('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
                 ->select(
                     'Ponto.PontoID',
                     'Ponto.PontoQuantidade',
@@ -59,7 +66,8 @@ class PontoController extends Controller
                     'Ponto.PontoDTInativacao',
                     'Ponto.PontoDTBloqueio',
                     'Ponto.UsuarioEscolaID',
-                    'UsuarioEscola.UsuarioID'
+                    'UsuarioEscola.UsuarioID',
+                    'Escola.Escola'
                 )
                 ->get();
         return view('ponto/show', compact('Pontos'));
@@ -69,9 +77,13 @@ class PontoController extends Controller
     {
         $ponto = Ponto::findOrFail($PontoID);
         $ponto['UsuarioEscola'] = DB::table('UsuarioEscola')
+        ->join('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
+        ->join('Usuario','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
         ->select(
             'UsuarioEscola.UsuarioEscolaID',
-            'UsuarioEscola.UsuarioID'
+            'Usuario.UsuarioNome',
+            'Escola.Escola'
+            
         )
         ->get();
         return view('ponto/editar', compact('ponto'));
@@ -87,6 +99,7 @@ class PontoController extends Controller
 
         $ponto->UsuarioEscolaID = request('UsuarioEscolaID');
         $ponto->PontoQuantidade = request('PontoQuantidade');
+        
         
         $ponto->PontoStatus = request('PontoStatus');
 

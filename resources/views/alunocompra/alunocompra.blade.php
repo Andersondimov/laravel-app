@@ -23,12 +23,11 @@
         <div class="bd-example">
             <h1 class="bd-title" id="content">Aluno Compra</h1>
             <form>
+                <div class="form-group">.$alunocompra->AlunoCompraID
                 <div class="form-group">
-                    <label for="UsuarioEscolaID">Usuario Escola</label>
-                    <select class="form-control" name="UsuarioEscolaID" >
-                        @foreach ( $UsuarioEscolas as $UsuarioEscola )
-                            <option value="{{$UsuarioEscola->UsuarioEscolaID}}">{{$UsuarioEscola->UsuarioID}}</option>
-                        @endforeach
+                    <label for="Status">Status</label>
+                    <select class="form-control" name="AlunoCompraStatus">
+                        <option value ="1">Ativo</option>
                     </select>
                 </div>
                 <div class="form-group">
