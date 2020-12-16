@@ -6,63 +6,64 @@
         <link href="https://getbootstrap.com/docs/4.0/assets/css/docs.min.css" rel="stylesheet">
     </head>
     <body>
-    @if (session('status'))
-        <div class="alert-success">
-            {{ session('status') }}
-        </div>
-    @endif
-    <div class="error">
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-    </div>
-    <form role="form" method="post" action="{{action('PontoController@store')}}">
-        @csrf
-    <div class="bd-example">
-        <h1 class="bd-title" id="content">Ponto</h1>
-            <div class="form-group">
-                <label for="UsuarioEscolaID">Usuario Escola</label>
-                <select class="form-control" name="UsuarioEscolaID">
-                    @foreach ( $UsuarioEscolas as $UsuarioEscola )
-                        <option value="{{$UsuarioEscola->EscolaID}}">{{$UsuarioEscola->EscolaID}}</option>
+        @if (session('status'))
+            <div class="alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+        <div class="error">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
                     @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="Status">Status</label>
-                <select class="form-control" name="PontoStatus">
-                    <option value="1">Ativo</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">OK</button>
-            </div>
-            <fieldset disabled>
-                <div class="form-group row">
-                    <div class="col-sm-10">
-                        <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Ativação:   --/--/---- 00:00:00">
-                    </div>
+                </ul>
+        </div>
+        <form role="form" method="post" action="{{action('PontoController@store')}}">
+        @csrf
+        <div class="bd-example">
+            <h1 class="bd-title" id="content">Pontos</h1>
+            <form>
+                <div class="form-group">
+                    <label for="UsuarioEscolaID">Usuario Escola</label>
+                    <select class="form-control" name="UsuarioEscolaID" >
+                        @foreach ( $UsuarioEscolas as $UsuarioEscola )
+                            <option value="{{$UsuarioEscola->UsuarioEscolaID}}">{{$UsuarioEscola->UsuarioID}}</option>
+                        @endforeach
+                    </select>
                 </div>
-                <div class="form-group row">
-                    <div class="col-sm-10">
-                        <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Inativação: --/--/---- 00:00:00">
-                    </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Pontos</label>
+                    <input type="text" class="form-control" name="PontoQuantidade"  />
                 </div>
-                <div class="form-group row">
-                    <div class="col-sm-10">
-                        <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Bloqueio:   --/--/---- 00:00:00">
-                    </div>
+                <div class="form-group">
+                    <label for="Status">Status</label>
+                    <select class="form-control" name="PontoStatus">
+                        <option value="1">Ativo</option>
+                    </select>
                 </div>
-            </fieldset>
-        </form>
-    </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
-    <script>
-    </script>
-
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">OK</button>
+                </div>
+                <fieldset disabled>
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Ativação:   --/--/---- 00:00:00">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Inativação: --/--/---- 00:00:00">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Bloqueio:   --/--/---- 00:00:00">
+                            </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
     </body>
 </html>

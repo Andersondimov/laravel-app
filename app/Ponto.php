@@ -12,16 +12,17 @@ class Ponto extends Model
     protected $fillable = 
     [
 
+         
         'Ponto', 
-        'PontoQuantidade', 
-        'PontoStatus'
+        'PontoStatus', 
+        'PontoQuantidade'
     
     ];
 
     protected $guarded = 
     [
 
-        'PontoID', 
+        'PontoID',
         'PontoDTAtivacao', 
         'PontoDTInativacao', 
         'PontoDTBloqueio'

@@ -15,7 +15,7 @@ class PontoController extends Controller
         $UsuarioEscolas =DB::table('UsuarioEscola')
                 ->select(
                     'UsuarioEscola.UsuarioEscolaID',
-                    'UsuarioEscola.EscolaID'
+                    'UsuarioEscola.UsuarioID'
                 )
                 ->get();
         return view('ponto/ponto', compact('UsuarioEscolas'));
@@ -31,9 +31,10 @@ class PontoController extends Controller
         $validated = $request->validated();
 
         $ponto = new Ponto;
-        $ponto->UsuarioEscolaID = request('UsuarioEscolaID');      
-        $ponto->PontoStatus = request('PontoStatus');
+        $ponto->UsuarioEscolaID = request('UsuarioEscolaID');
         $ponto->PontoQuantidade = request('PontoQuantidade');
+        
+        $ponto->PontoStatus = request('PontoStatus');
         $ponto->save();
 
         return redirect()->back()
@@ -48,8 +49,19 @@ class PontoController extends Controller
 
     public function list()
     {
-        $Pontos = new Ponto;
-        $Pontos = Ponto::get();
+        $Pontos =DB::table('Ponto')
+                ->join('UsuarioEscola','Ponto.UsuarioEscolaID', '=', 'UsuarioEscola.UsuarioEscolaID')
+                ->select(
+                    'Ponto.PontoID',
+                    'Ponto.PontoQuantidade',
+                    'Ponto.PontoStatus',
+                    'Ponto.PontoDTAtivacao',
+                    'Ponto.PontoDTInativacao',
+                    'Ponto.PontoDTBloqueio',
+                    'Ponto.UsuarioEscolaID',
+                    'UsuarioEscola.UsuarioID'
+                )
+                ->get();
         return view('ponto/show', compact('Pontos'));
     }
 
@@ -59,7 +71,7 @@ class PontoController extends Controller
         $ponto['UsuarioEscola'] = DB::table('UsuarioEscola')
         ->select(
             'UsuarioEscola.UsuarioEscolaID',
-            'UsuarioEscola.EscolaID'
+            'UsuarioEscola.UsuarioID'
         )
         ->get();
         return view('ponto/editar', compact('ponto'));
@@ -68,9 +80,14 @@ class PontoController extends Controller
     public function update(PontoAlter $request, $id)
     {
         $validated = $request->validated();
+
         $ponto = new Ponto;
+        
         $ponto = Ponto::findOrFail($id);
+
         $ponto->UsuarioEscolaID = request('UsuarioEscolaID');
+        $ponto->PontoQuantidade = request('PontoQuantidade');
+        
         $ponto->PontoStatus = request('PontoStatus');
 
         if($ponto->PontoStatus == 1)

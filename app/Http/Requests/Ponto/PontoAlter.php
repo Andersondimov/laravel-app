@@ -25,7 +25,7 @@ class PontoAlter extends FormRequest
     {
         return [
 
-            
+            'PontoQuantidade' => 'required|',
             'PontoStatus' => 'required|',
             'UsuarioEscolaID' => 'required|'
             
@@ -36,7 +36,7 @@ class PontoAlter extends FormRequest
     {
         return [
 
-           
+            'PontoQuantidade.required' => 'O campo Quantidade de Pontos é obrigatório',
             'PontoStatus.required' => 'O campo Status é obrigatório',
             'UsuarioEscolaID.required' => 'O campo Usuario Escola é obrigatório'
             
