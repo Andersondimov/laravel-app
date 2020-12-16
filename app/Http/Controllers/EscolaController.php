@@ -142,13 +142,24 @@ class EscolaController extends Controller
             ->where('Escola.EscolaID', $EscolaID)
             ->distinct('Usuario.UsuarioID')
             ->count('Usuario.UsuarioID');
+
+        $file= public_path(). "/escola/".$EscolaID.".png";
+
+        $headers = [
+            'Content-Type' => 'image/png',
+        ];
+
+
+
+        $file = response()->download($file, 'logo.png', $headers);
+
         $escola->EscolaValorTot = ($escola->Qtdaluno*$escola->EscolaValorVaviavel)+$escola->EscolaValorFixo;
         $escola->EscolaValorTot = str_replace(".",',',$escola->EscolaValorTot);
 
         $escola->EscolaValorFixo = str_replace(".",',',$escola->EscolaValorFixo);
         $escola->EscolaValorVaviavel = str_replace(".",',',$escola->EscolaValorVaviavel);
 
-        return view('escola/parametro', compact('escola'));
+        return view('escola/parametro', compact('escola','file'));
     }
 
     public function update(EscolaAlter $request, $id)
@@ -212,6 +223,33 @@ class EscolaController extends Controller
         $validated = $request->validated();
 
         $escola = Escola::findOrFail($id);
+
+        // Define o valor default para a variável que contém o nome da imagem
+        $nameFile = null;
+
+        // Verifica se informou o arquivo e se é válido
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+
+            // Define um aleatório para o arquivo baseado no timestamps atual
+            $name = $id;
+
+            // Recupera a extensão do arquivo
+            $extension = $request->image->extension();
+
+            // Define finalmente o nome
+            $nameFile = "{$name}.{$extension}";
+
+            // Faz o upload:
+            $upload = $request->image->storeAs('escola', $nameFile);
+            // Se tiver funcionado o arquivo foi armazenado em storage/app/public/escola/nomedinamicoarquivo.extensao
+
+            // Verifica se NÃO deu certo o upload (Redireciona de volta)
+            if ( !$upload )
+                return redirect()
+                    ->back()
+                    ->with('error', 'Falha ao fazer upload')
+                    ->withInput();
+        }
 
         $escola->Escola = $request->Escola;
 

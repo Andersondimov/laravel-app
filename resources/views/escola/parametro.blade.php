@@ -18,7 +18,7 @@
                 @endforeach
             </ul>
         </div>
-        <form role="form" method="post" action="{{url('escola/updateparams/'.$escola->EscolaID)}}">
+        <form role="form" method="post" enctype="multipart/form-data" action="{{url('escola/updateparams/'.$escola->EscolaID)}}">
             @csrf
             <div class="bd-example">
                 <h1 class="bd-title" id="content">Cadastro de Parâmetros – Escola</h1>
@@ -97,8 +97,14 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1"><b>Logo Escola</b></label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                    <label for="exampleInputPassword1">Tamanho Máximo 150kb </label>
+                    <input type="file" class="form-control-file" name="image" id="image">
+                    <label for="exampleInputPassword1">Tamanho Máximo 300kb </label>
+{{--                    @if(isset($file))--}}
+{{--                        @foreach ($file as $image)--}}
+{{--                            <?php dd($image); ?>--}}
+                            <img src="{{ public_path(). '/escola/'.$escola->EscolaID.'.png' }}">
+{{--                        @endforeach--}}
+{{--                    @endif--}}
 
                 </div>
                 <div class="form-group">
