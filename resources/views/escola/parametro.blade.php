@@ -99,13 +99,10 @@
                     <label for="exampleInputPassword1"><b>Logo Escola</b></label>
                     <input type="file" class="form-control-file" name="image" id="image">
                     <label for="exampleInputPassword1">Tamanho Máximo 300kb </label>
-{{--                    @if(isset($file))--}}
-{{--                        @foreach ($file as $image)--}}
-{{--                            <?php dd($image); ?>--}}
-                            <img src="{{ public_path(). '/escola/'.$escola->EscolaID.'.png' }}">
-{{--                        @endforeach--}}
-{{--                    @endif--}}
 
+                </div>
+                <div class="form-group">
+                    <img src="<?php echo asset('storage/escola'.$escola->EscolaID.'.png'); ?>">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">OK</button>
