@@ -10,6 +10,7 @@ use App\Http\Requests\Escola\EscolaCreate;
 use App\Http\Requests\Escola\EscolaAlter;
 use App\Http\Requests\Escola\EscolaAlterParams;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 
 class EscolaController extends Controller
@@ -143,23 +144,13 @@ class EscolaController extends Controller
             ->distinct('Usuario.UsuarioID')
             ->count('Usuario.UsuarioID');
 
-        $file= public_path(). "/escola/".$EscolaID.".png";
-
-        $headers = [
-            'Content-Type' => 'image/png',
-        ];
-
-
-
-        $file = response()->download($file, 'logo.png', $headers);
-
         $escola->EscolaValorTot = ($escola->Qtdaluno*$escola->EscolaValorVaviavel)+$escola->EscolaValorFixo;
         $escola->EscolaValorTot = str_replace(".",',',$escola->EscolaValorTot);
 
         $escola->EscolaValorFixo = str_replace(".",',',$escola->EscolaValorFixo);
         $escola->EscolaValorVaviavel = str_replace(".",',',$escola->EscolaValorVaviavel);
 
-        return view('escola/parametro', compact('escola','file'));
+        return view('escola/parametro', compact('escola'));
     }
 
     public function update(EscolaAlter $request, $id)
@@ -230,24 +221,34 @@ class EscolaController extends Controller
         // Verifica se informou o arquivo e se é válido
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
 
+            if($request->file('image')->getSize() > 25000)
+                return redirect()
+                    ->back()
+                    ->with('erro', 'O Tamanho do Arquivo deve ser até 25KB')
+                    ->withInput();
+
             // Define um aleatório para o arquivo baseado no timestamps atual
-            $name = $id;
+            $name = 'escola'.$id;
 
             // Recupera a extensão do arquivo
             $extension = $request->image->extension();
+            if($extension != 'png')
+                return redirect()
+                    ->back()
+                    ->with('erro', 'O Formato do Arquivo deve ser .png')
+                    ->withInput();
 
             // Define finalmente o nome
             $nameFile = "{$name}.{$extension}";
 
             // Faz o upload:
-            $upload = $request->image->storeAs('escola', $nameFile);
-            // Se tiver funcionado o arquivo foi armazenado em storage/app/public/escola/nomedinamicoarquivo.extensao
+            $upload = $request->image->storeAs(null, $nameFile);
 
             // Verifica se NÃO deu certo o upload (Redireciona de volta)
             if ( !$upload )
                 return redirect()
                     ->back()
-                    ->with('error', 'Falha ao fazer upload')
+                    ->with('erro', 'Falha ao fazer upload')
                     ->withInput();
         }
 
