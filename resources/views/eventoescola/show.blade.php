@@ -8,35 +8,33 @@
     <body>
             @csrf
         <div class="bd-example">
-            <h1 class="bd-title" id="content">Aluno Compra</h1>
+            <h1 class="bd-title" id="content">Evento Escola</h1>
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>Usuario Nome</th>
-                    <th>Quantidade Adquirido</th>
+                    <th>Escola</th>
                     <th>Atualizar</th>
                 </tr>
                 </thead>
                 <tbody>
-                @if(count($AlunoCompras)>0)
-                    @foreach ( $AlunoCompras as $alunocompra )
-                        <tr>
-                            <td>{{ $alunocompra->UsuarioNome }}</td>
-                            <td>{{ $alunocompra->AlunoCompraQuantidade }}</td>
-                            <td>
-                                <a href="{{ url('alunocompra/editar/'.$alunocompra->AlunoCompraID) }}">Alterar</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                @else
+                    @if(count($EventoEscolas)>0)
+                        @foreach ( $EventoEscolas as $eventoescola )
+                            <tr>
+                                <td>{{ $eventoescola->Escola }}</td>
+                                <td>
+                                    <a href="{{ url('eventoescola/editar/'.$eventoescola->EscolaID) }}">Alterar</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
                     <tr>
-                        <td colspan="3">Compra do Aluno não Cadastrado</td>
+                        <td colspan="2">Nenhum Evento Escola Cadastrado</td>
                     </tr>
-                @endif
+                    @endif
                 </tbody>
             </table>
             <div class="form-group">
-                <form role="form" method="get" action="{{action('AlunoCompraController@index')}}">
+                <form role="form" method="get" action="{{action('EventoEscolaController@index')}}">
                     <button type="submit" class="btn btn-primary">NOVO</button>
                 </form>
             </div>

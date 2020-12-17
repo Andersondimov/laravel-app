@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 /*
+* EventoEscola
+ */
+
+Route::get('eventoescola', 'EventoEscolaController@index');
+Route::post('eventoescola/inserir', 'EventoEscolaController@store');
+Route::get('eventoescola/list', 'EventoEscolaController@list');
+Route::get('eventoescola/editar/{id}', 'EventoEscolaController@edit');
+Route::post('eventoescola/update/{id}', 'EventoEscolaController@update');
+
+/*
 * AlunoCompra
  */
 Route::post('alunocompra/inserir', 'AlunoCompraController@store');
