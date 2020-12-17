@@ -221,11 +221,22 @@ class EscolaController extends Controller
         // Verifica se informou o arquivo e se é válido
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
 
+            if($request->file('image')->getSize() > 25000)
+                return redirect()
+                    ->back()
+                    ->with('erro', 'O Tamanho do Arquivo deve ser até 25KB')
+                    ->withInput();
+
             // Define um aleatório para o arquivo baseado no timestamps atual
             $name = 'escola'.$id;
 
             // Recupera a extensão do arquivo
             $extension = $request->image->extension();
+            if($extension != 'png')
+                return redirect()
+                    ->back()
+                    ->with('erro', 'O Formato do Arquivo deve ser .png')
+                    ->withInput();
 
             // Define finalmente o nome
             $nameFile = "{$name}.{$extension}";
@@ -237,7 +248,7 @@ class EscolaController extends Controller
             if ( !$upload )
                 return redirect()
                     ->back()
-                    ->with('error', 'Falha ao fazer upload')
+                    ->with('erro', 'Falha ao fazer upload')
                     ->withInput();
         }
 

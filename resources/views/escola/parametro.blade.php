@@ -11,6 +11,11 @@
                 {{ session('status') }}
             </div>
         @endif
+        @if (session('erro'))
+            <div class="alert-danger">
+                {{ session('erro') }}
+            </div>
+        @endif
         <div class="error">
             <ul>
                 @foreach($errors->all() as $error)
@@ -98,7 +103,7 @@
                 <div class="form-group">
                     <label for="exampleInputPassword1"><b>Logo Escola</b></label>
                     <input type="file" class="form-control-file" name="image" id="image">
-                    <label for="exampleInputPassword1">Tamanho Máximo 300kb </label>
+                    <label for="exampleInputPassword1">Tamanho Máximo 25KB </label>
 
                 </div>
                 <div class="form-group">
