@@ -34,7 +34,7 @@ class EventoEscolaController extends Controller
 
     public function create()
     {
-        return view('eventoescola.create');
+        return view('EventoEscola.create');
     }
 
     public function store(EventoEscolaCreate $request)
@@ -43,6 +43,7 @@ class EventoEscolaController extends Controller
 
         foreach($request->EventoID as $eventoID){
             $eventoescola = new EventoEscola;
+            $eventoescola->EventoStatus = $request->EventoStatus;
             $eventoescola->EscolaID = $request->EscolaID;
             $eventoescola->EventoID = $eventoID;
 
@@ -103,7 +104,6 @@ class EventoEscolaController extends Controller
             'Escola.Escola'
         )
         ->get();
-
         $EventoEscolas['Eventos'] =DB::table('Evento')
                 ->select(
                     'Evento.EventoID',
@@ -111,6 +111,50 @@ class EventoEscolaController extends Controller
                 )
                 ->get();
         return view('eventoescola/editar', compact('EventoEscolas'));
+
+        $PerfilTelas['IDS'] =DB::table('PerfilTela')
+        ->join('Perfil','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
+        ->join('Tela','PerfilTela.TelaID', '=', 'Tela.TelaID')
+        ->where('Perfil.PerfilID', $PerfilTelaID)
+        ->select(
+            'PerfilTela.PerfilTelaStatus',
+            'PerfilTela.PerfilTelaDTAtivacao',
+            'PerfilTela.PerfilTelaDTInativacao',
+            'PerfilTela.PerfilTelaDTBloqueio',
+            'PerfilTela.PerfilID',
+            'Perfil.Perfil'
+        )->groupby(
+            'PerfilTela.PerfilTelaStatus',
+            'PerfilTela.PerfilTelaDTAtivacao',
+            'PerfilTela.PerfilTelaDTInativacao',
+            'PerfilTela.PerfilTelaDTBloqueio',
+            'PerfilTela.PerfilID',
+            'Perfil.Perfil'
+        )
+        ->get();
+        $PerfilTelas[] =DB::table('PerfilTela')
+        ->join('Perfil','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
+        ->join('Tela','PerfilTela.TelaID', '=', 'Tela.TelaID')
+        ->where('Perfil.PerfilID', $PerfilTelaID)
+        ->select(
+            'PerfilTela.PerfilTelaID',
+            'PerfilTela.PerfilTelaStatus',
+            'PerfilTela.PerfilTelaDTAtivacao',
+            'PerfilTela.PerfilTelaDTInativacao',
+            'PerfilTela.PerfilTelaDTBloqueio',
+            'Tela.TelaID',
+            'Tela.Tela',
+            'PerfilTela.PerfilID',
+            'Perfil.Perfil'
+        )
+        ->get();
+        $PerfilTelas['Telas'] =DB::table('Tela')
+                ->select(
+                    'Tela.TelaID',
+                    'Tela.Tela'
+                )
+                ->get();
+        return view('perfiltela/editar', compact('PerfilTelas'));
     }
 
     public function update(EventoEscolaAlter $request, $id)
@@ -129,13 +173,14 @@ class EventoEscolaController extends Controller
                 $eventoescola->save();
             }
         }
-        return redirect()->action('EventoEscolaController@list');
+        return redirect()->action('EventoEscolaController@list')
+            ->with('status', 'Eventos relacionados a escola com sucesso');
     }
 
     public function destroy($id)
     {
         $eventoescola = EventoEscola::findOrFail($id);
         $eventoescola->delete();
-        return redirect()->route('EventoEscola.index')->with('alert-success', 'Evento Escola deletada com sucesso!');
+        return redirect()->route('eventoescola.index')->with('alert-success', 'Evento Escola deletada com sucesso!');
     }
 }

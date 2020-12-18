@@ -41,8 +41,8 @@
                 </div>
                 <div class="form-group">
                     <label for="Status">Status</label>
-                    <select class="form-control" name="EventoEscolaStatus">
-                        <option value="1">Ativo</option>
+                    <select class="form-control" name="EventoStatus">
+                        <option value="1">Auto</option>
                     </select>
                 </div>
                 <div class="form-group">

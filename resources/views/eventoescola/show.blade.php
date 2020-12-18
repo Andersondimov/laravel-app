@@ -14,6 +14,7 @@
                 <tr>
                     <th>Escola</th>
                     <th>Atualizar</th>
+                    <th>Status</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -22,13 +23,20 @@
                             <tr>
                                 <td>{{ $eventoescola->Escola }}</td>
                                 <td>
+                                    @if($eventoescola->EventoStatus == 1)
+                                        Auto
+                                    @else(@eventoescola->EventoStatus ==2)
+                                        Manual
+                                    @endif
+                                </td>
+                                <td>
                                     <a href="{{ url('eventoescola/editar/'.$eventoescola->EscolaID) }}">Alterar</a>
                                 </td>
                             </tr>
                         @endforeach
                     @else
                     <tr>
-                        <td colspan="2">Nenhum Evento Escola Cadastrado</td>
+                        <td colspan="3">Nenhum Evento Escola Cadastrado</td>
                     </tr>
                     @endif
                 </tbody>
