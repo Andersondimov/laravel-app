@@ -79,14 +79,17 @@ class EventoEscolaController extends Controller
         ->where('Escola.EscolaID', $EventoEscolaID)
         ->select(
             'EventoEscola.EventoStatus',
+            'EventoEscola.EventoID',
             'EventoEscola.EscolaID',
             'Escola.Escola'
         )->groupby(
             'EventoEscola.EventoStatus',
+            'EventoEscola.EventoID',
             'EventoEscola.EscolaID',
             'Escola.Escola'
         )
         ->get();
+
         $EventoEscolas[] =DB::table('EventoEscola')
         ->join('Escola','EventoEscola.EscolaID', '=', 'Escola.EscolaID')
         ->join('Evento','EventoEscola.EventoID', '=', 'Evento.EventoID')
@@ -100,6 +103,7 @@ class EventoEscolaController extends Controller
             'Escola.Escola'
         )
         ->get();
+
         $EventoEscolas['Eventos'] =DB::table('Evento')
                 ->select(
                     'Evento.EventoID',

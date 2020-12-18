@@ -23,24 +23,30 @@
             <div class="bd-example">
                 <div class="form-group">
                     <label for="EscolaID">Escola</label>
-                    <div class="form-check">
-                        @foreach ( $EventoEscolas as $EventoEscola )
-                            <input type="checkbox" class="form-check-input" name="EscolaID[{{$EventoEscola->Escola}}]" value="{{$Escola->EscolaID}}"
-                            @if(isset($EventoEscolas[0]) && count($EventoEscolas[0]) > 0)
-                                @foreach ( $EventoEscolas[0] as $EventoEscola )
-                                    @if($Escola->EscolaID == $EventoEscola->EscolaID) checked @endif
-                                @endforeach
-                            @endif>
-                            <label class="form-check-label" for="exampleCheck1">{{$Escola->Escola}}</label><br>
-                        @endforeach
+                    <div class="form-check">      
+                        <div class="form-group">
+                            <label for="EscolaID">Escola</label>
+                            <select class="form-control" name="EscolaID">
+                                    <option value="{{$EventoEscolas['IDS'][0]->EscolaID}}">{{$EventoEscolas['IDS'][0]->Escola}}</option>
+                            </select>
+                        </div>                  
                     </div>
                     <h1 class="bd-title" id="content">Evento</h1>
                     <div class="form-group">
                         <label for="EventoID">Evento</label>
                         <select class="form-control">
-                            <option selected>{{$EventoEscolas['IDS'][0]->Evento}}
+                            <option selected>{{$EventoEscolas['IDS'][0]->EventoID}}
                             </option>
                         </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="EventoID">Evento</label>
+                    <div class="form-check">
+                        @foreach ( $EventoEscolas as $EventoID )
+                            <input type="checkbox" class="form-check-input" name="EventoID[{{$EventoEscola->EventoID}}]" value="{{$Evento->EventoID}}">
+                            <label class="form-check-label" for="exampleCheck1">{{$Evento->Evento}}</label><br>
+                        @endforeach
                     </div>
                 </div>
                 <div class="form-group">
