@@ -32,7 +32,7 @@ class InformativoAcessoController extends Controller
         $validated['InformativoAcessoDTFim'] = Carbon::createFromFormat('Y-m-d', $validated['InformativoAcessoDTFim'])->format('d/m/Y');
         $validated['InformativoAcessoDTIni'] = Carbon::createFromFormat('Y-m-d', $validated['InformativoAcessoDTIni'])->format('d/m/Y');
         $informativoAcesso = InformativoAcesso::create($validated );
-        return redirect()->action('InformativoAcessoController@edit',$informativoAcesso);
+        return redirect()->back()->with('status', 'Informativo Acesso criado com sucesso!');
         
     }
 

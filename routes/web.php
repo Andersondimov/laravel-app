@@ -39,8 +39,8 @@ Route::post('ponto/update/{id}', 'PontoController@update');
 * UsuarioEscolaInformativoAcesso
  */
 
-Route::get('usuarioescolainformativoacesso', 'UsuarioEscolaInformativoAcessoController@index');
 Route::post('usuarioescolainformativoacesso/inserir', 'UsuarioEscolaInformativoAcessoController@store');
+Route::get('usuarioescolainformativoacesso', 'UsuarioEscolaInformativoAcessoController@index');
 Route::get('usuarioescolainformativoacesso/list', 'UsuarioEscolaInformativoAcessoController@list');
 Route::get('usuarioescolainformativoacesso/editar/{id}', 'UsuarioEscolaInformativoAcessoController@edit');
 Route::post('usuarioescolainformativoacesso/update/{id}', 'UsuarioEscolaInformativoAcessoController@update');

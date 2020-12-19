@@ -8,11 +8,14 @@ use Carbon\Carbon;
 class UsuarioEscolaInformativoAcesso extends Model
 {
     public $timestamps = false;
-    protected $primaryKey = 'UsuarioEscolaInformativoAcessoID';
+    protected $table = 'UsuarioEscolaInformativoAcesso';
 
+    protected $primaryKey = 'UsuarioEscolaInformativoAcessoID';
     protected $fillable = [
         'UsuarioEscolaInformativoAcesso', 
-        'UsuarioEscolaInformativoAcessoIDDTAtivacao'    
+        'UsuarioEscolaInformativoAcessoIDDTAtivacao',
+        'InformativoAcesso',
+        'UsuarioEscolaID'    
     ];
 
     protected $casts = [
@@ -22,10 +25,14 @@ class UsuarioEscolaInformativoAcesso extends Model
     {
         $this->attributes['UsuarioEscolaInformativoAcessoIDDTAtivacao'] = Carbon::createFromFormat('d/m/Y', $value);
     }
+    public function usuarioescola()
+    {
+        return $this->belongsTo(UsuarioEscola::class,'UsuarioEscolaID');
+    }
 
     protected $guarded = 
     ['UsuarioEscolaInformativoAcessoID'];
     
-    protected $table = 'UsuarioEscolaInformativoAcesso';
+    
 }
 

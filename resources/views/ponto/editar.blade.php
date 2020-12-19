@@ -26,7 +26,8 @@
                 <label for="UsuarioEscolaID">Usuario Escola</label>
                 <select class="form-control" name="UsuarioEscolaID">
                     @foreach ( $ponto->UsuarioEscola as $UsuarioEscola )
-                    <option @if ($UsuarioEscola->UsuarioEscolaID == $ponto->UsuarioEscolaID) selected @endif value ="{{$UsuarioEscola->UsuarioEscolaID}}">
+                        <option @if ($UsuarioEscola->UsuarioEscolaID == $ponto->UsuarioEscolaID) 
+                        selected @endif value ="{{$UsuarioEscola->UsuarioEscolaID}}">
                         {{$UsuarioEscola->Escola.' - '.$UsuarioEscola->UsuarioNome}}</option>
                     @endforeach
                 </select>

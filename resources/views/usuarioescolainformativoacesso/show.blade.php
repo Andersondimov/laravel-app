@@ -13,7 +13,7 @@
                     <thead>
                     <tr>
                         <th>Usuario</th>
-                        <th>IDDTAtivacao</th>
+                        <th>ID Data Ativacao</th>
                         <th>Informativo Acesso</th>
                         <th>Atualizar</th>
                     </tr>
@@ -22,25 +22,21 @@
                         @if(count($UsuarioEscolaInformativoAcessos)>0)
                             @foreach ( $UsuarioEscolaInformativoAcessos as $usuarioescolainformativoacesso )
                                 <tr>
-                                    <td>{{ $usuarioescolainformativoacesso->Escola}}</td>
-                                    <td>{{ $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcesso }}</td>
+                                    <td>{{ $usuarioescolainformativoacesso->Usuario }}</td>
+                                    <td>{{ $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcessoIDDTAtivacao->format('d/m/Y') }}</td>
                                     <td>
                                         @if($usuarioescolainformativoacesso->UsuarioEscolaInformativoAcesso == 1)
                                             Aprovado
                                         @else($usuarioescolainformativoacesso->UsuarioEscolaInformativoAcesso == 2)
                                             Não Aprovado
                                         @endif
-                                    </td>
+                                    </td>        
                                     <td>
                                         <a href="{{ url('usuarioescolainformativoacesso/editar/'.$usuarioescolainformativoacesso->UsuarioEscolaInformativoAcessoID) }}">Alterar</a>
                                     </td>
                                 </tr>
                             @endforeach
                         @else
-                            <tr>
-                                <td colspan="4">Nenhum Acesso Cadastrado</td>
-                            </tr>
-                        @endif
                     </tbody>
                 </table>
                 <div class="form-group">
