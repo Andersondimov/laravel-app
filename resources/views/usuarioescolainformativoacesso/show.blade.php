@@ -8,45 +8,43 @@
     <body>
             @csrf
             <div class="bd-example">
-                <h1 class="bd-title" id="content">Ponto</h1>
+                <h1 class="bd-title" id="content">Usuario Escola Informativo Acesso</h1>
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th>Escola</th>
-                        <th>Quantidade</th>
-                        <th>Status</th>
+                        <th>Usuario</th>
+                        <th>IDDTAtivacao</th>
+                        <th>Informativo Acesso</th>
                         <th>Atualizar</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @if(count($Pontos)>0)
-                        @foreach ( $Pontos as $ponto )
+                        @if(count($UsuarioEscolaInformativoAcessos)>0)
+                            @foreach ( $UsuarioEscolaInformativoAcessos as $usuarioescolainformativoacesso )
+                                <tr>
+                                    <td>{{ $usuarioescolainformativoacesso->Escola}}</td>
+                                    <td>{{ $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcesso }}</td>
+                                    <td>
+                                        @if($usuarioescolainformativoacesso->UsuarioEscolaInformativoAcesso == 1)
+                                            Aprovado
+                                        @else($usuarioescolainformativoacesso->UsuarioEscolaInformativoAcesso == 2)
+                                            Não Aprovado
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="{{ url('usuarioescolainformativoacesso/editar/'.$usuarioescolainformativoacesso->UsuarioEscolaInformativoAcessoID) }}">Alterar</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
                             <tr>
-                                <td>{{ $ponto->Escola}}</td>
-                                <td>{{ $ponto->PontoQuantidade }}</td>
-                                <td>
-                                    @if($ponto->PontoStatus == 1)
-                                        Ativo
-                                    @elseif($ponto->PontoStatus == 2)
-                                        Inativo
-                                    @else($ponto->PontoStatus == 3)
-                                        Bloqueado
-                                    @endif
-                                </td>
-                                <td>
-                                    <a href="{{ url('ponto/editar/'.$ponto->PontoID) }}">Alterar</a>
-                                </td>
+                                <td colspan="4">Nenhum Acesso Cadastrado</td>
                             </tr>
-                        @endforeach
-                    @else
-                        <tr>
-                            <td colspan="4">Nenhum Ponto Cadastrado</td>
-                        </tr>
-                    @endif
+                        @endif
                     </tbody>
                 </table>
                 <div class="form-group">
-                    <form role="form" method="get" action="{{action('PontoController@index')}}">
+                    <form role="form" method="get" action="{{action('UsuarioEscolaInformativoAcessoController@index')}}">
                         <button type="submit" class="btn btn-primary">NOVO</button>
                     </form>
                 </div>

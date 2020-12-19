@@ -7,6 +7,9 @@ use DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\UsuarioEscolaInformativoAcesso\UsuarioEscolaInformativoAcessoCreate;
 use App\Http\Requests\UsuarioEscolaInformativoAcesso\UsuarioEscolaInformativoAcessoAlter;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+
 
 class UsuarioEscolaInformativoAcessoController extends Controller
 {
@@ -24,59 +27,54 @@ class UsuarioEscolaInformativoAcessoController extends Controller
                 ->where('Perfil.PerfilCod', '!=', 'al')
                 ->orderby('Escola.Escola', 'ASC')
                 ->get();
-        return view('ponto/ponto', compact('UsuarioEscolas'));
+        return view('usuarioescolainformativoacesso/usuarioescolainformativoacesso', compact('UsuarioEscolas'));
     }
 
     public function create()
     {
-        return view('ponto.create');
+        return view('usuarioescolainformativoacesso.create');
     }
 
-    public function store(PontoCreate $request)
+    public function store(UsuarioEscolaInformativoAcessoCreate $request)
     {
         $validated = $request->validated();
 
-        $ponto = new Ponto;
-        $ponto->UsuarioEscolaID = request('UsuarioEscolaID');
-        $ponto->PontoQuantidade = request('PontoQuantidade');
-        
-        $ponto->PontoStatus = request('PontoStatus');
-        $ponto->save();
+        $usuarioescolainformativoacesso = new UsuarioEscolaInformativoAcesso;
+        $usuarioescolainformativoacesso->UsuarioEscolaID = request('UsuarioEscolaID');
+      
+        $usuarioescolainformativoacesso->save();
 
         return redirect()->back()
-            ->with('status', 'Ponto criado com sucesso!');
+            ->with('status', 'Usuario Escola Informativo Acesso criado com sucesso!');
     }
 
     public function show()
     {
-        $Pontos = new Ponto;
-        $Pontos = Ponto::all();
+        $UsuarioEscolaInformativoAcessos = new UsuarioEscolaInformativoAcesso;
+        $UsuarioEscolaInformativoAcessos = UsuarioEscolaInformativoAcesso::all();
     }
 
     public function list()
     {
-        $Pontos =DB::table('Ponto')
+        $UsuarioEscolaInformativoAcessos =DB::table('UsuarioEscolaInformativoAcesso')
                 ->join('UsuarioEscola','Ponto.UsuarioEscolaID', '=', 'UsuarioEscola.UsuarioEscolaID')
                 ->join('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
                 ->select(
-                    'Ponto.PontoID',
-                    'Ponto.PontoQuantidade',
-                    'Ponto.PontoStatus',
-                    'Ponto.PontoDTAtivacao',
-                    'Ponto.PontoDTInativacao',
-                    'Ponto.PontoDTBloqueio',
-                    'Ponto.UsuarioEscolaID',
+                    'UsuarioEscolaInformativoAcesso.UsuarioEscolaInformativoAcessoID',
+                    'UsuarioEscolaInformativoAcesso.UsuarioEscolaInformativoAcesso',
+                    'UsuarioEscolaInformativoAcesso.UsuarioEscolaInformativoAcessoIDDTAtivacao',
+                    'usuarioescolainformativoacesso.UsuarioEscolaID',
                     'UsuarioEscola.UsuarioID',
                     'Escola.Escola'
                 )
                 ->get();
-        return view('ponto/show', compact('Pontos'));
+        return view('usuarioescolainformativoacesso/show', compact('UsuarioEscolaInformativoAcessoss'));
     }
 
-    public function edit($PontoID)
+    public function edit($UsuarioEscolaInformativoAcessosID)
     {
-        $ponto = Ponto::findOrFail($PontoID);
-        $ponto['UsuarioEscola'] = DB::table('UsuarioEscola')
+        $usuarioescolainformativoacesso = UsuarioEscolaInformativoAcesso::findOrFail($UsuarioEscolaInformativoAcessosID);
+        $usuarioescolainformativoacesso['UsuarioEscola'] = DB::table('UsuarioEscola')
         ->join('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
         ->join('Usuario','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
         ->select(
@@ -86,35 +84,26 @@ class UsuarioEscolaInformativoAcessoController extends Controller
             
         )
         ->get();
-        return view('ponto/editar', compact('ponto'));
+        return view('usuarioescolainformativoacesso/editar', compact('usuarioescolainformativoacesso'));
     }
 
-    public function update(PontoAlter $request, $id)
+    public function update(UsuarioEscolaInformativoAcessoAlter $request, $id)
     {
         $validated = $request->validated();
 
-        $ponto = new Ponto;
+        $usuarioescolainformativoacesso = new UsuarioEscolaInformativoAcessos;
+        $usuarioescolainformativoacesso = UsuarioEscolaInformativoAcessos::findOrFail($id);
+        $usuarioescolainformativoacesso->UsuarioEscolaID = request('UsuarioEscola');  
         
-        $ponto = Ponto::findOrFail($id);
-
-        $ponto->UsuarioEscolaID = request('UsuarioEscolaID');
-        $ponto->PontoQuantidade = request('PontoQuantidade');
+        if(isset($request->UsuarioEscolaInformativoAcessoIDDTAtivacao) && $request->UsuarioEscolaInformativoAcessoIDDTAtivacao != '' && $request->UsuarioEscolaInformativoAcessoIDDTAtivacao) {
+            $escola->UsuarioEscolaInformativoAcessoIDDTAtivacao = Carbon::createFromFormat('Y-m-d', $request->UsuarioEscolaInformativoAcessoIDDTAtivacao)->format('d/m/Y');
+        }
         
-        
-        $ponto->PontoStatus = request('PontoStatus');
+        $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcessoIDDTAtivacao = request('UsuarioEscolaInformativoAcessoIDDTAtivacao');
 
-        if($ponto->PontoStatus == 1)
-            $ponto->PontoDTAtivacao = date('Y-m-d H:i:s');
-
-        if($ponto->PontoStatus == 2)
-            $ponto->PontoDTInativacao = date('Y-m-d H:i:s');
-
-        if($ponto->PontoStatus == 3)
-            $ponto->PontoDTBloqueio = date('Y-m-d H:i:s');
-
-        $ponto->save();
+        $usuarioescolainformativoacesso->save();
         return redirect()->back()
-            ->with('status', 'Ponto alterado com sucesso!');
+            ->with('status', 'Usuario Escola Informativo Acesso alterado com sucesso!');
 
     }
 }

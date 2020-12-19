@@ -18,13 +18,13 @@
                     @endforeach
                 </ul>
         </div>
-        <form role="form" method="post" action="{{action('PontoController@store')}}">
+        <form role="form" method="post" action="{{action('UsuarioEscolaInformativoAcessoController@store')}}">
             @csrf
             <div class="bd-example">
-                <h1 class="bd-title" id="content">Pontos</h1>
+                <h1 class="bd-title" id="content">Usuario Escola Informativo Acesso</h1>
                 <form>
                     <div class="form-group">
-                        <label for="UsuarioEscolaID">Usuario Escola</label>
+                        <label for="UsuarioEscolaID">Usuario Acesso</label>
                         <select class="form-control" name="UsuarioEscolaID" >
                             @foreach ( $UsuarioEscolas as $UsuarioEscola )
                                 <option value ="{{$UsuarioEscola->UsuarioEscolaID}}">
@@ -33,35 +33,25 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Pontos</label>
-                        <input type="text" class="form-control" name="PontoQuantidade"  />
+                        <label for="DataFIm">Data Ativação</label>
+                        <div class="input-group " id="calendarioFim">
+                            <input type="date" class="form-control" name="UsuarioEscolaInformativoAcessoIDDTAtivacao" placeholder="dd/mm/aaaa" />
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="Status">Status</label>
-                        <select class="form-control" name="PontoStatus">
-                            <option value="1">Ativo</option>
+                        <label for="Status">Acesso</label>
+                        <select class="form-control" name="UsuarioEscolaInformativoAcesso">
+                            <option value=""></option>
+                            <option value="1">Aprovado</option>
+                            <option value="2">Não Aprovado</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">OK</button>
                     </div>
-                    <fieldset disabled>
-                        <div class="form-group row">
-                            <div class="col-sm-10">
-                                <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Ativação:   --/--/---- 00:00:00">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-10">
-                                <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Inativação: --/--/---- 00:00:00">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-10">
-                                <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Bloqueio:   --/--/---- 00:00:00">
-                                </div>
-                        </div>
-                    </fieldset>
                 </form>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

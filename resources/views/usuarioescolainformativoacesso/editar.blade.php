@@ -19,53 +19,37 @@
             </ul>
         </div>
         <div class="bd-example">
-            <form role="form" method="post" action="{{url('ponto/update/'.$ponto->PontoID)}}">
+            <form role="form" method="post" action="{{url('usuarioescolainformativoacesso/update/'.$usuarioescolainformativoacesso->UsuarioEscolaInformativoAcessoID)}}">
                 @csrf
-                <h1 class="bd-title" id="content">Ponto</h1>
+                <h1 class="bd-title" id="content">Usuario Escola Informativo Acesso</h1>
                 <div class="form-group">
                     <label for="UsuarioEscolaID">Usuario Escola</label>
                     <select class="form-control" name="UsuarioEscolaID">
-                        @foreach ( $ponto->UsuarioEscola as $UsuarioEscola )
-                        <option @if ($UsuarioEscola->UsuarioEscolaID == $ponto->UsuarioEscolaID) selected @endif value ="{{$UsuarioEscola->UsuarioEscolaID}}">
+                        @foreach ( $usuarioescolainformativoacesso->UsuarioEscola as $UsuarioEscola )
+                        <option @if ($UsuarioEscola->UsuarioEscolaID == $usuarioescolainformativoacesso->UsuarioEscolaID) selected @endif value ="{{$UsuarioEscola->UsuarioEscolaID}}">
                             {{$UsuarioEscola->Escola.' - '.$UsuarioEscola->UsuarioNome}}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Pontos</label>
-                    <input type="text" class="form-control" name="PontoQuantidade" @if(isset($ponto))value="{{ old('', $ponto->PontoQuantidade) }}"@endif placeholder="Pontos" />
+                    <label for="exampleInputEmail1">Data Ativação</label>
+                    <div class="input-group " id="control" >
+                        <input type="date" class="form-control" name="UsuarioEscolaInformativoAcessoIDDTAtivacao" placeholder="dd/mm/aaaa" value="{{$escola->UsuarioEscolaInformativoAcessoIDDTAtivacao ? $escola->UsuarioEscolaInformativoAcessoIDDTAtivacao->format('Y-m-d') : ''}}" />
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="Pontos">Status</label>
-                    <select class="form-control" name="PontoStatus">
-                        <option value="1" @if(isset($ponto) && $ponto->PontoStatus == 1)selected @endif>Ativo</option>
-                        <option value="2" @if(isset($ponto) && $ponto->PontoStatus == 2)selected @endif>Inativo</option>
-                        <option value="3" @if(isset($ponto) && $ponto->PontoStatus == 3)selected @endif>Bloqueado</option>
+                    <label for="UsuarioEscolaInformativoAcessos">Acesso</label>
+                    <select class="form-control" name="UsuarioEscolaInformativoAcesso">
+                        <option value="1" @if(isset($usuarioescolainformativoacesso) && $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcesso == 1)selected @endif>Aprovado</option>
+                        <option value="2" @if(isset($usuarioescolainformativoacesso) && $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcesso == 2)selected @endif>Não Aprovado</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">OK</button>
                 </div>
-                <fieldset disabled>
-                    <div class="form-group row">
-                        <div class="col-sm-10">
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Ativação:   --/--/---- 00:00:00"
-                                @if(isset($ponto->PontoDTAtivacao) && $ponto->PontoDTAtivacao != '') value="Data Ativação: {{ \Carbon\Carbon::parse($ponto->PontoDTAtivacao)->format('d/m/Y H:i:s') }} "@endif>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-10">
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Inativação:   --/--/---- 00:00:00"
-                                @if(isset($ponto->PontoDTInativacao) && $ponto->PontoDTInativacao != '') value="Data Inativação: {{ \Carbon\Carbon::parse($ponto->PontoDTInativacao)->format('d/m/Y H:i:s') }} "@endif>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-10">
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Bloqueio:   --/--/---- 00:00:00"
-                                @if(isset($ponto->PontoDTBloqueio) && $ponto->PontoDTBloqueio != '') value="Data Bloqueio: {{ \Carbon\Carbon::parse($ponto->PontoDTBloqueio)->format('d/m/Y H:i:s') }} "@endif>
-                        </div>
-                    </div>
-                </fieldset>
             </form>
         </div>
 
