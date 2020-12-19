@@ -14,26 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 /*
-* UsuarioEscolaInformativoAcesso
- */
-
-Route::get('usuarioescolainformativoacesso', 'UsuarioEscolaInformativoAcessoController@index');
-Route::post('usuarioescolainformativoacesso/inserir', 'UsuarioEscolaInformativoAcessoController@store');
-Route::get('usuarioescolainformativoacesso/list', 'UsuarioEscolaInformativoAcessoController@list');
-Route::get('usuarioescolainformativoacesso/editar/{id}', 'UsuarioEscolaInformativoAcessoController@edit');
-Route::post('usuarioescolainformativoacesso/update/{id}', 'UsuarioEscolaInformativoAcessoController@update');
-
-/*
-* EventoEscola
- */
-
-Route::get('eventoescola', 'EventoEscolaController@index');
-Route::post('eventoescola/inserir', 'EventoEscolaController@store');
-Route::get('eventoescola/list', 'EventoEscolaController@list');
-Route::get('eventoescola/editar/{id}', 'EventoEscolaController@edit');
-Route::post('eventoescola/update/{id}', 'EventoEscolaController@update');
-
-/*
 * AlunoCompra
  */
 Route::post('alunocompra/inserir', 'AlunoCompraController@store');
@@ -41,6 +21,10 @@ Route::get('alunocompra', 'AlunoCompraController@index');
 Route::get('alunocompra/list', 'AlunoCompraController@list');
 Route::get('alunocompra/editar/{id}', 'AlunoCompraController@edit');
 Route::post('alunocompra/update/{id}', 'AlunoCompraController@update');
+
+/*
+ * PontoRecebido
+ * /
 
 /*
 * Ponto
@@ -52,13 +36,14 @@ Route::get('ponto/editar/{id}', 'PontoController@edit');
 Route::post('ponto/update/{id}', 'PontoController@update');
 
 /*
-* Evento
+* UsuarioEscolaInformativoAcesso
  */
-Route::post('evento/inserir', 'EventoController@store');
-Route::get('evento', 'EventoController@index');
-Route::get('evento/list', 'EventoController@list');
-Route::get('evento/editar/{id}', 'EventoController@edit');
-Route::post('evento/update/{id}', 'EventoController@update');
+
+Route::get('usuarioescolainformativoacesso', 'UsuarioEscolaInformativoAcessoController@index');
+Route::post('usuarioescolainformativoacesso/inserir', 'UsuarioEscolaInformativoAcessoController@store');
+Route::get('usuarioescolainformativoacesso/list', 'UsuarioEscolaInformativoAcessoController@list');
+Route::get('usuarioescolainformativoacesso/editar/{id}', 'UsuarioEscolaInformativoAcessoController@edit');
+Route::post('usuarioescolainformativoacesso/update/{id}', 'UsuarioEscolaInformativoAcessoController@update');
 
 /*
 * UsuarioEscola
@@ -79,6 +64,15 @@ Route::get('perfiltela/editar/{id}', 'PerfilTelaController@edit');
 Route::post('perfiltela/update/{id}', 'PerfilTelaController@update');
 
 /*
+ * Tela
+ */
+Route::post('tela/inserir', 'TelaController@store');
+Route::get('tela', 'TelaController@index');
+Route::get('tela/list', 'TelaController@list');
+Route::get('tela/editar/{id}', 'TelaController@edit');
+Route::post('tela/update/{id}', 'TelaController@update');
+
+/*
 * InformativoAcesso
  */
 Route::post('informativoacesso/inserir', 'InformativoAcessoController@store');
@@ -87,6 +81,28 @@ Route::get('informativoacesso/list', 'InformativoAcessoController@list');
 Route::get('informativoacesso/editar/{id}', 'InformativoAcessoController@edit');
 Route::post('informativoacesso/update/{id}', 'InformativoAcessoController@update')->name('informativoacesso.update');
 
+/*
+ * FaixaEvento
+ * /
+
+/*
+* EventoEscola
+ */
+
+Route::get('eventoescola', 'EventoEscolaController@index');
+Route::post('eventoescola/inserir', 'EventoEscolaController@store');
+Route::get('eventoescola/list', 'EventoEscolaController@list');
+Route::get('eventoescola/editar/{id}', 'EventoEscolaController@edit');
+Route::post('eventoescola/update/{id}', 'EventoEscolaController@update');
+
+/*
+* Evento
+ */
+Route::post('evento/inserir', 'EventoController@store');
+Route::get('evento', 'EventoController@index');
+Route::get('evento/list', 'EventoController@list');
+Route::get('evento/editar/{id}', 'EventoController@edit');
+Route::post('evento/update/{id}', 'EventoController@update');
 
 /*
 * Usuario
@@ -96,17 +112,6 @@ Route::get('usuario', 'UsuarioController@index');
 Route::get('usuario/list', 'UsuarioController@list');
 Route::get('usuario/editar/{id}', 'UsuarioController@edit');
 Route::post('usuario/update/{id}', 'UsuarioController@update');
-
-
-/*
- * Tela
- */
-Route::post('tela/inserir', 'TelaController@store');
-Route::get('tela', 'TelaController@index');
-Route::get('tela/list', 'TelaController@list');
-Route::get('tela/editar/{id}', 'TelaController@edit');
-Route::post('tela/update/{id}', 'TelaController@update');
-
 
 /*
  * Perfil

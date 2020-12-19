@@ -13,77 +13,108 @@ class UsuarioEscolaInformativoAcessoController extends Controller
     public function index()
     {
         $UsuarioEscolas =DB::table('UsuarioEscola')
+                ->join('Usuario','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
+                ->join('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
+                ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
                 ->select(
-                    'UsuarioEscola.UsuarioID',
-                    'UsuarioID.UsuarioNome'
+                    'UsuarioEscola.UsuarioEscolaID',
+                    'Usuario.UsuarioNome',
+                    'Escola.Escola'
                 )
+                ->where('Perfil.PerfilCod', '!=', 'al')
+                ->orderby('Escola.Escola', 'ASC')
                 ->get();
-        return view('usuarioescolainformativoacesso/usuarioescolainformativoacesso', compact('UsuarioEscolas'));
+        return view('ponto/ponto', compact('UsuarioEscolas'));
     }
 
     public function create()
     {
-        return view('usuarioescolainformativoacesso.create');
+        return view('ponto.create');
     }
 
-    public function store(UsuarioEscolaInformativoAcessoCreate $request)
+    public function store(PontoCreate $request)
     {
         $validated = $request->validated();
 
-        $usuarioescolainformativoacesso = new UsuarioEscolaInformativoAcesso;
-        $usuarioescolainformativoacesso->UsuarioEscolaID = request('UsuarioEscolaID');
-        $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcessoIDDTAcao = request('UsuarioEscolaInformativoAcessoIDDTAcao');
-        $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcesso = request('UsuarioEscolaInformativoAcesso');
-        $usuarioescolainformativoacesso->save();
+        $ponto = new Ponto;
+        $ponto->UsuarioEscolaID = request('UsuarioEscolaID');
+        $ponto->PontoQuantidade = request('PontoQuantidade');
+        
+        $ponto->PontoStatus = request('PontoStatus');
+        $ponto->save();
 
         return redirect()->back()
-            ->with('status', 'UsuarioEscolaInformativoAcesso criado com sucesso!');
+            ->with('status', 'Ponto criado com sucesso!');
     }
 
     public function show()
     {
-        $UsuarioEscolaInformativoAcessos = new UsuarioEscolaInformativoAcesso;
-        $UsuarioEscolaInformativoAcessos = UsuarioEscolaInformativoAcesso::all();
+        $Pontos = new Ponto;
+        $Pontos = Ponto::all();
     }
 
     public function list()
     {
-        $UsuarioEscolaInformativoAcessos = new UsuarioEscolaInformativoAcesso;
-        $UsuarioEscolaInformativoAcessos = UsuarioEscolaInformativoAcesso::get();
-        return view('usuarioescolainformativoacesso/show', compact('UsuarioEscolaInformativoAcessos'));
+        $Pontos =DB::table('Ponto')
+                ->join('UsuarioEscola','Ponto.UsuarioEscolaID', '=', 'UsuarioEscola.UsuarioEscolaID')
+                ->join('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
+                ->select(
+                    'Ponto.PontoID',
+                    'Ponto.PontoQuantidade',
+                    'Ponto.PontoStatus',
+                    'Ponto.PontoDTAtivacao',
+                    'Ponto.PontoDTInativacao',
+                    'Ponto.PontoDTBloqueio',
+                    'Ponto.UsuarioEscolaID',
+                    'UsuarioEscola.UsuarioID',
+                    'Escola.Escola'
+                )
+                ->get();
+        return view('ponto/show', compact('Pontos'));
     }
 
-    public function edit($UsuarioEscolaInformativoAcessosID)
+    public function edit($PontoID)
     {
-        $usuarioescolainformativoacesso = UsuarioEscolaInformativoAcessos::findOrFail($UsuarioEscolaInformativoAcessosID);
-        $usuarioescolainformativoacesso['UsuarioEscola'] = DB::table('UsuarioEscola')
+        $ponto = Ponto::findOrFail($PontoID);
+        $ponto['UsuarioEscola'] = DB::table('UsuarioEscola')
+        ->join('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
+        ->join('Usuario','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
         ->select(
-            'UsuarioEscola.UsuarioID',
-            'UsuarioID.UsuarioNome'
+            'UsuarioEscola.UsuarioEscolaID',
+            'Usuario.UsuarioNome',
+            'Escola.Escola'
+            
         )
         ->get();
-        return view('usuarioescolainformativoacesso/editar', compact('usuarioescolainformativoacesso'));
+        return view('ponto/editar', compact('ponto'));
     }
 
-    public function update(UsuarioEscolaInformativoAcessoAlter $request, $id)
+    public function update(PontoAlter $request, $id)
     {
         $validated = $request->validated();
 
-        $usuarioescolainformativoacesso = new UsuarioEscolaInformativoAcesso;
+        $ponto = new Ponto;
         
-        $usuarioescolainformativoacesso = UsuarioEscolaInformativoAcesso::findOrFail($id);
-        $usuarioescolainformativoacesso->UsuarioEscolaID = request('UsuarioEscolaID');
-        $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcesso = request('UsuarioEscolaInformativoAcesso');
-        $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcessoIDDTAcao = request('UsuarioEscolaInformativoAcessoIDDTAcao');
+        $ponto = Ponto::findOrFail($id);
 
-        if($usuarioescolainformativoacesso->UsuarioEscolaInformativoAcessoIDDTAcao == 1)
-            $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcessoIDDTAcao = date('Y-m-d H:i:s');
+        $ponto->UsuarioEscolaID = request('UsuarioEscolaID');
+        $ponto->PontoQuantidade = request('PontoQuantidade');
+        
+        
+        $ponto->PontoStatus = request('PontoStatus');
 
-        $usuarioescolainformativoacesso->save();
+        if($ponto->PontoStatus == 1)
+            $ponto->PontoDTAtivacao = date('Y-m-d H:i:s');
+
+        if($ponto->PontoStatus == 2)
+            $ponto->PontoDTInativacao = date('Y-m-d H:i:s');
+
+        if($ponto->PontoStatus == 3)
+            $ponto->PontoDTBloqueio = date('Y-m-d H:i:s');
+
+        $ponto->save();
         return redirect()->back()
-            ->with('status', 'Informativo Acesso alterado com sucesso!');
+            ->with('status', 'Ponto alterado com sucesso!');
 
     }
-
-    
 }

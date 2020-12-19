@@ -117,7 +117,6 @@ class UsuarioEscolaController extends Controller
                 ->get();
         return view('usuarioescola/editar', compact('UsuarioEscolas'));
 
-
         $PerfilTelas['IDS'] =DB::table('PerfilTela')
         ->join('Perfil','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
         ->join('Tela','PerfilTela.TelaID', '=', 'Tela.TelaID')
@@ -161,8 +160,6 @@ class UsuarioEscolaController extends Controller
                 )
                 ->get();
         return view('perfiltela/editar', compact('PerfilTelas'));
-
-
     }
 
     public function update(UsuarioEscolaAlter $request, $id)

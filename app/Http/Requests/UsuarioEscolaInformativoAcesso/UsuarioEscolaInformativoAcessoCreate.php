@@ -24,8 +24,8 @@ class UsuarioEscolaInformativoAcessoCreate extends FormRequest
     public function rules()
     {
         return [
-            'UsuarioEscolaInformativoAcesso' => 'required|',
-            'UsuarioEscolaInformativoAcessoIDDTAcao' => 'required|',
+            'PontoQuantidade' => 'required|',
+            'PontoStatus' => 'required|',
             'UsuarioEscolaID' => 'required|'
         ];
     }
@@ -33,8 +33,8 @@ class UsuarioEscolaInformativoAcessoCreate extends FormRequest
     public function messages()
     {
         return [
-            'UsuarioEscolaInformativoAcesso.required' => 'O campo Informativo Acesso é obrigatório',
-            'UsuarioEscolaInformativoAcessoIDDTAcao.required' => 'O campo ID Ativação é obrigatório',
+            'PontoQuantidade.required' => 'O campo Quantidade de Pontos é obrigatório',
+            'PontoStatus.required' => 'O campo Ponto Status é obrigatório',
             'UsuarioEscolaID.required' => 'O campo Usuario Escola é obrigatório'
             
         ];

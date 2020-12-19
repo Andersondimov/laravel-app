@@ -7,25 +7,28 @@ use Illuminate\Database\Eloquent\Model;
 class UsuarioEscolaInformativoAcesso extends Model
 {
     public $timestamps = false;
-    protected $primaryKey = 'UsuarioEscolaInformativoAcessoID';
+    protected $primaryKey = 'PontoID';
 
     protected $fillable = 
     [
 
          
-        'UsuarioEscolaInformativoAcesso', 
-        'UsuarioEscolaInformativoAcesso'
+        'Ponto', 
+        'PontoStatus', 
+        'PontoQuantidade'
     
     ];
 
     protected $guarded = 
     [
 
-        'UsuarioEscolaInformativoAcessoIDID',
-        'UsuarioEscolaInformativoAcessoIDDTAcao'
+        'PontoID',
+        'PontoDTAtivacao', 
+        'PontoDTInativacao', 
+        'PontoDTBloqueio'
     
     ];
     
-    protected $table = 'UsuarioEscolaInformativoAcesso';
+    protected $table = 'Ponto';
 }
 
