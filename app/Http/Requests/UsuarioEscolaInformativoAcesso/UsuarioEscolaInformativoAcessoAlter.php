@@ -24,20 +24,14 @@ class UsuarioEscolaInformativoAcessoAlter extends FormRequest
     public function rules()
     {
         return [
-            'InformativoAcesso' => 'required|',
-            'UsuarioEscolaInformativoAcesso' => 'required',
-            'UsuarioEscolaInformativoAcessoIDDTAcao' => 'required|',
-            'UsuarioEscolaID' => 'required|'
+            'UsuarioEscolaInformativoAcesso' => 'required'
             ];
     }
 
     public function messages()
     {
         return [
-            'InformativoAcesso.required' => 'O campo Acesso é obrigatório',
-            'UsuarioEscolaInformativoAcessoIDDTAcao.required' => 'O campo Data Ativação é obrigatório',
-            'UsuarioEscolaInformativoAcesso.required' => 'O campo Autenticação Acesso é obrigatório',
-            'UsuarioEscolaID.required' => 'O campo Usuario Escola é obrigatório'
+            'UsuarioEscolaInformativoAcesso.required' => 'O campo Autenticação Acesso é obrigatório'
         ];
     }
 

@@ -26,7 +26,7 @@ class UsuarioEscolaInformativoAcessoCreate extends FormRequest
         return [
             
             'UsuarioEscolaInformativoAcesso' => 'required|',
-            'UsuarioEscolaInformativoAcessoIDDTAcao' => 'required|'
+            'InformativoAcessoID' => 'required|'
         ];
     }
 
@@ -35,7 +35,7 @@ class UsuarioEscolaInformativoAcessoCreate extends FormRequest
         return [
         
             'UsuarioEscolaInformativoAcesso.required' => 'O campo Acesso é obrigatório',
-            'UsuarioEscolaInformativoAcessoIDDTAcao.required' => 'O campo Data Ativação é obrigatório'            
+            'InformativoAcessoID.required' => 'O campo InformativoAcessoID é obrigatório'
         ];
     }
 

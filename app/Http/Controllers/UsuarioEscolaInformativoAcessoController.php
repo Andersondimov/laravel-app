@@ -13,97 +13,136 @@ class UsuarioEscolaInformativoAcessoController extends Controller
 {
     public function index()
     {
-        $UsuarioEscolas =DB::table('UsuarioEscola')
-            ->join('Usuario','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
-            ->join('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
-            ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
-            ->select(
-                'UsuarioEscola.UsuarioEscolaID',
-                'Usuario.UsuarioNome',
-                'Escola.Escola'
-            )
-            ->where('Perfil.PerfilCod', '!=', 'al')
-            ->orderby('Escola.Escola', 'ASC')
-            ->get();
-        return view('usuarioescolainformativoacesso/usuarioescolainformativoacesso', compact('UsuarioEscolas'));
+        $Dados = new UsuarioEscolaInformativoAcesso;
+        $Dados->UsuarioID =DB::table('Usuario')
+                ->select(
+                    'Usuario.UsuarioID',
+                    'Usuario.Usuario'
+                )
+                ->get();
+        $Dados->InformativoAcessoID =DB::table('InformativoAcesso')
+                ->select(
+                    'InformativoAcesso.InformativoAcessoID',   
+                    'InformativoAcesso.InformativoAcesso'
+                )
+                ->get();
+        
+        return view('usuarioescolainformativoacesso/usuarioescolainformatiavocesso', compact('Dados'));
+    
     }
-
+    
     public function create()
     {
-        return view('usuarioescolainformativoacesso.create');
+        return view('UsuarioEscolaInformativoAcesso.create');
     }
 
     public function store(UsuarioEscolaInformativoAcessoCreate $request)
     {
         $validated = $request->validated();
 
-        $usuarioescolainformativoacesso = new UsuarioEscolaInformativoAcesso;
-        $usuarioescolainformativoacesso->UsuarioEscolaID = request('UsuarioEscolaID');
-        $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcesso = request('UsuarioEscolaInformativoAcesso');
+        foreach($request->InformativoAcessoID as $informativoacessoID){
+            $usuarioescolainformativoacesso = new UsuarioEscolaInformativoAcesso;
+            $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcesso = $request->UsuarioEscolaInformativoAcesso;
+            $usuarioescolainformativoacesso->InformativoAcessoID = $informativoacessoID;
+            $usuarioescolainformativoacesso->UsuarioID = $request->UsuarioID;
 
-        if(isset($request->UsuarioEscolaInformativoAcessoIDDTAcao) && $request->UsuarioEscolaInformativoAcessoIDDTAcao != '' && $request->UsuarioEscolaInformativoAcessoIDDTAcao) {
-            $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcessoIDDTAcao = Carbon::createFromFormat('Y-m-d', $request->UsuarioEscolaInformativoAcessoIDDTAcao)->format('d/m/Y');
+            if(isset($request->UsuarioEscolaInformativoAcessoIDDTAcao) && $request->UsuarioEscolaInformativoAcessoIDDTAcao != '' && $request->UsuarioEscolaInformativoAcessoIDDTAcao) {
+                $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcessoIDDTAcao = Carbon::createFromFormat('Y-m-d', $request->UsuarioEscolaInformativoAcessoIDDTAcao)->format('d/m/Y');
+            }
+
+            $usuarioescolainformativoacesso->save();
         }
-
         return redirect()->back()
-            ->with('status', 'Usuario Escola Informativo Acesso criado com sucesso!');
+            ->with('status', 'InformativoAcesso relacionado com o Usuario com sucesso!');
         
     }
 
     public function show()
     {
-        $UsuarioEscolaInformativoAcessos = new UsuarioEscolaInformativoAcesso;
-        $UsuarioEscolaInformativoAcessos = UsuarioEscolaInformativoAcesso::all();
+        return view('myarticlesview',['articles'=>$articles]);
     }
 
     public function list()
     {
         $UsuarioEscolaInformativoAcessos =DB::table('UsuarioEscolaInformativoAcesso')
-            ->join('UsuarioEscola','UsuarioEscolaInformativoAcesso.UsuarioEscolaID', '=', 'UsuarioEscola.UsuarioEscolaID')
-            ->join('Usuario','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
-            ->select(
-                'UsuarioEscolaInformativoAcesso.UsuarioEscolaInformativoAcessoID',
-                'UsuarioEscolaInformativoAcesso.UsuarioEscolaInformativoAcesso',
-                'UsuarioEscolaInformativoAcesso.UsuarioEscolaInformativoAcessoIDDTAcao',
-                'UsuarioEscolaInformativoAcesso.UsuarioEscolaID',
-                'UsuarioEscola.UsuarioID',
-                'Usuario.Usuario'
-            )
-            ->get();
+                ->join('Usuario','UsuarioEscolaInformativoAcesso.UsuarioID', '=', 'Usuario.UsuarioID')
+                ->select(
+                    'UsuarioEscolaInformativoAcesso.UsuarioEscolaInformativoAcesso',
+                    'UsuarioEscolaInformativoAcesso.UsuarioID',
+                    'Usuario.Usuario'
+                )->groupby('Usuario.Usuario','UsuarioEscolaInformativoAcesso.UsuarioID', 'UsuarioEscolaInformativoAcesso.UsuarioEscolaInformativoAcesso')
+                ->get();
         return view('usuarioescolainformativoacesso/show', compact('UsuarioEscolaInformativoAcessos'));
     }
 
     public function edit($UsuarioEscolaInformativoAcessoID)
     {
-        $usuarioescolainformativoacesso = UsuarioEscolaInformativoAcesso::findOrFail($UsuarioEscolaInformativoAcessoID);
-        $usuarioescolainformativoacesso['UsuarioEscola'] =DB::table('UsuarioEscola')
-        ->join('Usuario','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
-        ->join('Usuario','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
+        $UsuarioEscolaInformativoAcessos['IDS'] =DB::table('UsuarioEscolaInformativoAcesso')
+        ->join('Usuario','UsuarioEscolaInformativoAcesso.UsuarioID', '=', 'Usuario.UsuarioID')
+        ->join('InformativoAcesso','UsuarioEscolaInformativoAcesso.InformativoAcessoID', '=', 'InformativoAcesso.InformativoAcessoID')
+        ->where('Usuario.UsuarioID', $UsuarioEscolaInformativoAcessoID)
         ->select(
-            'UsuarioEscola.UsuarioEscolaID',
-            'Usuario.UsuarioNome',
+            'UsuarioEscolaInformativoAcesso.UsuarioEscolaInformativoAcesso',
+            'UsuarioEscolaInformativoAcesso.UsuarioEscolaInformativoAcessoIDDTAcao',
+            'UsuarioEscolaInformativoAcesso.UsuarioID',
+            'Usuario.Usuario'
+        )->groupby(
+            'UsuarioEscolaInformativoAcesso.UsuarioEscolaInformativoAcesso',
+            'UsuarioEscolaInformativoAcesso.UsuarioEscolaInformativoAcessoIDDTAcao',
+            'UsuarioEscolaInformativoAcesso.UsuarioID',
             'Usuario.Usuario'
         )
         ->get();
-        return view('usuarioescolainformativoacesso/editar', compact('usuarioescolainformativoacesso'));        
+        $UsuarioEscolaInformativoAcessos[] =DB::table('UsuarioEscolaInformativoAcesso')
+        ->join('Usuario','UsuarioEscolaInformativoAcesso.UsuarioID', '=', 'Usuario.UsuarioID')
+        ->join('InformativoAcesso','UsuarioEscolaInformativoAcesso.InformativoAcessoID', '=', 'InformativoAcesso.InformativoAcessoID')
+        ->where('Usuario.UsuarioID', $UsuarioEscolaInformativoAcessoID)
+        ->select(
+            'UsuarioEscolaInformativoAcesso.UsuarioEscolaInformativoAcessoID',
+            'UsuarioEscolaInformativoAcesso.UsuarioEscolaInformativoAcesso',
+            'UsuarioEscolaInformativoAcesso.UsuarioEscolaInformativoAcessoIDDTAcao',
+            'InformativoAcesso.InformativoAcessoID',
+            'InformativoAcesso.InformativoAcesso',
+            'UsuarioEscolaInformativoAcesso.UsuarioID',
+            'Usuario.Usuario'
+        )
+        ->get();
+        $UsuarioEscolaInformativoAcessos['InformativoAcessos'] =DB::table('InformativoAcesso')
+                ->select(
+                    'InformativoAcesso.InformativoAcessoID',
+                    'InformativoAcesso.InformativoAcesso'
+                )
+                ->get();
+        return view('usuarioescolainformativoacesso/editar', compact('UsuarioEscolaInformativoAcessos'));
     }
 
     public function update(UsuarioEscolaInformativoAcessoAlter $request, $id)
     {
         $validated = $request->validated();
 
-        $usuarioescolainformativoacesso = new UsuarioEscolaInformativoAcesso;
+        DB::table('UsuarioEscolaInformativoAcesso')->where('UsuarioID', $id)->delete();
 
-        $pousuarioescolainformativoacessonto = UsuarioEscolaInformativoAcesso::findOrFail($id);
+        if(isset($request->InformativoAcessoID) && count($request->InformativoAcessoID) > 0){
+            foreach($request->usuarioescolainformativoacessoID as $informativoacessoID){
+                $usuarioescolainformativoacesso = new UsuarioEscolaInformativoAcesso;
+                $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcesso = $request->UsuarioEscolaInformativoAcesso;
+                $usuarioescolainformativoacesso->InformativoAcessoID = $informativoacessoID;
+                $usuarioescolainformativoacesso->UsuarioID = $id;
 
-        $usuarioescolainformativoacesso->UsuarioEscolaID = request('UsuarioEscolaID');
-        $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcesso = request('UsuarioEscolaInformativoAcesso');
+                if(isset($request->UsuarioEscolaInformativoAcessoIDDTAcao) && $request->UsuarioEscolaInformativoAcessoIDDTAcao != '' && $request->UsuarioEscolaInformativoAcessoIDDTAcao) {
+                    $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcessoIDDTAcao = Carbon::createFromFormat('Y-m-d', $request->UsuarioEscolaInformativoAcessoIDDTAcao)->format('d/m/Y');
+                }
 
-        if(isset($request->UsuarioEscolaInformativoAcessoIDDTAcao) && $request->UsuarioEscolaInformativoAcessoIDDTAcao != '' && $request->UsuarioEscolaInformativoAcessoIDDTAcao) {
-            $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcessoIDDTAcao = Carbon::createFromFormat('Y-m-d', $request->UsuarioEscolaInformativoAcessoIDDTAcao)->format('d/m/Y');
+                $usuarioescolainformativoacesso->save();
+            }
         }
+        return redirect()->action('UsuarioEscolaInformativoAcessoController@list');
+    }
 
-        return redirect()->back()
-            ->with('status', 'Usuario Escola Informativo Acesso alterado com sucesso!');
+    public function destroy($id)
+    {
+        $usuarioescolainformativoacesso = UsuarioEscolaInformativoAcesso::findOrFail($id);
+        $usuarioescolainformativoacesso->delete();
+        return redirect()->route('usuarioescolainformativoacesso.index')->with('alert-success', 'UsuarioEscolaInformativoAcesso deletada com sucesso!');
     }
 }

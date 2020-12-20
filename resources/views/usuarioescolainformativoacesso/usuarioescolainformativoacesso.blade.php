@@ -45,7 +45,6 @@
                 <div class="form-group">
                     <label for="Status">Acesso</label>
                     <select class="form-control" name="UsuarioEscolaInformativoAcesso">
-                        <option value=""></option>
                         <option value="1">Aprovado</option>
                         <option value="2">Não Aprovado</option>
                     </select>

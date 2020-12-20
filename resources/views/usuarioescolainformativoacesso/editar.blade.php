@@ -34,7 +34,7 @@
                 <div class="form-group">
                     <label for="exampleInputEmail1">Data Ativação</label>
                     <div class="input-group " id="control" >
-                        <input type="date" class="form-control" name="UsuarioEscolaInformativoAcessoIDDTAtivacao" placeholder="dd/mm/aaaa" value="{{$escola->UsuarioEscolaInformativoAcessoIDDTAtivacao ? $escola->UsuarioEscolaInformativoAcessoIDDTAtivacao->format('Y-m-d') : ''}}" />
+                        <input type="date" class="form-control" name="UsuarioEscolaInformativoAcessoIDDTAtivacao" placeholder="dd/mm/aaaa" value="{{$usuarioescolainformativoacesso->UsuarioEscolaInformativoAcessoIDDTAtivacao ? $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcessoIDDTAtivacao->format('Y-m-d') : ''}}" />
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-th"></span>
                         </div>
@@ -52,5 +52,8 @@
                 </div>
             </form>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
+        <script>
     </body>
 </html>

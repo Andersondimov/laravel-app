@@ -37,6 +37,10 @@
                                 </tr>
                             @endforeach
                         @else
+                            <tr>
+                                <td colspan="4">Nenhum Ponto Cadastrado</td>
+                            </tr>
+                        @endif
                     </tbody>
                 </table>
                 <div class="form-group">

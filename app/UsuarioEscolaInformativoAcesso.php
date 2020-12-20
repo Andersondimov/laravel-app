@@ -8,13 +8,11 @@ use Carbon\Carbon;
 class UsuarioEscolaInformativoAcesso extends Model
 {
     public $timestamps = false;
-    protected $table = 'UsuarioEscolaInformativoAcesso';
-
     protected $primaryKey = 'UsuarioEscolaInformativoAcessoID';
     protected $fillable = [
         'UsuarioEscolaInformativoAcesso', 
         'UsuarioEscolaInformativoAcessoIDDTAtivacao',
-        'InformativoAcesso',
+        'InformativoAcessoID',
         'UsuarioEscolaID'    
     ];
 
@@ -30,9 +28,8 @@ class UsuarioEscolaInformativoAcesso extends Model
         return $this->belongsTo(UsuarioEscola::class,'UsuarioEscolaID');
     }
 
-    protected $guarded = 
-    ['UsuarioEscolaInformativoAcessoID'];
-    
+    protected $guarded = ['UsuarioEscolaInformativoAcessoID'];
+    protected $table = 'UsuarioEscolaInformativoAcesso';
     
 }
 
