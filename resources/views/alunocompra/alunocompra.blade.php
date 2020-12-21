@@ -37,6 +37,12 @@
                     <input type="text" class="form-control" name="AlunoCompraQuantidade"  />
                 </div>
                 <div class="form-group">
+                    <label for="Status">Status</label>
+                    <select class="form-control" name="AlunoCompraStatus">
+                        <option value="1">Ativo</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <button type="submit" class="btn btn-primary">OK</button>
                 </div>
                 <fieldset disabled>

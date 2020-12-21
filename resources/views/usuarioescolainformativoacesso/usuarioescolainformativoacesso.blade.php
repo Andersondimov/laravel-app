@@ -27,11 +27,14 @@
                     <label for="informativo">Usuario Escola</label>
                     <select class="form-control" name="UsuarioEscolaID">
                         @foreach ( $UsuarioEscolas as $UsuarioEscola )
-                            <option @if ( $UsuarioEscola->UsuarioEscolaID == $UsuarioEscola->UsuarioEscolaID) 
-                            selected @endif value ="{{ $UsuarioEscola->UsuarioEscolaID }}">
-                            {{ $UsuarioEscola->UsuarioNome }}</option>
+                            <option value ="{{$UsuarioEscola->UsuarioEscolaID}}">
+                                {{$UsuarioEscola->UsuarioNome}}</option>
                         @endforeach
                     </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">ID Informativo Acesso</label>
+                    <input type="text" class="form-control" name="InformativoAcessoID"  />
                 </div>
                 <div class="form-group">
                     <label for="DataFIm">Data Ativação</label>

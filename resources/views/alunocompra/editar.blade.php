@@ -36,6 +36,14 @@
                 <input type="text" class="form-control" name="AlunoCompraQuantidade" @if(isset($alunocompra))value="{{ old('', $alunocompra->AlunoCompraQuantidade) }}"@endif placeholder="Pontos" />
             </div>
             <div class="form-group">
+                <label for="AlunoCompras">Status</label>
+                <select class="form-control" name="AlunoCompraStatus">
+                    <option value="1" @if(isset($alunocompra) && $alunocompra->AlunoCompraStatus == 1)selected @endif>Ativo</option>
+                    <option value="2" @if(isset($alunocompra) && $alunocompra->AlunoCompraStatus == 2)selected @endif>Inativo</option>
+                    <option value="3" @if(isset($alunocompra) && $alunocompra->AlunoCompraStatus == 3)selected @endif>Bloqueado</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <button type="submit" class="btn btn-primary">OK</button>
             </div>
             <fieldset disabled>

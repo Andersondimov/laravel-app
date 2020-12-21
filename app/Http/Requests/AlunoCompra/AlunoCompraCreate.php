@@ -25,6 +25,7 @@ class AlunoCompraCreate extends FormRequest
     {
         return [
             'AlunoCompraQuantidade' => 'required|',
+            'AlunoCompraStatus' => 'required|',
             'UsuarioEscolaID' => 'required|'
         ];
     }
@@ -33,6 +34,7 @@ class AlunoCompraCreate extends FormRequest
     {
         return [
             'AlunoCompraQuantidade.required' => 'O campo Quantidade Comprada é obrigatório',
+            'AlunoCompraStatus.request' => 'O campo Status é obrigatório',
             'UsuarioEscolaID.required' => 'O campo Usuario Escola é obrigatório'
             
         ];

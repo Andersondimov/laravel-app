@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 /*
+ * PontoRecebido
+ * /
+
+/*
+ * FaixaEvento
+ * /
+
+/*
 * AlunoCompra
  */
 Route::post('alunocompra/inserir', 'AlunoCompraController@store');
@@ -21,10 +29,6 @@ Route::get('alunocompra', 'AlunoCompraController@index');
 Route::get('alunocompra/list', 'AlunoCompraController@list');
 Route::get('alunocompra/editar/{id}', 'AlunoCompraController@edit');
 Route::post('alunocompra/update/{id}', 'AlunoCompraController@update');
-
-/*
- * PontoRecebido
- * /
 
 /*
 * Ponto
@@ -36,7 +40,7 @@ Route::get('ponto/editar/{id}', 'PontoController@edit');
 Route::post('ponto/update/{id}', 'PontoController@update');
 
 /*
-* UsuarioEscolaInformativoAcesso
+* UsuarioEscolaInformativoAcesso ( Tela Separada )
  */
 
 Route::post('usuarioescolainformativoacesso/inserir', 'UsuarioEscolaInformativoAcessoController@store');
@@ -80,10 +84,6 @@ Route::get('informativoacesso', 'InformativoAcessoController@index');
 Route::get('informativoacesso/list', 'InformativoAcessoController@list');
 Route::get('informativoacesso/editar/{id}', 'InformativoAcessoController@edit');
 Route::post('informativoacesso/update/{id}', 'InformativoAcessoController@update')->name('informativoacesso.update');
-
-/*
- * FaixaEvento
- * /
 
 /*
 * EventoEscola

@@ -9,21 +9,17 @@ class AlunoCompra extends Model
     public $timestamps = false;
     protected $primaryKey = 'AlunoCompraID';
 
-    protected $fillable = 
-    [
-
-         
+    protected $fillable = [
         'AlunoCompra',  
-        'AlunoCompraQuantidade'
-    
+        'AlunoCompraQuantidade',
+        'AlunoCompraStatus'
     ];
 
-    protected $guarded = 
-    [
-
+    protected $guarded =[
         'AlunoCompraID',
-        'AlunoCompraDTAtivacao' 
-    
+        'AlunoCompraDTAtivacao',
+        'UsuarioDTInativacao', 
+        'UsuarioDTBloqueio' 
     ];
     
     protected $table = 'AlunoCompra';

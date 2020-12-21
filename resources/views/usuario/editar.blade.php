@@ -59,7 +59,7 @@
                 <input type="text" class="form-control" name="UsuarioMatricula" @if(isset($usuario))value="{{ old('', $usuario->UsuarioMatricula) }}"@endif />
             </div>
             <div class="form-group">
-                <label for="UsuarioS">Status</label>
+                <label for="Usuarios">Status</label>
                 <select class="form-control" name="UsuarioStatus">
                     <option value="1" @if(isset($usuario) && $usuario->UsuarioStatus == 1)selected @endif>Ativo</option>
                     <option value="2" @if(isset($usuario) && $usuario->UsuarioStatus == 2)selected @endif>Inativo</option>
