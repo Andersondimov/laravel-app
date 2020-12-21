@@ -48,8 +48,9 @@
                     </div>
                 </fieldset>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Email</label>
-                    <input type="text" class="form-control" name="EscolaEmail" @if(isset($escola))value="{{ old('', $escola->EscolaEmail) }}"@endif placeholder="Email" />
+                    <label for="validationCustom01">Email</label>
+                    <input type="text" class="form-control" name="EscolaEmail" @if(isset($escola))value="{{ old('', $escola->EscolaEmail) }}"@endif placeholder="Email" id="validationCustom01" required>
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Telefone</label>

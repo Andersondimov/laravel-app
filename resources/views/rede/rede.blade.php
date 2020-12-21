@@ -26,12 +26,14 @@
         <form>
             <div class="form-group">
                 <label for="exampleInputEmail1">Nome da Rede</label>
-                <input type="text" class="form-control" name="Rede" placeholder="Name" />
+                <input type="text" class="form-control" name="Rede" placeholder="Name" id="validationCustom01" required >
+                <div class="valid-feedback">Tudo certo!</div>
             </div>
             <div class="form-group">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Cod. Rede</label>
-                    <input type="text" class="form-control" name="RedeCod" placeholder="Cod. Rede" />
+                    <input type="text" class="form-control" name="RedeCod" placeholder="Cod. Rede" id="validationCustom01" required >
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
             </div>
             <div class="form-group">

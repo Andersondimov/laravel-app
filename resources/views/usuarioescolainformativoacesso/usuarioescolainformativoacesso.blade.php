@@ -34,12 +34,14 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">ID Informativo Acesso</label>
-                    <input type="text" class="form-control" name="InformativoAcessoID"  />
+                    <input type="text" class="form-control" name="InformativoAcessoID" id="validationCustom01" required >
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
                     <label for="DataFIm">Data Ativação</label>
                     <div class="input-group " id="calendarioFim">
-                        <input type="date" class="form-control" name="UsuarioEscolaInformativoAcessoIDDTAtivacao" placeholder="dd/mm/aaaa" />
+                        <input type="date" class="form-control" name="UsuarioEscolaInformativoAcessoIDDTAtivacao" placeholder="dd/mm/aaaa" id="validationCustom01" required >
+                        <div class="valid-feedback">Tudo certo!</div>
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-th"></span>
                         </div>

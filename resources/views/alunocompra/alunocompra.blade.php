@@ -24,7 +24,7 @@
             <h1 class="bd-title" id="content">Aluno Compra</h1>
             <form>
                 <div class="form-group">
-                    <label for="UsuarioEscolaID">Usuario Escola</label>
+                    <label for="validationCustom01">Usuario Escola</label>
                     <select class="form-control" name="UsuarioEscolaID" >
                         @foreach ( $UsuarioEscolas as $UsuarioEscola )
                             <option value ="{{$UsuarioEscola->UsuarioEscolaID}}">
@@ -33,8 +33,10 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Pontos</label>
-                    <input type="text" class="form-control" name="AlunoCompraQuantidade"  />
+                    <label for="validationCustom01">Pontos</label>
+                    <input type="text" class="form-control" name="AlunoCompraQuantidade" 
+                        id="validationCustom01" required>
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
                     <label for="Status">Status</label>

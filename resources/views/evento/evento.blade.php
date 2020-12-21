@@ -32,12 +32,14 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Nome do Evento</label>
-                    <input type="text" class="form-control" name="Evento" placeholder="Nome" />
+                    <label for="validationCustom01">Nome do Evento</label>
+                    <input type="text" class="form-control" name="Evento" placeholder="Nome" id="validationCustom01" required >
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Cod. do Evento</label>
-                    <input type="text" class="form-control" name="EventoCod" placeholder="Cod. Evento"/>
+                    <label for="validationCustom01">Cod. do Evento</label>
+                    <input type="text" class="form-control" name="EventoCod" placeholder="Cod. Evento" id="validationCustom01" required >
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
                     <label for="Status">Status</label>

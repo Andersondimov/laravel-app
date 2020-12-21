@@ -34,7 +34,8 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Pontos</label>
-                    <input type="text" class="form-control" name="PontoQuantidade"  />
+                    <input type="text" class="form-control" name="PontoQuantidade" id="validationCustom01" required >
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
                     <label for="Status">Status</label>

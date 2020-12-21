@@ -25,12 +25,14 @@
         <form>
             <div class="form-group">
                 <label for="exampleInputEmail1">Nome do Perfil</label>
-                <input type="text" class="form-control" name="Perfil" placeholder="Name" />
+                <input type="text" class="form-control" name="Perfil" placeholder="Name" id="validationCustom01" required >
+                <div class="valid-feedback">Tudo certo!</div>
             </div>
             <div class="form-group">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Cod. Perfil</label>
-                    <input type="text" class="form-control" name="PerfilCod" placeholder="Cod. Perfil" />
+                    <input type="text" class="form-control" name="PerfilCod" placeholder="Cod. Perfil" id="validationCustom01" required >
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
             </div>
             <div class="form-group">

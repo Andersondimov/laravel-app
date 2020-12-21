@@ -32,50 +32,61 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Nome da Escola</label>
-                <input type="text" class="form-control" name="Escola" placeholder="Name" />
+                <label for="validationCustom01">Nome da Escola</label>
+                <input type="text" class="form-control" name="Escola" 
+                    placeholder="Name" id="validationCustom01" required>
+                <div class="valid-feedback">Tudo certo!</div>
             </div>
             <div class="form-group">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Cod. Escola</label>
-                    <input type="text" class="form-control" name="EscolaCod" placeholder="Cod." />
+                    <label for="validationCustom01">Cod. Escola</label>
+                    <input type="text" class="form-control" name="EscolaCod" placeholder="Cod." id="validationCustom01" required>
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Senha Escola</label>
-                    <input type="text" class="form-control" name="EscolaSenha" value="NOVA@1234"/>
+                    <label for="validationCustom01">Senha Escola</label>
+                    <input type="text" class="form-control" name="EscolaSenha" placeholder="NOVA@1234" id="validationCustom01" required>
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Escola CNPJ</label>
-                    <input type="text" class="form-control" name="EscolaCNPJ" id="campoCNPJ" />
+                    <label for="validationCustom01">Escola CNPJ</label>
+                    <input type="text" class="form-control" name="EscolaCNPJ" id="campoCNPJ" id="validationCustom01" required>
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Valor Fixo</label>
-                    <input type="text" class="form-control" name="EscolaValorFixo" />
+                    <label for="validationCustom01">Valor Fixo</label>
+                    <input type="text" class="form-control" name="EscolaValorFixo" id="validationCustom01" required>
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Valor Vaviável</label>
-                    <input type="text" class="form-control" name="EscolaValorVaviavel" />
+                    <label for="validationCustom01">Valor Vaviável</label>
+                    <input type="text" class="form-control" name="EscolaValorVaviavel" id="validationCustom01" required>
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Dia Vencimento</label>
-                    <input type="number" class="form-control" min="1" max="30" name="EscolaDiaVencimento" />
+                    <label for="validationCustom01">Dia Vencimento</label>
+                    <input type="number" class="form-control" min="1" max="30" name="EscolaDiaVencimento" id="validationCustom01" required>
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
                     <label for="DataFIm">Data Expiração</label>
                     <div class="input-group " id="calendarioFim">
-                        <input type="date" class="form-control" name="EscolaDTExpiracao" placeholder="dd/mm/aaaa" />
+                        <input type="date" class="form-control" name="EscolaDTExpiracao" placeholder="dd/mm/aaaa" id="validationCustom01" required>
+                        <div class="valid-feedback">Tudo certo!</div>
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-th"></span>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Telefone</label>
-                    <input type="text" id="campoTelefone" class="form-control" name="EscolaTelefone" />
+                    <label for="validationCustom01">Telefone</label>
+                    <input type="text" id="campoTelefone" class="form-control" name="EscolaTelefone" id="validationCustom01" required>
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Celular</label>
-                    <input type="text" class="form-control" name="EscolaCelular" id="campoCelular" />
+                    <label for="validationCustom01">Celular</label>
+                    <input type="text" class="form-control" name="EscolaCelular" id="campoCelular" id="validationCustom01" required>
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Celular Pix</label>
