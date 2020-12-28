@@ -12,10 +12,10 @@ class Ponto extends Model
     protected $fillable = 
     [
 
-         
         'Ponto', 
         'PontoStatus', 
-        'PontoQuantidade'
+        'PontoQuantidade',
+        'PontoOperacao'
     
     ];
 

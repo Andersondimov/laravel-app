@@ -39,8 +39,9 @@ class PontoController extends Controller
         $ponto = new Ponto;
         $ponto->UsuarioEscolaID = request('UsuarioEscolaID');
         $ponto->PontoQuantidade = request('PontoQuantidade');
-        
-        $ponto->PontoStatus = request('PontoStatus');
+        $ponto->PontoOperacao = request('PontoOperacao');
+
+//        $ponto->PontoStatus = request('PontoStatus');
         $ponto->save();
 
         return redirect()->back()
@@ -65,6 +66,7 @@ class PontoController extends Controller
                     'Ponto.PontoDTAtivacao',
                     'Ponto.PontoDTInativacao',
                     'Ponto.PontoDTBloqueio',
+                    'Ponto.PontoOperacao',
                     'Ponto.UsuarioEscolaID',
                     'UsuarioEscola.UsuarioID',
                     'Escola.Escola'

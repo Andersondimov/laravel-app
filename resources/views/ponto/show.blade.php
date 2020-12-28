@@ -14,8 +14,9 @@
                 <tr>
                     <th>Escola</th>
                     <th>Quantidade</th>
-                    <th>Status</th>
-                    <th>Atualizar</th>
+                    <th>Operacao</th>
+{{--                    <th>Status</th>--}}
+{{--                    <th>Atualizar</th>--}}
                 </tr>
                 </thead>
                 <tbody>
@@ -25,22 +26,20 @@
                             <td>{{ $ponto->Escola}}</td>
                             <td>{{ $ponto->PontoQuantidade }}</td>
                             <td>
-                                @if($ponto->PontoStatus == 1)
-                                    Ativo
-                                @elseif($ponto->PontoStatus == 2)
-                                    Inativo
-                                @else($ponto->PontoStatus == 3)
-                                    Bloqueado
+                                @if($ponto->PontoOperacao == 1)
+                                    Adicionado
+                                @else($ponto->PontoOperacao != 2)
+                                    Subtraido
                                 @endif
                             </td>
-                            <td>
-                                <a href="{{ url('ponto/editar/'.$ponto->PontoID) }}">Alterar</a>
-                            </td>
+{{--                            <td>--}}
+{{--                                <a href="{{ url('ponto/editar/'.$ponto->PontoID) }}">Alterar</a>--}}
+{{--                            </td>--}}
                         </tr>
                     @endforeach
                 @else
                     <tr>
-                        <td colspan="4">Nenhum Ponto Cadastrado</td>
+                        <td colspan="3">Nenhum Ponto Cadastrado</td>
                     </tr>
                 @endif
                 </tbody>

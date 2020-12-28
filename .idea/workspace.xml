@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a4ccd3e9-14aa-4b74-bc7e-2cb165b1ecee" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Usuario/UsuarioAlterAluno.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/usuario/editaraluno.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UsuarioController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UsuarioController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/usuario/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/usuario/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PontoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PontoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Ponto/PontoCreate.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Ponto/PontoCreate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Ponto.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Ponto.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/ponto/ponto.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ponto/ponto.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/ponto/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ponto/show.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +139,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Requests/Usuario" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -173,6 +172,7 @@
       <workItem from="1608008393395" duration="7968000" />
       <workItem from="1608087994431" duration="6417000" />
       <workItem from="1608569176629" duration="9000" />
+      <workItem from="1609179397136" duration="2372000" />
     </task>
     <servers />
   </component>

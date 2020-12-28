@@ -25,7 +25,6 @@ class PontoCreate extends FormRequest
     {
         return [
             'PontoQuantidade' => 'required|',
-            'PontoStatus' => 'required|',
             'UsuarioEscolaID' => 'required|'
         ];
     }
@@ -34,7 +33,6 @@ class PontoCreate extends FormRequest
     {
         return [
             'PontoQuantidade.required' => 'O campo Quantidade de Pontos é obrigatório',
-            'PontoStatus.required' => 'O campo Ponto Status é obrigatório',
             'UsuarioEscolaID.required' => 'O campo Usuario Escola é obrigatório'
             
         ];

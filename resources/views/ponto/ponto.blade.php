@@ -33,36 +33,23 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="UsuarioEscolaID">Adicionar / Baixar Pontos</label>
+                    <select class="form-control" name="PontoOperacao" >
+                        @foreach ( $UsuarioEscolas as $UsuarioEscola )
+                            <option value ="1">+ / Adicionar</option>
+                            <option value ="2">- / Baixar</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="exampleInputEmail1">Pontos</label>
                     <input type="text" class="form-control" name="PontoQuantidade" id="validationCustom01" required >
                     <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
-                    <label for="Status">Status</label>
-                    <select class="form-control" name="PontoStatus">
-                        <option value="1">Ativo</option>
-                    </select>
-                </div>
-                <div class="form-group">
                     <button type="submit" class="btn btn-primary">OK</button>
                 </div>
-                <fieldset disabled>
-                    <div class="form-group row">
-                        <div class="col-sm-10">
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Ativação:   --/--/---- 00:00:00">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-10">
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Inativação: --/--/---- 00:00:00">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-10">
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Data Bloqueio:   --/--/---- 00:00:00">
-                            </div>
-                    </div>
-                </fieldset>
+
             </form>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
