@@ -111,6 +111,8 @@ Route::post('usuario/inserir', 'UsuarioController@store');
 Route::get('usuario', 'UsuarioController@index');
 Route::get('usuario/list', 'UsuarioController@list');
 Route::get('usuario/editar/{id}', 'UsuarioController@edit');
+Route::get('usuario/editaraluno/{id}', 'UsuarioController@editaraluno');
+Route::post('usuario/updatealuno/{id}', 'UsuarioController@updatealuno');
 Route::post('usuario/update/{id}', 'UsuarioController@update');
 
 /*

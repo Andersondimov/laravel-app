@@ -18,6 +18,7 @@
                     <th>Email</th>
                     <th>Status</th>
                     <th>Atualizar</th>
+                    <th>Aluno</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -40,11 +41,18 @@
                             <td>
                                 <a href="{{ url('usuario/editar/'.$usuario->UsuarioID) }}">Alterar</a>
                             </td>
+                            @if($usuario->PerfilCod == 'al')
+                                <td>
+                                    <a href="{{ url('usuario/editaraluno/'.$usuario->UsuarioID) }}">Alterar</a>
+                                </td>
+                            @else
+                                <td>-</td>
+                            @endif
                         </tr>
                     @endforeach
                 @else
                     <tr>
-                        <td colspan="6">Nenhum Usuário Cadastrado</td>
+                        <td colspan="7">Nenhum Usuário Cadastrado</td>
                     </tr>
                 @endif
                 </tbody>

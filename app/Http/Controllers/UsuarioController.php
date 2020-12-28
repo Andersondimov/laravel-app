@@ -7,6 +7,7 @@ use DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\Usuario\UsuarioCreate;
 use App\Http\Requests\Usuario\UsuarioAlter;
+use App\Http\Requests\Usuario\UsuarioAlterAluno;
 
 class UsuarioController extends Controller
 {
@@ -73,6 +74,7 @@ class UsuarioController extends Controller
                     'Usuario.UsuarioEmail',
                     'Usuario.UsuarioMatricula',
                     'Usuario.PerfilID',
+                    'Perfil.PerfilCod',
                     'Perfil.Perfil'
                 )
                 ->get();
@@ -91,12 +93,36 @@ class UsuarioController extends Controller
         return view('usuario/editar', compact('usuario'));
     }
 
+    public function editaraluno($UsuarioID)
+    {
+        $usuario = Usuario::findOrFail($UsuarioID);
+        return view('usuario/editaraluno', compact('usuario'));
+    }
+
+    public function updatealuno(UsuarioAlterAluno $request, $id)
+    {
+        $validated = $request->validated();
+
+        $usuario = new Usuario;
+
+        $usuario = Usuario::findOrFail($id);
+
+        if(isset($request->UsuarioSenha) && $request->UsuarioSenha){
+            $usuario->UsuarioSenha = sha1(request('UsuarioSenha'));
+        }
+
+        $usuario->save();
+        return redirect()->back()
+            ->with('status', 'Usuário alterado com sucesso!');
+
+    }
+
     public function update(UsuarioAlter $request, $id)
     {
         $validated = $request->validated();
 
         $usuario = new Usuario;
-        
+
         $usuario = Usuario::findOrFail($id);
 
         $usuario->PerfilID = request('PerfilID');
@@ -131,5 +157,5 @@ class UsuarioController extends Controller
 
     }
 
-    
+
 }
