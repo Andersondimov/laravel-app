@@ -42,8 +42,7 @@
                 </div>
                 <div class="form-group">
                     <label for="validationCustom01">Senha Escola</label>
-                    <input type="text" class="form-control" name="EscolaSenha" id="validationCustom01" required />
-                    <div class="valid-feedback">Tudo certo!</div>
+                    <input type="text" class="form-control" name="EscolaSenha" />
                 </div>
                 <div class="form-group">
                     <label for="exampleInpvalidationCustom01utEmail1">Escola CNPJ</label>
