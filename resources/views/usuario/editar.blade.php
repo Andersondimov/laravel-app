@@ -31,32 +31,32 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Login do Usuario</label>
-                <input type="text" class="form-control" name="UsuarioLogin" @if(isset($usuario))value="{{ old('', $usuario->UsuarioLogin) }}"@endif placeholder="Usuario" />
+                <label for="validationCustom01">Login do Usuario</label>
+                <input type="text" class="form-control" name="UsuarioLogin" id="validationCustom01" required @if(isset($usuario))value="{{ old('', $usuario->UsuarioLogin) }}"@endif placeholder="Usuario" />
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Senha do Usuario</label>
                 <input type="text" class="form-control" name="UsuarioSenha" />
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Nome do Usuario</label>
-                <input type="text" class="form-control" name="UsuarioNome" @if(isset($usuario))value="{{ old('', $usuario->UsuarioNome) }}"@endif />
+                <label for="validationCustom01">Nome do Usuario</label>
+                <input type="text" class="form-control" name="UsuarioNome" id="validationCustom01" required @if(isset($usuario))value="{{ old('', $usuario->UsuarioNome) }}"@endif />
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col">
-                        <label for="exampleInputEmail1">Email</label>
-                        <input type="text" class="form-control" name="UsuarioEmail" placeholder="Email"  @if(isset($usuario))value="{{ old('', $usuario->UsuarioEmail) }}"@endif />
+                        <label for="validationCustom01">Email</label>
+                        <input type="text" class="form-control" name="UsuarioEmail" placeholder="Email" id="validationCustom01" required @if(isset($usuario))value="{{ old('', $usuario->UsuarioEmail) }}"@endif />
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Celular</label>
-                <input type="text" class="form-control" name="UsuarioCelular" id="campoCelular" maxlength="15" @if(isset($usuario))value="{{ old('', $usuario->UsuarioCelular) }}"@endif />
+                <label for="validationCustom01">Celular</label>
+                <input type="text" class="form-control" name="UsuarioCelular" id="validationCustom01" required maxlength="15" @if(isset($usuario))value="{{ old('', $usuario->UsuarioCelular) }}"@endif />
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Matrícula Usuário</label>
-                <input type="text" class="form-control" name="UsuarioMatricula" @if(isset($usuario))value="{{ old('', $usuario->UsuarioMatricula) }}"@endif />
+                <label for="validationCustom01">Matrícula Usuário</label>
+                <input type="text" class="form-control" name="UsuarioMatricula" id="validationCustom01" required @if(isset($usuario))value="{{ old('', $usuario->UsuarioMatricula) }}"@endif />
             </div>
             <div class="form-group">
                 <label for="Usuarios">Status</label>
