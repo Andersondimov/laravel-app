@@ -33,12 +33,12 @@
                 </div>
             </fieldset>
             <div class="form-group">
-                <label for="exampleInputEmail1">Senha do Usuario</label>
-                <input type="text" class="form-control" name="UsuarioSenha" />
+                <label for="validationCustom01">Senha do Usuario</label>
+                <input type="text" class="form-control" name="UsuarioSenha" id="validationCustom01" required/>
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Confirmar Senha do Usuario</label>
-                <input type="text" class="form-control" name="ConfirmarUsuarioSenha" />
+                <label for="validationCustom01">Confirmar Senha do Usuario</label>
+                <input type="text" class="form-control" name="ConfirmarUsuarioSenha" id="validationCustom01" required/>
             </div>
 
             <div class="form-group">

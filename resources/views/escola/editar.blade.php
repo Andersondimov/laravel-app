@@ -32,49 +32,58 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Nome da Escola</label>
-                    <input type="text" class="form-control" name="Escola" @if(isset($escola))value="{{ old('', $escola->Escola) }}"@endif placeholder="Name" />
+                    <label for="validationCustom01">Nome da Escola</label>
+                    <input type="text" class="form-control" name="Escola" id="validationCustom01" required @if(isset($escola))value="{{ old('', $escola->Escola) }}"@endif placeholder="Name" />
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Cod. Escola</label>
-                    <input type="text" class="form-control" name="EscolaCod" @if(isset($escola))value="{{ old('', $escola->EscolaCod) }}"@endif />
+                    <label for="validationCustom01">Cod. Escola</label>
+                    <input type="text" class="form-control" name="EscolaCod" id="validationCustom01" required @if(isset($escola))value="{{ old('', $escola->EscolaCod) }}"@endif />
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Senha Escola</label>
-                    <input type="text" class="form-control" name="EscolaSenha" />
+                    <label for="validationCustom01">Senha Escola</label>
+                    <input type="text" class="form-control" name="EscolaSenha" id="validationCustom01" required />
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Escola CNPJ</label>
-                    <input type="text" class="form-control" name="EscolaCNPJ" id="campoCNPJ" @if(isset($escola))value="{{ old('', $escola->EscolaCNPJ) }}"@endif />
+                    <label for="exampleInpvalidationCustom01utEmail1">Escola CNPJ</label>
+                    <input type="text" class="form-control" name="EscolaCNPJ" id="validationCustom01" required @if(isset($escola))value="{{ old('', $escola->EscolaCNPJ) }}"@endif />
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Valor Fixo</label>
-                    <input type="text" class="form-control" name="EscolaValorFixo"  @if(isset($escola))value="{{ old('', $escola->EscolaValorFixo) }}"@endif />
+                    <label for="validationCustom01">Valor Fixo</label>
+                    <input type="text" class="form-control" name="EscolaValorFixo" id="validationCustom01" required @if(isset($escola))value="{{ old('', $escola->EscolaValorFixo) }}"@endif />
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Valor Vaviável</label>
-                    <input type="text" class="form-control" name="EscolaValorVaviavel"  @if(isset($escola))value="{{ old('', $escola->EscolaValorVaviavel) }}"@endif />
+                    <label for="validationCustom01">Valor Vaviável</label>
+                    <input type="text" class="form-control" name="EscolaValorVaviavel" id="validationCustom01" required @if(isset($escola))value="{{ old('', $escola->EscolaValorVaviavel) }}"@endif />
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
-                    <label for="DataFIm">Dia Vencimento</label>
-                    <input type="number" class="form-control" name="EscolaDiaVencimento" min="1" max="30"  @if(isset($escola))value="{{ old('', $escola->EscolaDiaVencimento) }}"@endif />
+                    <label for="validationCustom01">Dia Vencimento</label>
+                    <input type="number" class="form-control" name="EscolaDiaVencimento" min="1" max="30" id="validationCustom01" required @if(isset($escola))value="{{ old('', $escola->EscolaDiaVencimento) }}"@endif />
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Data Expiração</label>
+                    <label for="validationCustom01">Data Expiração</label>
                     <div class="input-group " id="control" >
-                        <input type="date" class="form-control" name="EscolaDTExpiracao" placeholder="dd/mm/aaaa" value="{{$escola->EscolaDTExpiracao ? $escola->EscolaDTExpiracao->format('Y-m-d') : ''}}" />
+                        <input type="date" class="form-control" name="EscolaDTExpiracao" id="validationCustom01" required placeholder="dd/mm/aaaa" value="{{$escola->EscolaDTExpiracao ? $escola->EscolaDTExpiracao->format('Y-m-d') : ''}}" />
+                        <div class="valid-feedback">Tudo certo!</div>
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-th"></span>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Telefone</label>
-                    <input type="text" id="campoTelefone" class="form-control" name="EscolaTelefone"  @if(isset($escola))value="{{ old('', $escola->EscolaTelefone) }}"@endif />
+                    <label for="validationCustom01">Telefone</label>
+                    <input type="text" id="campoTelefone" class="form-control" name="EscolaTelefone" id="validationCustom01" required @if(isset($escola))value="{{ old('', $escola->EscolaTelefone) }}"@endif />
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Celular</label>
-                    <input type="text" class="form-control" name="EscolaCelular" id="campoCelular" @if(isset($escola))value="{{ old('', $escola->EscolaCelular) }}"@endif />
+                    <label for="validationCustom01">Celular</label>
+                    <input type="text" class="form-control" name="EscolaCelular" id="campoCelular" id="validationCustom01" required @if(isset($escola))value="{{ old('', $escola->EscolaCelular) }}"@endif />
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Celular Pix</label>
