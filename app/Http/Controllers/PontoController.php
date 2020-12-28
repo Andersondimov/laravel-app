@@ -79,12 +79,15 @@ class PontoController extends Controller
         $ponto['UsuarioEscola'] = DB::table('UsuarioEscola')
         ->join('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
         ->join('Usuario','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
+        ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
+
         ->select(
             'UsuarioEscola.UsuarioEscolaID',
             'Usuario.UsuarioNome',
             'Escola.Escola'
             
         )
+        ->where('Perfil.PerfilCod', '!=', 'al')
         ->get();
         return view('ponto/editar', compact('ponto'));
     }

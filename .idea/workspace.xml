@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a4ccd3e9-14aa-4b74-bc7e-2cb165b1ecee" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/AlunoCompra.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/AlunoCompra.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PontoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PontoController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +122,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1lNrjpYSd3w9VpnfF4o4FYXjgKv" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
