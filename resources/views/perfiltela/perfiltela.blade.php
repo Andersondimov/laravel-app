@@ -34,8 +34,8 @@
                 <label for="TelaID">Tela</label>
                 <div class="form-check">
                     @foreach ( $Dados->TelaID as $Tela )
-                    <input type="checkbox" class="form-check-input" name="TelaID[{{$Tela->TelaID}}]" value="{{$Tela->TelaID}}">
-                    <label class="form-check-label" for="exampleCheck1">{{$Tela->Tela}}</label><br>
+                        <input type="checkbox" class="form-check-input" name="TelaID[{{$Tela->TelaID}}]" value="{{$Tela->TelaID}}">
+                        <label class="form-check-label" for="exampleCheck1">{{$Tela->Tela}}</label><br>
                     @endforeach
                 </div>
             </div>

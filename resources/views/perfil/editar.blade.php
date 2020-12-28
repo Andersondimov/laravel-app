@@ -24,13 +24,14 @@
         <h1 class="bd-title" id="content">Perfil</h1>
         <form>
             <div class="form-group">
-                <label for="exampleInputEmail1">Nome do Perfil</label>
-                <input type="text" class="form-control" name="Perfil" @if(isset($perfil))value="{{ old('', $perfil->Perfil) }}"@endif placeholder="Name" />
+                <label for="validationCustom01">Nome do Perfil</label>
+                <input type="text" class="form-control" name="Perfil" id="validationCustom01" required @if(isset($perfil))value="{{ old('', $perfil->Perfil) }}"@endif placeholder="Name" />
             </div>
             <div class="form-group">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Cod. Perfil</label>
-                    <input type="text" class="form-control" name="PerfilCod" @if(isset($perfil))value="{{ old('', $perfil->PerfilCod) }}"@endif placeholder="Cod." />
+                    <label for="validationCustom01">Cod. Perfil</label>
+                    <input type="text" class="form-control" name="PerfilCod" id="validationCustom01" required @if(isset($perfil))value="{{ old('', $perfil->PerfilCod) }}"@endif placeholder="Cod." />
+                    <div class="valid-feedback">Tudo certo!</div>
                 </div>
             </div>
             <div class="form-group">

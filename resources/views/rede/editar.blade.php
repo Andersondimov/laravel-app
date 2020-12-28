@@ -24,13 +24,13 @@
         <h1 class="bd-title" id="content">Rede</h1>
         <form>
             <div class="form-group">
-                <label for="exampleInputEmail1">Nome da Rede</label>
-                <input type="text" class="form-control" name="Rede" @if(isset($rede))value="{{ old('', $rede->Rede) }}"@endif placeholder="Name" />
+                <label for="validationCustom01">Nome da Rede</label>
+                <input type="text" class="form-control" name="Rede" id="validationCustom01" required @if(isset($rede))value="{{ old('', $rede->Rede) }}"@endif placeholder="Name" />
             </div>
             <div class="form-group">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Cod. Rede</label>
-                    <input type="text" class="form-control" name="RedeCod" @if(isset($rede))value="{{ old('', $rede->RedeCod) }}"@endif placeholder="Cod." />
+                    <label for="validationCustom01">Cod. Rede</label>
+                    <input type="text" class="form-control" name="RedeCod" id="validationCustom01" required @if(isset($rede))value="{{ old('', $rede->RedeCod) }}"@endif placeholder="Cod." />
                 </div>
             </div>
             <div class="form-group">

@@ -32,8 +32,9 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Quantia de Pontos</label>
-                <input type="text" class="form-control" name="AlunoCompraQuantidade" @if(isset($alunocompra))value="{{ old('', $alunocompra->AlunoCompraQuantidade) }}"@endif placeholder="Pontos" />
+                <label for="validationCustom01">Quantia de Pontos</label>
+                <input type="text" class="form-control" name="AlunoCompraQuantidade" id="validationCustom01" required @if(isset($alunocompra))value="{{ old('', $alunocompra->AlunoCompraQuantidade) }}"@endif placeholder="Pontos" />
+                <div class="valid-feedback">Tudo certo!</div>
             </div>
             <div class="form-group">
                 <label for="AlunoCompras">Status</label>

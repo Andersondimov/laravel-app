@@ -25,7 +25,8 @@
         <form>
             <div class="form-group">
                 <label for="exampleInputEmail1">Nome da Tela</label>
-                <input type="text" class="form-control" name="Tela" @if(isset($tela))value="{{ old('', $tela->Tela) }}"@endif placeholder="Name" />
+                <input type="text" class="form-control" name="Tela" id="validationCustom01" required @if(isset($tela))value="{{ old('', $tela->Tela) }}"@endif placeholder="Name" />
+                <div class="valid-feedback">Tudo certo!</div> 
             </div>
             <div class="form-group">
                 <label for="Status">Status</label>

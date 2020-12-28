@@ -31,14 +31,16 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Evento</label>
-                    <input type="text" class="form-control" name="Evento" @if(isset($evento))
+                    <label for="validationCustom01">Evento</label>
+                    <input type="text" class="form-control" name="Evento" id="validationCustom01" required @if(isset($evento))
                         value="{{ old('', $evento->Evento) }}"@endif placeholder="Evento" />
+                        <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Cod do Evento</label>
-                    <input type="text" class="form-control" name="EventoCod" @if(isset($evento))
+                    <label for="validationCustom01">Cod do Evento</label>
+                    <input type="text" class="form-control" name="EventoCod" id="validationCustom01" required @if(isset($evento))
                         value="{{ old('', $evento->EventoCod) }}"@endif placeholder="Cod" />
+                        <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
                     <label for="Evento">Status</label>
