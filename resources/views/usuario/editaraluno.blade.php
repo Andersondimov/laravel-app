@@ -40,7 +40,14 @@
                 <label for="validationCustom01">Confirmar Senha do Usuario</label>
                 <input type="text" class="form-control" name="ConfirmarUsuarioSenha" id="validationCustom01" required/>
             </div>
-
+            <div class="form-group">
+                <label for="exampleInputPassword1"><b>Foto Usuario</b></label>
+                <input type="file" class="form-control-file" name="image" id="image">
+                <label for="exampleInputPassword1">Tamanho Máximo 25KB </label>
+            </div>
+            <div class="form-group">
+                <img src="<?php echo asset('storage/usuario'.$usuario->UsuarioID.'.png'); ?>">
+            </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">OK</button>
             </div>

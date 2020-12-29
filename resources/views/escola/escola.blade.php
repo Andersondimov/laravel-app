@@ -93,6 +93,10 @@
                     <input type="text" class="form-control" id="campoCelularPix" name="EscolaCelularPix" />
                 </div>
                 <div class="form-group">
+                    <label for="exampleInputEmail1">Nome Moeda Escola</label>
+                    <input type="text" class="form-control" id="EscolaNomeMoeda" name="EscolaNomeMoeda" >
+                </div>
+                <div class="form-group">
                     <label for="Status">Status</label>
                     <select class="form-control" name="EscolaStatus">
                         <option value="1">Ativo</option>

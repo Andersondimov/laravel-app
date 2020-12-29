@@ -97,6 +97,8 @@ class UsuarioController extends Controller
     {
         $usuario = Usuario::findOrFail($UsuarioID);
         return view('usuario/editaraluno', compact('usuario'));
+
+        
     }
 
     public function updatealuno(UsuarioAlterAluno $request, $id)
@@ -109,6 +111,43 @@ class UsuarioController extends Controller
 
         if(isset($request->UsuarioSenha) && $request->UsuarioSenha){
             $usuario->UsuarioSenha = sha1(request('UsuarioSenha'));
+        }
+
+        // Define o valor default para a vari�vel que cont�m o nome da imagem
+        $nameFile = null;
+
+        // Verifica se informou o arquivo e se � v�lido
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+
+            if($request->file('image')->getSize() > 25000)
+                return redirect()
+                    ->back()
+                    ->with('erro', 'O Tamanho do Arquivo deve ser at� 25KB')
+                    ->withInput();
+
+            // Define um aleat�rio para o arquivo baseado no timestamps atual
+            $name = 'usuario'.$id;
+
+            // Recupera a extens�o do arquivo
+            $extension = $request->image->extension();
+            if($extension != 'png')
+                return redirect()
+                    ->back()
+                    ->with('erro', 'O Formato do Arquivo deve ser .png')
+                    ->withInput();
+
+            // Define finalmente o nome
+            $nameFile = "{$name}.{$extension}";
+
+            // Faz o upload:
+            $upload = $request->image->storeAs(null, $nameFile);
+
+            // Verifica se N�O deu certo o upload (Redireciona de volta)
+            if ( !$upload )
+                return redirect()
+                    ->back()
+                    ->with('erro', 'Falha ao fazer upload')
+                    ->withInput();
         }
 
         $usuario->save();
@@ -154,6 +193,7 @@ class UsuarioController extends Controller
         $usuario->save();
         return redirect()->back()
             ->with('status', 'Usuário alterado com sucesso!');
+
 
     }
 

@@ -28,6 +28,7 @@ class Escola extends Model
         'EscolaCelular',
         'EscolaCNPJ',
         'EscolaCelularPix',
+        'EscolaNomeMoeda',
         'RedeID',
         'EscolaDiaVencimento',
         'EscolaDTExpiracao'];

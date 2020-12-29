@@ -68,6 +68,10 @@
                     <label for="exampleInputEmail1">Escola CNPJ</label>
                     <input type="text" class="form-control" name="EscolaCNPJ" id="campoCNPJ" @if(isset($escola))value="{{ old('', $escola->EscolaCNPJ) }}"@endif />
                 </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nome Moeda Escola</label>
+                    <input type="text" class="form-control" name="EscolaNomeMoeda" @if(isset($escola))value="{{ old('', $escola->EscolaNomeMoeda) }}"@endif  />
+                </div>
                 <fieldset disabled>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Quantidade de alunos</label>
@@ -105,11 +109,11 @@
                     <label for="exampleInputPassword1"><b>Logo Escola</b></label>
                     <input type="file" class="form-control-file" name="image" id="image">
                     <label for="exampleInputPassword1">Tamanho Máximo 25KB </label>
-
                 </div>
                 <div class="form-group">
                     <img src="<?php echo asset('storage/escola'.$escola->EscolaID.'.png'); ?>">
                 </div>
+                
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">OK</button>
                 </div>

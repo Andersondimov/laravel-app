@@ -32,6 +32,7 @@ class EscolaController extends Controller
         $escola = new Escola;
         $escola->Escola = $request->Escola;
         $escola->EscolaCod = $request->EscolaCod;
+        $escola->EscolaNomeMoeda = $request->EscolaNomeMoeda;
         $escola->EscolaStatus = $request->EscolaStatus;
         if(isset($request->EscolaSenha) && $request->EscolaSenha != '' && $request->EscolaSenha) {
             $escola->EscolaSenha = sha1($request->EscolaSenha);
@@ -85,6 +86,7 @@ class EscolaController extends Controller
                     'Escola.EscolaCelular',
                     'Escola.EscolaCNPJ',
                     'Escola.EscolaCelularPix',
+                    'Escola.EscolaNomeMoeda',
                     'Escola.RedeID',
                     'Rede.Rede'
                 )
@@ -161,6 +163,7 @@ class EscolaController extends Controller
 
         $escola->Escola = $request->Escola;
         $escola->EscolaCod = $request->EscolaCod;
+        $escola->EscolaNomeMoeda = $request->EscolaNomeMoeda;
         $escola->EscolaStatus = $request->EscolaStatus;
         if(isset($request->EscolaSenha) && $request->EscolaSenha != '' && $request->EscolaSenha) {
             $escola->EscolaSenha = sha1($request->EscolaSenha);
@@ -215,22 +218,22 @@ class EscolaController extends Controller
 
         $escola = Escola::findOrFail($id);
 
-        // Define o valor default para a variável que contém o nome da imagem
+        // Define o valor default para a variï¿½vel que contï¿½m o nome da imagem
         $nameFile = null;
 
-        // Verifica se informou o arquivo e se é válido
+        // Verifica se informou o arquivo e se ï¿½ vï¿½lido
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
 
             if($request->file('image')->getSize() > 25000)
                 return redirect()
                     ->back()
-                    ->with('erro', 'O Tamanho do Arquivo deve ser até 25KB')
+                    ->with('erro', 'O Tamanho do Arquivo deve ser atï¿½ 25KB')
                     ->withInput();
 
-            // Define um aleatório para o arquivo baseado no timestamps atual
+            // Define um aleatï¿½rio para o arquivo baseado no timestamps atual
             $name = 'escola'.$id;
 
-            // Recupera a extensão do arquivo
+            // Recupera a extensï¿½o do arquivo
             $extension = $request->image->extension();
             if($extension != 'png')
                 return redirect()
@@ -244,7 +247,7 @@ class EscolaController extends Controller
             // Faz o upload:
             $upload = $request->image->storeAs(null, $nameFile);
 
-            // Verifica se NÃO deu certo o upload (Redireciona de volta)
+            // Verifica se Nï¿½O deu certo o upload (Redireciona de volta)
             if ( !$upload )
                 return redirect()
                     ->back()
