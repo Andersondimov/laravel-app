@@ -70,7 +70,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nome Moeda Escola</label>
-                    <input type="text" class="form-control" name="EscolaNomeMoeda" @if(isset($escola))value="{{ old('', $escola->EscolaNomeMoeda) }}"@endif  />
+                    <input type="text" class="form-control" name="EscolaNomeMoeda" id="EscolaNomeMoeda" @if(isset($escola))value="{{ old('', $escola->EscolaNomeMoeda) }}"@endif  />
                 </div>
                 <fieldset disabled>
                     <div class="form-group">

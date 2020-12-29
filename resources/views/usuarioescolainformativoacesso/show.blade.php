@@ -15,6 +15,7 @@
                         <th>Usuario</th>
                         <th>ID Data Ativacao</th>
                         <th>Informativo Acesso</th>
+                        <th>Status</th>
                         <th>Atualizar</th>
                     </tr>
                     </thead>
@@ -38,7 +39,7 @@
                             @endforeach
                         @else
                             <tr>
-                                <td colspan="4">Nenhum Ponto Cadastrado</td>
+                                <td colspan="5">Nenhum Usuario Escola Cadastrado</td>
                             </tr>
                         @endif
                     </tbody>

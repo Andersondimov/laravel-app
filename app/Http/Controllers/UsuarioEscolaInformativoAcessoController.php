@@ -41,11 +41,8 @@ class UsuarioEscolaInformativoAcessoController extends Controller
         $usuarioescolainformativoacesso = new UsuarioEscolaInformativoAcesso;
         $usuarioescolainformativoacesso->UsuarioEscolaID = request('UsuarioEscolaID');
         $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcesso = request('UsuarioEscolaInformativoAcesso');
+        $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcessoIDDTAcao = request('UsuarioEscolaInformativoAcessoIDDTAcao');
         
-        $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcessoIDDTAcao = $request('UsuarioEscolaInformativoAcessoIDDTAcao');
-        if(isset($request->UsuarioEscolaInformativoAcessoIDDTAcao) && $request->UsuarioEscolaInformativoAcessoIDDTAcao != '' && $request->UsuarioEscolaInformativoAcessoIDDTAcao) {
-            $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcessoIDDTAcao = Carbon::createFromFormat('Y-m-d', $request->UsuarioEscolaInformativoAcessoIDDTAcao)->format('d/m/Y');
-        }
         $usuarioescolainformativoacesso->save();
     
         return redirect()->back()
@@ -61,7 +58,7 @@ class UsuarioEscolaInformativoAcessoController extends Controller
     public function list()
     {
         $UsuarioEscolaInformativoAcessos =DB::table('UsuarioEscolaInformativoAcesso')
-            ->join('UsuarioEscola','Ponto.UsuarioEscolaID', '=', 'UsuarioEscola.UsuarioEscolaID')
+            ->join('UsuarioEscola','UsuarioEscolaInformativoAcesso.UsuarioEscolaID', '=', 'UsuarioEscola.UsuarioEscolaID')
             ->join('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
             ->select(
                 'UsuarioEscolaInformativoAcesso.UsuarioEscolaInformativoAcessoID',
@@ -69,7 +66,6 @@ class UsuarioEscolaInformativoAcessoController extends Controller
                 'UsuarioEscolaInformativoAcesso.UsuarioEscolaInformativoAcessoIDDTAcao',
                 'UsuarioEscolaInformativoAcesso.UsuarioEscolaID',
                 'UsuarioEscola.UsuarioID',
-                'Usuario.UsuarioNome',
                 'Escola.Escola'
             )
                 ->get();
@@ -82,13 +78,16 @@ class UsuarioEscolaInformativoAcessoController extends Controller
         $usuarioescolainformativoacesso['UsuarioEscola'] =DB::table('UsuarioEscola')
         ->join('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
         ->join('Usuario','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
+        ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
+
         ->select(
             'UsuarioEscola.UsuarioEscolaID',
             'Usuario.UsuarioNome',
             'Escola.Escola'
         )
+        ->where('Perfil.PerfilCod', '!=', 'al')
         ->get();
-        return view('usuarioescolainformativoacesso/editar', compact('UsuarioEscolaInformativoAcessos'));
+        return view('usuarioescolainformativoacesso/editar', compact('usuarioescolainformativoacesso'));
     }
 
     public function update(UsuarioEscolaInformativoAcessoAlter $request, $id)
@@ -104,9 +103,7 @@ class UsuarioEscolaInformativoAcessoController extends Controller
         
         
         $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcessoIDDTAcao = request('UsuarioEscolaInformativoAcessoIDDTAcao');
-        if(isset($request->UsuarioEscolaInformativoAcessoIDDTAcao) && $request->UsuarioEscolaInformativoAcessoIDDTAcao != '' && $request->UsuarioEscolaInformativoAcessoIDDTAcao) {
-            $usuarioescolainformativoacesso->UsuarioEscolaInformativoAcessoIDDTAcao = Carbon::createFromFormat('Y-m-d', $request->UsuarioEscolaInformativoAcessoIDDTAcao)->format('d/m/Y');
-        }
+        
         $usuarioescolainformativoacesso->save();
         return redirect()->back()
             ->with('status', 'Ponto alterado com sucesso!');
