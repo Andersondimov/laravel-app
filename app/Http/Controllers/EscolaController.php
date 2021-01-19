@@ -68,6 +68,7 @@ class EscolaController extends Controller
             ->with('status', 'Escola criada com sucesso!');
     }
 
+    
     public function list()
     {
         $Escolas =DB::table('Escola')
