@@ -8,14 +8,15 @@
     <body>
             @csrf
         <div class="bd-example">
-            <h1 class="bd-title" id="content">Evento Escola</h1>
+            <h1 class="bd-title" id="content">Faixas Evento Escola</h1>
             <table class="table table-bordered">
                 <thead>
                 <tr>
                     <th>Escola</th>
+                    <th>Evento</th>
                     <th>Status</th>
-                    <th>Atualizar</th>
-                    <th>Lista Eventos</th>
+                    <th>Administrar</th>
+
                 </tr>
                 </thead>
                 <tbody>
@@ -23,6 +24,7 @@
                         @foreach ( $EventoEscolas as $eventoescola )
                             <tr>
                                 <td>{{ $eventoescola->Escola }}</td>
+                                <td>{{ $eventoescola->Evento }}</td>
                                 <td>
                                     @if($eventoescola->EventoStatus == 1)
                                         Auto
@@ -31,10 +33,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ url('eventoescola/editar/'.$eventoescola->EscolaID) }}">Alterar</a>
-                                </td>
-                                <td>
-                                    <a href="{{ url('eventoescola/eventofaixa/'.$eventoescola->EscolaID) }}">Eventos Escola</a>
+                                    <a href="{{ url('eventoescola/eventofaixa/faixaslist/'.$eventoescola->EventoEscolaID) }}">Faixas</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -45,11 +44,6 @@
                     @endif
                 </tbody>
             </table>
-            <div class="form-group">
-                <form role="form" method="get" action="{{action('EventoEscolaController@index')}}">
-                    <button type="submit" class="btn btn-primary">NOVO</button>
-                </form>
-            </div>
         </div>
     </body>
 </html>

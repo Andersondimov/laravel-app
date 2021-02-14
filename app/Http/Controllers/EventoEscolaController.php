@@ -111,50 +111,6 @@ class EventoEscolaController extends Controller
                 )
                 ->get();
         return view('eventoescola/editar', compact('EventoEscolas'));
-
-        $PerfilTelas['IDS'] =DB::table('PerfilTela')
-        ->join('Perfil','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
-        ->join('Tela','PerfilTela.TelaID', '=', 'Tela.TelaID')
-        ->where('Perfil.PerfilID', $PerfilTelaID)
-        ->select(
-            'PerfilTela.PerfilTelaStatus',
-            'PerfilTela.PerfilTelaDTAtivacao',
-            'PerfilTela.PerfilTelaDTInativacao',
-            'PerfilTela.PerfilTelaDTBloqueio',
-            'PerfilTela.PerfilID',
-            'Perfil.Perfil'
-        )->groupby(
-            'PerfilTela.PerfilTelaStatus',
-            'PerfilTela.PerfilTelaDTAtivacao',
-            'PerfilTela.PerfilTelaDTInativacao',
-            'PerfilTela.PerfilTelaDTBloqueio',
-            'PerfilTela.PerfilID',
-            'Perfil.Perfil'
-        )
-        ->get();
-        $PerfilTelas[] =DB::table('PerfilTela')
-        ->join('Perfil','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
-        ->join('Tela','PerfilTela.TelaID', '=', 'Tela.TelaID')
-        ->where('Perfil.PerfilID', $PerfilTelaID)
-        ->select(
-            'PerfilTela.PerfilTelaID',
-            'PerfilTela.PerfilTelaStatus',
-            'PerfilTela.PerfilTelaDTAtivacao',
-            'PerfilTela.PerfilTelaDTInativacao',
-            'PerfilTela.PerfilTelaDTBloqueio',
-            'Tela.TelaID',
-            'Tela.Tela',
-            'PerfilTela.PerfilID',
-            'Perfil.Perfil'
-        )
-        ->get();
-        $PerfilTelas['Telas'] =DB::table('Tela')
-                ->select(
-                    'Tela.TelaID',
-                    'Tela.Tela'
-                )
-                ->get();
-        return view('perfiltela/editar', compact('PerfilTelas'));
     }
 
     public function update(EventoEscolaAlter $request, $id)
@@ -182,5 +138,51 @@ class EventoEscolaController extends Controller
         $eventoescola = EventoEscola::findOrFail($id);
         $eventoescola->delete();
         return redirect()->route('eventoescola.index')->with('alert-success', 'Evento Escola deletada com sucesso!');
+    }
+
+    public function eventofaixa($id)
+    {
+        $EventoEscolas =DB::table('EventoEscola')
+            ->join('Escola','EventoEscola.EscolaID', '=', 'Escola.EscolaID')
+            ->join('Evento','EventoEscola.EventoID', '=', 'Evento.EventoID')
+            ->where('Escola.EscolaID', $id)
+            ->orderby('Escola.Escola', 'ASC')
+            ->orderby('Evento.Evento', 'ASC')
+            ->select(
+                'EventoEscola.EventoStatus',
+                'EventoEscola.EventoEscolaID',
+                'Escola.Escola',
+                'Evento.Evento'
+            )
+            ->get();
+
+        return view('eventoescola/eventofaixashow', compact('EventoEscolas'));
+    }
+
+    public function eventofaixalist($id)
+    {
+        $FaixasEventoEscolas =DB::table('EventoEscola')
+            ->join('Escola','EventoEscola.EscolaID', '=', 'Escola.EscolaID')
+            ->join('Evento','EventoEscola.EventoID', '=', 'Evento.EventoID')
+            ->join('FaixaEvento','EventoEscola.EventoEscolaID', '=', 'FaixaEvento.EventoEscolaID')
+            ->where('EventoEscola.EventoEscolaID', $id)
+            ->orderby('Escola.Escola', 'ASC')
+            ->orderby('Evento.Evento', 'ASC')
+            ->orderby('FaixaEvento.FaixaEventoPontoQuantidade', 'ASC')
+            ->select(
+                'FaixaEvento.FaixaEventoID',
+                'FaixaEvento.FaixaEventoStatus',
+                'FaixaEvento.FaixaEventoNumIni',
+                'FaixaEvento.FaixaEventoNumFim',
+                'FaixaEvento.FaixaEventoDTIni',
+                'FaixaEvento.FaixaEventoDTFim',
+                'FaixaEvento.FaixaEventoPontoQuantidade',
+                'Escola.Escola',
+                'Evento.Evento'
+
+            )
+            ->get();
+
+        return view('eventoescola/faixashow', compact('FaixasEventoEscolas'));
     }
 }
