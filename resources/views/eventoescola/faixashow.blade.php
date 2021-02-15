@@ -51,6 +51,41 @@
                     <button class="btn btn-primary">NOVO</button>
                 </a>
             </div>
+            <div class="form-group">
+                @if (session('status'))
+                    <div class="alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
+                @if (session('erro'))
+                    <div class="alert-danger">
+                        {{ session('erro') }}
+                    </div>
+                @endif
+                <div class="error">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <form role="form" method="post" enctype="multipart/form-data" action="{{url('eventoescola/eventofaixa/faixagravarimport/'.$FaixasEventoEscola->EventoEscolaID)}}">
+                    {{  csrf_field()  }}
+                    <h4 for="exampleInputPassword1">Importar Repasse de Pontos</h4>
+                    <input type="file" class="form-control-file" name="importcsv" id="importcsv" required>
+                    <br>
+                    <hr>
+                    <div class="form-group">
+                        <h6 for="exampleInputPassword1">Formato CSV, primeiro dado Matrícula Aluno, segundo dado Parâmetros - Faixa (Número) e terceiro dado Parâmetros - Faixa (Data).
+                            Os dados devem ser separados por ponto e vírgula (;)</h6><br>
+                        <h6 for="exampleInputPassword1">Exemplo -> <b>mat-aluno;parametro-numero;parametro-dt</b></h6>
+                        <h6 for="exampleInputPassword1">Exemplo com Parâmetro tipo Número -> <b>mat-0001;8</b></h6>
+                        <h6 for="exampleInputPassword1">Exemplo com Parâmetro tipo Data -> <b>mat-0001;;2021-02-01</b></h6>
+                    </div>
+                    <hr>
+                    <button type="submit" class="btn btn-primary">Importar</button>
+                </form>
+            </div>
         </div>
     </body>
 </html>

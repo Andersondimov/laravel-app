@@ -88,6 +88,7 @@ Route::post('informativoacesso/update/{id}', 'InformativoAcessoController@update
 /*
 * EventoEscola
  */
+Route::post('eventoescola/eventofaixa/faixagravarimport/{id}', 'EventoEscolaController@faixagravarimport');
 Route::post('eventoescola/eventofaixa/faixagravar/{id}', 'EventoEscolaController@faixagravar');
 Route::get('eventoescola/eventofaixa/faixanew/{id}', 'EventoEscolaController@faixanew');
 Route::get('eventoescola', 'EventoEscolaController@index');

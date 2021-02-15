@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\EventoEscola;
 use App\FaixaEvento;
+use App\PontoRecebido;
 use DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -216,7 +217,6 @@ class EventoEscolaController extends Controller
         $validated = $request->validated();
 
         $eventoescolafaixa = new FaixaEvento;
-        $eventoescolafaixa->EventoEscolaID = $request->EventoEscolaID;
         if(isset($request->FaixaEventoDTIni) && $request->FaixaEventoDTIni != '' && $request->FaixaEventoDTIni) {
             $eventoescolafaixa->FaixaEventoDTIni = Carbon::createFromFormat('Y-m-d', $request->FaixaEventoDTIni)->format('d/m/Y');
         }
@@ -236,5 +236,103 @@ class EventoEscolaController extends Controller
         return redirect()->back()
             ->with('status', 'Faixa Criada com sucesso!');
 
+    }
+
+    public function faixagravarimport(Request $request, $id)
+    {
+        $MsgSucesso = 'Pontos Importados!';
+        $MsgErro = 'Nenhuma linha foi importada, favor verificar o arquivo CSV!';
+
+        if ($request->file('importcsv')->isValid()) {
+
+            // Recupera a extension do arquivo
+            $extension = $request->importcsv->getClientMimeType();
+            if($extension != "text/csv")
+                return redirect()
+                    ->back()
+                    ->with('erro', 'O Formato do Arquivo deve ser .csv')
+                    ->withInput();
+
+            $csvFile = $request->importcsv;
+            $file_handle = fopen($csvFile, 'r');
+            while (!feof($file_handle)) {
+                $line_of_text[] = fgetcsv($file_handle, 0, ';');
+            }
+            fclose($file_handle);
+        }
+        $count = 0;
+        foreach ($line_of_text as $linha) {
+            if ($linha[0] != ''){
+                if (isset($linha[1]) && $linha[1] != '') {
+                    $FaixaEventoEscola = DB::table('EventoEscola')
+                        ->join('Escola', 'EventoEscola.EscolaID', '=', 'Escola.EscolaID')
+                        ->join('UsuarioEscola', 'UsuarioEscola.EscolaID', '=', 'Escola.EscolaID')
+                        ->join('Usuario', 'UsuarioEscola.UsuarioID', '=', 'Usuario.UsuarioID')
+                        ->join('Perfil', 'Perfil.PerfilID', '=', 'Usuario.PerfilID')
+                        ->join('Evento', 'EventoEscola.EventoID', '=', 'Evento.EventoID')
+                        ->Join('FaixaEvento', 'EventoEscola.EventoEscolaID', '=', 'FaixaEvento.EventoEscolaID')
+                        ->where('EventoEscola.EventoEscolaID', $id)
+                        ->where('Usuario.UsuarioMatricula', $linha[0])
+                        ->where('Perfil.PerfilCod', 'al')
+                        ->where('FaixaEvento.FaixaEventoNumFim', '>=', $linha[1])
+                        ->where('FaixaEvento.FaixaEventoNumIni', '<=', $linha[1])
+                        ->orderby('FaixaEvento.FaixaEventoPontoQuantidade', 'ASC')
+                        ->select(
+                            'UsuarioEscola.UsuarioEscolaID',
+                            'FaixaEvento.FaixaEventoID',
+                            'FaixaEvento.FaixaEventoPontoQuantidade'
+                        )->limit(1)
+                        ->get();
+                }
+                if (isset($linha[2]) && $linha[2] != '') {
+                    $FaixaEventoEscola = DB::table('EventoEscola')
+                        ->join('Escola', 'EventoEscola.EscolaID', '=', 'Escola.EscolaID')
+                        ->join('UsuarioEscola', 'UsuarioEscola.EscolaID', '=', 'Escola.EscolaID')
+                        ->join('Usuario', 'UsuarioEscola.UsuarioID', '=', 'Usuario.UsuarioID')
+                        ->join('Perfil', 'Perfil.PerfilID', '=', 'Usuario.PerfilID')
+                        ->join('Evento', 'EventoEscola.EventoID', '=', 'Evento.EventoID')
+                        ->Join('FaixaEvento', 'EventoEscola.EventoEscolaID', '=', 'FaixaEvento.EventoEscolaID')
+                        ->where('EventoEscola.EventoEscolaID', $id)
+                        ->where('Usuario.UsuarioMatricula', $linha[0])
+                        ->where('Perfil.PerfilCod', 'al')
+                        ->where('FaixaEvento.FaixaEventoDTFim', '>=', $linha[2])
+                        ->where('FaixaEvento.FaixaEventoDTIni', '<=', $linha[2])
+                        ->orderby('FaixaEvento.FaixaEventoPontoQuantidade', 'ASC')
+                        ->select(
+                            'UsuarioEscola.UsuarioEscolaID',
+                            'FaixaEvento.FaixaEventoID',
+                            'FaixaEvento.FaixaEventoPontoQuantidade'
+                        )->limit(1)
+                        ->get();
+                }
+                if(isset($FaixaEventoEscola) && count($FaixaEventoEscola)>0) {
+                    foreach ($FaixaEventoEscola as $dados) {
+                        if ($dados->UsuarioEscolaID > 0 && $dados->FaixaEventoID > 0
+                            && $dados->FaixaEventoPontoQuantidade > 0) {
+                            $count++;
+                            $PontoRecebido = new PontoRecebido;
+                            $PontoRecebido->UsuarioEscolaID = $dados->UsuarioEscolaID;
+                            $PontoRecebido->FaixaEventoID = $dados->FaixaEventoID;
+                            $PontoRecebido->PontoRecebidoQuantidade = $dados->FaixaEventoPontoQuantidade;
+                            $PontoRecebido->PontoRecebidoStatus = 1;
+                            $PontoRecebido->save();
+                            $dados = null;
+                        }
+                    }
+                }
+                else{
+                    return redirect()->back()
+                        ->with('erro', $MsgErro);
+                }
+            }
+        }
+        if($count > 0){
+            return redirect()->back()
+                ->with('status', $MsgSucesso);
+        }
+        else{
+            return redirect()->back()
+                ->with('erro', $MsgErro);
+        }
     }
 }
