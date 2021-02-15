@@ -167,7 +167,7 @@ class EventoEscolaController extends Controller
         $FaixasEventoEscolas =DB::table('EventoEscola')
             ->join('Escola','EventoEscola.EscolaID', '=', 'Escola.EscolaID')
             ->join('Evento','EventoEscola.EventoID', '=', 'Evento.EventoID')
-            ->join('FaixaEvento','EventoEscola.EventoEscolaID', '=', 'FaixaEvento.EventoEscolaID')
+            ->leftJoin('FaixaEvento','EventoEscola.EventoEscolaID', '=', 'FaixaEvento.EventoEscolaID')
             ->where('EventoEscola.EventoEscolaID', $id)
             ->orderby('Escola.Escola', 'ASC')
             ->orderby('Evento.Evento', 'ASC')
