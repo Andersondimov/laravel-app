@@ -19,7 +19,7 @@
                     <th>DT Ini</th>
                     <th>DT Fim</th>
                     <th>Pontuação</th>
-                    <th>Administrar</th>
+{{--                    <th>Administrar</th>--}}
 
                 </tr>
                 </thead>
@@ -34,14 +34,14 @@
                                 <td> @if(isset($FaixasEventoEscola->FaixaEventoDTIni) && $FaixasEventoEscola->FaixaEventoDTIni != '') {{ \Carbon\Carbon::parse($FaixasEventoEscola->FaixaEventoDTIni)->format('d/m/Y') }} @endif</td>
                                 <td> @if(isset($FaixasEventoEscola->FaixaEventoDTFim) && $FaixasEventoEscola->FaixaEventoDTFim != '') {{ \Carbon\Carbon::parse($FaixasEventoEscola->FaixaEventoDTFim)->format('d/m/Y') }} @endif</td>
                                 <td>{{ $FaixasEventoEscola->FaixaEventoPontoQuantidade }}</td>
-                                <td>
-                                    <a href="{{ url('eventoescola/eventofaixa/faixaslist/'.$FaixasEventoEscola->FaixaEventoID) }}">Editar Faixa</a>
-                                </td>
+{{--                                <td>--}}
+{{--                                    <a href="{{ url('eventoescola/eventofaixa/faixaslist/'.$FaixasEventoEscola->FaixaEventoID) }}">Editar Faixa</a>--}}
+{{--                                </td>--}}
                             </tr>
                         @endforeach
                     @else
                     <tr>
-                        <td colspan="8">Nenhuma Faixa de Evento Cadastrada</td>
+                        <td colspan="7">Nenhuma Faixa de Evento Cadastrada</td>
                     </tr>
                     @endif
                 </tbody>
