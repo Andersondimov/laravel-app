@@ -31,8 +31,8 @@
                                 <td>{{ $FaixasEventoEscola->Evento }}</td>
                                 <td>{{ $FaixasEventoEscola->FaixaEventoNumIni }}</td>
                                 <td>{{ $FaixasEventoEscola->FaixaEventoNumFim }}</td>
-                                <td>{{ $FaixasEventoEscola->FaixaEventoDTIni }}</td>
-                                <td>{{ $FaixasEventoEscola->FaixaEventoDTFim }}</td>
+                                <td> @if(isset($FaixasEventoEscola->FaixaEventoDTIni) && $FaixasEventoEscola->FaixaEventoDTIni != '') {{ \Carbon\Carbon::parse($FaixasEventoEscola->FaixaEventoDTIni)->format('d/m/Y') }} @endif</td>
+                                <td> @if(isset($FaixasEventoEscola->FaixaEventoDTFim) && $FaixasEventoEscola->FaixaEventoDTFim != '') {{ \Carbon\Carbon::parse($FaixasEventoEscola->FaixaEventoDTFim)->format('d/m/Y') }} @endif</td>
                                 <td>{{ $FaixasEventoEscola->FaixaEventoPontoQuantidade }}</td>
                                 <td>
                                     <a href="{{ url('eventoescola/eventofaixa/faixaslist/'.$FaixasEventoEscola->FaixaEventoID) }}">Editar Faixa</a>
@@ -47,9 +47,9 @@
                 </tbody>
             </table>
             <div class="form-group">
-                <form role="form" method="get" action="{{action('EventoEscolaController@faixanew')}}">
-                    <button type="submit" class="btn btn-primary">NOVO</button>
-                </form>
+                <a href="{{ url('eventoescola/eventofaixa/faixanew/'.$FaixasEventoEscola->EventoEscolaID) }}">
+                    <button class="btn btn-primary">NOVO</button>
+                </a>
             </div>
         </div>
     </body>

@@ -88,7 +88,8 @@ Route::post('informativoacesso/update/{id}', 'InformativoAcessoController@update
 /*
 * EventoEscola
  */
-
+Route::post('eventoescola/eventofaixa/faixagravar/{id}', 'EventoEscolaController@faixagravar');
+Route::get('eventoescola/eventofaixa/faixanew/{id}', 'EventoEscolaController@faixanew');
 Route::get('eventoescola', 'EventoEscolaController@index');
 Route::post('eventoescola/inserir', 'EventoEscolaController@store');
 Route::get('eventoescola/list', 'EventoEscolaController@list');
@@ -96,7 +97,6 @@ Route::get('eventoescola/editar/{id}', 'EventoEscolaController@edit');
 Route::post('eventoescola/update/{id}', 'EventoEscolaController@update');
 Route::get('eventoescola/eventofaixa/{id}', 'EventoEscolaController@eventofaixa');
 Route::get('eventoescola/eventofaixa/faixaslist/{id}', 'EventoEscolaController@eventofaixalist');
-Route::get('eventoescola/eventofaixa/faixa', 'EventoEscolaController@faixanew');
 
 
 

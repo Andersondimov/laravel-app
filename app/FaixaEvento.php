@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
+
 
 class FaixaEvento extends Model
 {
@@ -23,6 +25,18 @@ class FaixaEvento extends Model
         'EventoEscolaID'
     
     ];
+    protected $casts = [
+        'FaixaEventoDTIni' => 'date',
+        'FaixaEventoDTFim' => 'date'
+    ];
+    public function setFaixaEventoDTIniAttribute($value)
+    {
+        $this->attributes['FaixaEventoDTIni'] = Carbon::createFromFormat('d/m/Y', $value);
+    }
+    public function setFaixaEventoDTFimAttribute($value)
+    {
+        $this->attributes['FaixaEventoDTFim'] = Carbon::createFromFormat('d/m/Y', $value);
+    }
 
     protected $guarded = 
     [

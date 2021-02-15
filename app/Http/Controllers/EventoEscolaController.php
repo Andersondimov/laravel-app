@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 
 use App\EventoEscola;
+use App\FaixaEvento;
 use DB;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Http\Requests\EventoEscola\EventoEscolaCreate;
 use App\Http\Requests\EventoEscola\EventoEscolaAlter;
+use App\Http\Requests\EventoEscola\EventoEscolaFaixaCreate;
 
 
 class EventoEscolaController extends Controller
@@ -176,6 +179,7 @@ class EventoEscolaController extends Controller
                 'FaixaEvento.FaixaEventoNumFim',
                 'FaixaEvento.FaixaEventoDTIni',
                 'FaixaEvento.FaixaEventoDTFim',
+                'EventoEscola.EventoEscolaID',
                 'FaixaEvento.FaixaEventoPontoQuantidade',
                 'Escola.Escola',
                 'Evento.Evento'
@@ -184,5 +188,53 @@ class EventoEscolaController extends Controller
             ->get();
 
         return view('eventoescola/faixashow', compact('FaixasEventoEscolas'));
+    }
+
+    public function faixanew($id)
+    {
+        $Dados =DB::table('EventoEscola')
+            ->join('Escola','EventoEscola.EscolaID', '=', 'Escola.EscolaID')
+            ->join('Rede','Rede.RedeID', '=', 'Escola.RedeID')
+            ->join('Evento','EventoEscola.EventoID', '=', 'Evento.EventoID')
+            ->where('EventoEscola.EventoEscolaID', $id)
+            ->orderby('Escola.Escola', 'ASC')
+            ->orderby('Evento.Evento', 'ASC')
+            ->select(
+                'Escola.Escola',
+                'Rede.Rede',
+                'EventoEscola.EventoEscolaID',
+                'Evento.Evento'
+            )
+            ->get();
+
+        return view('eventoescola/faixanew', compact('Dados'));
+
+    }
+
+    public function faixagravar(EventoEscolaFaixaCreate $request, $id)
+    {
+        $validated = $request->validated();
+
+        $eventoescolafaixa = new FaixaEvento;
+        $eventoescolafaixa->EventoEscolaID = $request->EventoEscolaID;
+        if(isset($request->FaixaEventoDTIni) && $request->FaixaEventoDTIni != '' && $request->FaixaEventoDTIni) {
+            $eventoescolafaixa->FaixaEventoDTIni = Carbon::createFromFormat('Y-m-d', $request->FaixaEventoDTIni)->format('d/m/Y');
+        }
+        if(isset($request->FaixaEventoDTFim) && $request->FaixaEventoDTFim != '' && $request->FaixaEventoDTFim) {
+            $eventoescolafaixa->FaixaEventoDTFim = Carbon::createFromFormat('Y-m-d', $request->FaixaEventoDTFim)->format('d/m/Y');
+        }
+        if(isset($request->FaixaEventoNumIni) && $request->FaixaEventoNumIni != '' && $request->FaixaEventoNumIni) {
+            $eventoescolafaixa->FaixaEventoNumIni = $request->FaixaEventoNumIni;
+        }
+        if(isset($request->FaixaEventoNumFim) && $request->FaixaEventoNumFim != '' && $request->FaixaEventoNumFim) {
+            $eventoescolafaixa->FaixaEventoNumFim = $request->FaixaEventoNumFim;
+        }
+        $eventoescolafaixa->FaixaEventoPontoQuantidade = $request->FaixaEventoPontoQuantidade;
+        $eventoescolafaixa->EventoEscolaID = $id;
+        $eventoescolafaixa->save();
+
+        return redirect()->back()
+            ->with('status', 'Faixa Criada com sucesso!');
+
     }
 }
