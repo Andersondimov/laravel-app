@@ -46,7 +46,7 @@ class EscolaController extends Controller
             $escola->EscolaCelular = str_replace(["(",")"," ","-"],'',$request->EscolaCelular);
         }
         if(isset($request->EscolaCelularPix) && $request->EscolaCelularPix != '' && $request->EscolaCelularPix) {
-            $escola->EscolaCelularPix = str_replace(["(",")"," ","-"],'',$request->EscolaCelularPix);
+            $escola->EscolaCelularPix = $request->EscolaCelularPix;
         }
         if(isset($request->EscolaCNPJ) && $request->EscolaCNPJ != '' && $request->EscolaCNPJ) {
             $escola->EscolaCNPJ = str_replace([".","/","-"],'',$request->EscolaCNPJ);
@@ -128,6 +128,15 @@ class EscolaController extends Controller
             )
             ->get();
 
+        $escola['Moeda'] = DB::table('Escola')
+            ->join('Rede','Rede.RedeID', '=', 'Escola.RedeID')
+            ->select(
+                'Escola.EscolaNomeMoeda',
+                'Rede.RedeNomeMoeda'
+            )
+            ->where('Escola.EscolaID',$EscolaID)
+            ->get();
+
         $escola['EscolaEventos'] = DB::table('EventoEscola')
             ->select(
                 'EventoEscola.EventoID'
@@ -177,7 +186,7 @@ class EscolaController extends Controller
             $escola->EscolaCelular = str_replace(["(",")"," ","-"],'',$request->EscolaCelular);
         }
         if(isset($request->EscolaCelularPix) && $request->EscolaCelularPix != '' && $request->EscolaCelularPix) {
-            $escola->EscolaCelularPix = str_replace(["(",")"," ","-"],'',$request->EscolaCelularPix);
+            $escola->EscolaCelularPix = $request->EscolaCelularPix;
         }
         if(isset($request->EscolaCNPJ) && $request->EscolaCNPJ != '' && $request->EscolaCNPJ) {
             $escola->EscolaCNPJ = str_replace([".","/","-"],'',$request->EscolaCNPJ);
@@ -255,8 +264,6 @@ class EscolaController extends Controller
                     ->withInput();
         }
 
-        $escola->Escola = $request->Escola;
-
         if(isset($request->EscolaTelefone) && $request->EscolaTelefone != '' && $request->EscolaTelefone) {
             $escola->EscolaTelefone = str_replace(["(",")"," ","-"],'',$request->EscolaTelefone);
         }
@@ -264,14 +271,12 @@ class EscolaController extends Controller
             $escola->EscolaCelular = str_replace(["(",")"," ","-"],'',$request->EscolaCelular);
         }
         if(isset($request->EscolaCelularPix) && $request->EscolaCelularPix != '' && $request->EscolaCelularPix) {
-            $escola->EscolaCelularPix = str_replace(["(",")"," ","-"],'',$request->EscolaCelularPix);
+            $escola->EscolaCelularPix = $request->EscolaCelularPix;
         }
         if(isset($request->EscolaCNPJ) && $request->EscolaCNPJ != '' && $request->EscolaCNPJ) {
             $escola->EscolaCNPJ = str_replace([".","/","-"],'',$request->EscolaCNPJ);
         }
-        if(isset($request->EscolaEmail) && $request->EscolaEmail != '' && $request->EscolaEmail) {
-            $escola->EscolaEmail = $request->EscolaEmail;
-        }
+
         $escola->save();
 
         EventoEscola::where('EscolaID', $id)->update(['EventoStatus' => 2]);

@@ -37,6 +37,10 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="exampleInputEmail1">Moeda da Rede</label>
+                <input type="text" class="form-control" name="RedeNomeMoeda" placeholder="Name" >
+            </div>
+            <div class="form-group">
                 <label for="Status">Status</label>
                 <select class="form-control" name="RedeStatus">
                     <option value="1">Ativo</option>

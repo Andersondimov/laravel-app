@@ -25,6 +25,7 @@ class PerfilTelaController extends Controller
                     'Tela.TelaID',   
                     'Tela.Tela'
                 )
+                ->where("Tela.TelaStatus",1)
                 ->get();
         
         return view('perfiltela/perfiltela', compact('Dados'));
@@ -114,7 +115,8 @@ class PerfilTelaController extends Controller
                     'Tela.TelaID',
                     'Tela.Tela'
                 )
-                ->get();
+            ->where("Tela.TelaStatus",1)
+            ->get();
         return view('perfiltela/editar', compact('PerfilTelas'));
     }
 

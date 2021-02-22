@@ -36,22 +36,20 @@
                             @endforeach
                         </select>
                     </div>
-                </fieldset>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nome da Escola</label>
                     <input type="text" class="form-control" name="Escola" @if(isset($escola))value="{{ old('', $escola->Escola) }}"@endif placeholder="Name" />
                 </div>
-                <fieldset disabled>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Cod. Escola</label>
                         <input type="text" class="form-control" @if(isset($escola))value="{{ old('', $escola->EscolaCod) }}"@endif />
                     </div>
-                </fieldset>
                 <div class="form-group">
                     <label for="validationCustom01">Email</label>
                     <input type="text" class="form-control" name="EscolaEmail" @if(isset($escola))value="{{ old('', $escola->EscolaEmail) }}"@endif placeholder="Email" id="validationCustom01" required>
                     <div class="valid-feedback">Tudo certo!</div>
                 </div>
+                </fieldset>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Telefone</label>
                     <input type="text" id="campoTelefone" class="form-control" name="EscolaTelefone"  @if(isset($escola))value="{{ old('', $escola->EscolaTelefone) }}"@endif />
@@ -61,8 +59,12 @@
                     <input type="text" class="form-control" name="EscolaCelular" id="campoCelular" @if(isset($escola))value="{{ old('', $escola->EscolaCelular) }}"@endif />
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Celular Pix</label>
+                    <label for="exampleInputEmail1">Chave Pix</label>
                     <input type="text" class="form-control" id="campoCelularPix" name="EscolaCelularPix"  @if(isset($escola))value="{{ old('', $escola->EscolaCelularPix) }}"@endif />
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nome Moeda Escola</label>
+                    <input type="text" class="form-control" id="EscolaNomeMoeda" name="EscolaNomeMoeda" @if(isset($escola))value="{{ old('', $escola->EscolaCelularPix) }}"@endif >
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Escola CNPJ</label>
@@ -70,7 +72,12 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nome Moeda Escola</label>
-                    <input type="text" class="form-control" name="EscolaNomeMoeda" id="EscolaNomeMoeda" @if(isset($escola))value="{{ old('', $escola->EscolaNomeMoeda) }}"@endif  />
+                    @foreach ( $escola->Moeda as $Moeda )
+                        <input type="text" class="form-control" name="EscolaNomeMoeda" id="EscolaNomeMoeda"
+                               @if(isset($Moeda->EscolaNomeMoeda) && $Moeda->EscolaNomeMoeda != '') value="{{ old('', $Moeda->EscolaNomeMoeda) }}"
+                               @else value="{{ old('', $Moeda->RedeNomeMoeda) }}" @endif
+                        />
+                    @endforeach
                 </div>
                 <fieldset disabled>
                     <div class="form-group">
@@ -153,7 +160,6 @@
         <script>
             $("#campoTelefone").mask("(99) 9999-9999");
             $("#campoCelular").mask("(99) 09999-9999");
-            $("#campoCelularPix").mask("(99) 09999-9999");
             $("#campoCNPJ").mask("99.999.999/9999-99");
 
         </script>

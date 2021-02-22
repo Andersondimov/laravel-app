@@ -89,7 +89,7 @@
                     <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Celular Pix</label>
+                    <label for="exampleInputEmail1">Chave Pix</label>
                     <input type="text" class="form-control" id="campoCelularPix" name="EscolaCelularPix" />
                 </div>
                 <div class="form-group">
@@ -145,7 +145,6 @@
         <script>
             $("#campoTelefone").mask("(99) 9999-9999");
             $("#campoCelular").mask("(99) 09999-9999");
-            $("#campoCelularPix").mask("(99) 09999-9999");
             $("#campoCNPJ").mask("99.999.999/9999-99");
 
         </script>

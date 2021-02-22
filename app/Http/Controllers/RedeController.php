@@ -28,6 +28,10 @@ class RedeController extends Controller
         $rede->Rede = request('Rede');
         $rede->RedeCod = request('RedeCod');
         $rede->RedeStatus = request('RedeStatus');
+
+        if(isset($request->RedeNomeMoeda) && $request->RedeNomeMoeda != '')
+            $rede->RedeNomeMoeda = $request->RedeNomeMoeda;
+
         $rede->save();
 
         return redirect()->back()
@@ -61,6 +65,9 @@ class RedeController extends Controller
         $rede->Rede = request('Rede');
         $rede->RedeCod = request('RedeCod');
         $rede->RedeStatus = request('RedeStatus');
+
+        if(isset($request->RedeNomeMoeda) && $request->RedeNomeMoeda != '')
+            $rede->RedeNomeMoeda = $request->RedeNomeMoeda;
 
         if($rede->RedeStatus == 1)
             $rede->RedeDTAtivacao = date('Y-m-d H:i:s');

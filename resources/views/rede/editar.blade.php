@@ -34,6 +34,10 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="exampleInputEmail1">Moeda da Rede</label>
+                <input type="text" class="form-control" name="RedeNomeMoeda" placeholder="Name" @if(isset($rede))value="{{ old('', $rede->RedeNomeMoeda) }}"@endif>
+            </div>
+            <div class="form-group">
                 <label for="Status">Status</label>
                 <select class="form-control" name="RedeStatus">
                     <option value="1" @if(isset($rede) && $rede->RedeStatus == 1)selected @endif>Ativo</option>
