@@ -13,7 +13,6 @@
                 <thead>
                 <tr>
                     <th>Escola</th>
-                    <th>Status</th>
                     <th>Atualizar</th>
                     <th>Lista Eventos</th>
                 </tr>
@@ -24,17 +23,10 @@
                             <tr>
                                 <td>{{ $eventoescola->Escola }}</td>
                                 <td>
-                                    @if($eventoescola->EventoStatus == 1)
-                                        Auto
-                                    @else(@eventoescola->EventoStatus ==2)
-                                        Manual
-                                    @endif
-                                </td>
-                                <td>
                                     <a href="{{ url('eventoescola/editar/'.$eventoescola->EscolaID) }}">Alterar</a>
                                 </td>
                                 <td>
-                                    <a href="{{ url('eventoescola/eventofaixa/'.$eventoescola->EscolaID) }}">Eventos Escola</a>
+                                    <a href="{{ url('eventoescola/eventofaixa/'.$eventoescola->EscolaID) }}">Faixas eventos escola</a>
                                 </td>
                             </tr>
                         @endforeach

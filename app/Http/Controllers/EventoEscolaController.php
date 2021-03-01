@@ -137,12 +137,6 @@ class EventoEscolaController extends Controller
             ->with('status', 'Eventos relacionados a escola com sucesso');
     }
 
-    public function destroy($id)
-    {
-        $eventoescola = EventoEscola::findOrFail($id);
-        $eventoescola->delete();
-        return redirect()->route('eventoescola.index')->with('alert-success', 'Evento Escola deletada com sucesso!');
-    }
 
     public function eventofaixa($id)
     {
@@ -163,12 +157,12 @@ class EventoEscolaController extends Controller
         return view('eventoescola/eventofaixashow', compact('EventoEscolas'));
     }
 
-    public function eventofaixalist($id)
+    public function eventofaixalist($id,$action)
     {
-        $FaixasEventoEscolas =DB::table('EventoEscola')
-            ->join('Escola','EventoEscola.EscolaID', '=', 'Escola.EscolaID')
-            ->join('Evento','EventoEscola.EventoID', '=', 'Evento.EventoID')
-            ->leftJoin('FaixaEvento','EventoEscola.EventoEscolaID', '=', 'FaixaEvento.EventoEscolaID')
+        $FaixasEventoEscolas = DB::table('EventoEscola')
+            ->join('Escola', 'EventoEscola.EscolaID', '=', 'Escola.EscolaID')
+            ->join('Evento', 'EventoEscola.EventoID', '=', 'Evento.EventoID')
+            ->leftJoin('FaixaEvento', 'EventoEscola.EventoEscolaID', '=', 'FaixaEvento.EventoEscolaID')
             ->where('EventoEscola.EventoEscolaID', $id)
             ->orderby('Escola.Escola', 'ASC')
             ->orderby('Evento.Evento', 'ASC')
@@ -188,7 +182,28 @@ class EventoEscolaController extends Controller
             )
             ->get();
 
-        return view('eventoescola/faixashow', compact('FaixasEventoEscolas'));
+        return view('eventoescola/faixashow', compact('FaixasEventoEscolas'),['action'=>$action]);
+    }
+
+    public function RepasseForm($id,$action)
+    {
+        $UsuarioEscolas = DB::table('EventoEscola')
+            ->join('Escola', 'EventoEscola.EscolaID', '=', 'Escola.EscolaID')
+            ->join('Evento', 'EventoEscola.EventoID', '=', 'Evento.EventoID')
+            ->join('UsuarioEscola', 'UsuarioEscola.EscolaID', '=', 'Escola.EscolaID')
+            ->join('Usuario', 'Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
+            ->join('Perfil', 'Usuario.PerfilID', '=', 'Perfil.PerfilID')
+            ->where('EventoEscola.EventoEscolaID', $id)
+            ->where('Perfil.PerfilCod', 'al')
+            ->select(
+                'UsuarioEscola.UsuarioEscolaID',
+                'Evento.Evento',
+                'Usuario.UsuarioNome'
+
+            )
+            ->get();
+
+        return view('eventoescola/faixashow', ['action'=>$action,'EventoEscolaID'=>$id],compact('UsuarioEscolas'));
     }
 
     public function faixanew($id)
@@ -334,5 +349,71 @@ class EventoEscolaController extends Controller
             return redirect()->back()
                 ->with('erro', $MsgErro);
         }
+    }
+
+    public function faixagravarmanual(Request $request, $id)
+    {
+        if (isset($request->Ponto) && $request->Ponto>0){
+            $FaixaEventoEscola = DB::table('EventoEscola')
+                ->join('Escola', 'EventoEscola.EscolaID', '=', 'Escola.EscolaID')
+                ->join('UsuarioEscola', 'UsuarioEscola.EscolaID', '=', 'Escola.EscolaID')
+                ->join('Usuario', 'UsuarioEscola.UsuarioID', '=', 'Usuario.UsuarioID')
+                ->join('Perfil', 'Perfil.PerfilID', '=', 'Usuario.PerfilID')
+                ->join('Evento', 'EventoEscola.EventoID', '=', 'Evento.EventoID')
+                ->Join('FaixaEvento', 'EventoEscola.EventoEscolaID', '=', 'FaixaEvento.EventoEscolaID')
+                ->where('EventoEscola.EventoEscolaID', $id)
+                ->where('UsuarioEscola.UsuarioEscolaID', $request->UsuarioEscolaID)
+                ->where('Perfil.PerfilCod', 'al')
+                ->where('FaixaEvento.FaixaEventoNumFim', '>=', $request->Ponto)
+                ->where('FaixaEvento.FaixaEventoNumIni', '<=', $request->Ponto)
+                ->orderby('FaixaEvento.FaixaEventoPontoQuantidade', 'ASC')
+                ->select(
+                    'UsuarioEscola.UsuarioEscolaID',
+                    'FaixaEvento.FaixaEventoID',
+                    'FaixaEvento.FaixaEventoPontoQuantidade'
+                )->limit(1)
+                ->get();
+        }else {
+            if (isset($request->DT) && $request->DT != '') {
+                $FaixaEventoEscola = DB::table('EventoEscola')
+                    ->join('Escola', 'EventoEscola.EscolaID', '=', 'Escola.EscolaID')
+                    ->join('UsuarioEscola', 'UsuarioEscola.EscolaID', '=', 'Escola.EscolaID')
+                    ->join('Usuario', 'UsuarioEscola.UsuarioID', '=', 'Usuario.UsuarioID')
+                    ->join('Perfil', 'Perfil.PerfilID', '=', 'Usuario.PerfilID')
+                    ->join('Evento', 'EventoEscola.EventoID', '=', 'Evento.EventoID')
+                    ->Join('FaixaEvento', 'EventoEscola.EventoEscolaID', '=', 'FaixaEvento.EventoEscolaID')
+                    ->where('EventoEscola.EventoEscolaID', $id)
+                    ->where('UsuarioEscola.UsuarioEscolaID', $request->UsuarioEscolaID)
+                    ->where('Perfil.PerfilCod', 'al')
+                    ->where('FaixaEvento.FaixaEventoDTFim', '>=', $request->DT)
+                    ->where('FaixaEvento.FaixaEventoDTIni', '<=', $request->DT)
+                    ->orderby('FaixaEvento.FaixaEventoPontoQuantidade', 'ASC')
+                    ->select(
+                        'UsuarioEscola.UsuarioEscolaID',
+                        'FaixaEvento.FaixaEventoID',
+                        'FaixaEvento.FaixaEventoPontoQuantidade'
+                    )->limit(1)
+                    ->get();
+            }
+        }
+        if(isset($FaixaEventoEscola) && count($FaixaEventoEscola)>0) {
+            foreach ($FaixaEventoEscola as $dados) {
+                if ($dados->UsuarioEscolaID > 0 && $dados->FaixaEventoID > 0
+                    && $dados->FaixaEventoPontoQuantidade > 0) {
+                    $PontoRecebido = new PontoRecebido;
+                    $PontoRecebido->UsuarioEscolaID = $dados->UsuarioEscolaID;
+                    $PontoRecebido->FaixaEventoID = $dados->FaixaEventoID;
+                    $PontoRecebido->PontoRecebidoQuantidade = $dados->FaixaEventoPontoQuantidade;
+                    $PontoRecebido->PontoRecebidoStatus = 1;
+                    $PontoRecebido->save();
+                }
+            }
+        }
+        else{
+            return redirect()->back()
+                ->with('erro', 'Nenhuma Faixa encontrada');
+        }
+        return redirect()->back()
+            ->with('status', 'Repasse realizado!');
     }
 }

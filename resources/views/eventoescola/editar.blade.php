@@ -46,13 +46,6 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="Status">Status</label>
-                    <select class="form-control" name="EventoStatus">
-                        <option value="1" @if(isset($EventoEscolas['IDS'][0]->EventoStatus) && $EventoEscolas['IDS'][0]->EventoStatus == 1)selected @endif>Auto</option>
-                        <option value="2" @if(isset($EventoEscolas['IDS'][0]->EventoStatus) && $EventoEscolas['IDS'][0]->EventoStatus == 2)selected @endif>Manual</option>
-                    </select>
-                </div>
-                <div class="form-group">
                     <button type="submit" class="btn btn-primary">OK</button>
                 </div>
             </div>

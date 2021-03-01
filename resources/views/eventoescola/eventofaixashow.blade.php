@@ -14,9 +14,9 @@
                 <tr>
                     <th>Escola</th>
                     <th>Evento</th>
-                    <th>Status</th>
                     <th>Administrar</th>
-
+                    <th>Importar Arquivo (Repasse de Ponto)</th>
+                    <th>Repasse de Ponto Manual</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -26,20 +26,19 @@
                                 <td>{{ $eventoescola->Escola }}</td>
                                 <td>{{ $eventoescola->Evento }}</td>
                                 <td>
-                                    @if($eventoescola->EventoStatus == 1)
-                                        Auto
-                                    @else(@eventoescola->EventoStatus ==2)
-                                        Manual
-                                    @endif
+                                    <a href="{{ url('eventoescola/eventofaixa/faixaslist/'.$eventoescola->EventoEscolaID).'/1' }}">Faixas</a>
                                 </td>
                                 <td>
-                                    <a href="{{ url('eventoescola/eventofaixa/faixaslist/'.$eventoescola->EventoEscolaID) }}">Faixas</a>
+                                    <a href="{{ url('eventoescola/eventofaixa/faixaslist/'.$eventoescola->EventoEscolaID).'/2' }}">importar</a>
+                                </td>
+                                <td>
+                                    <a href="{{ url('eventoescola/eventofaixa/RepasseForm/'.$eventoescola->EventoEscolaID).'/3' }}">Repassar</a>
                                 </td>
                             </tr>
                         @endforeach
                     @else
                     <tr>
-                        <td colspan="4">Nenhum Evento Escola Cadastrado</td>
+                        <td colspan="5">Nenhum Evento Escola Cadastrado</td>
                     </tr>
                     @endif
                 </tbody>

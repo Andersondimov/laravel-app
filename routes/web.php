@@ -14,12 +14,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 /*
- * PontoRecebido
- * /
-
-/*
- * FaixaEvento
- * /
+* EventoEscola
+ */
+Route::get('eventoescola/eventofaixa/faixaslist/{id}/{action}', 'EventoEscolaController@eventofaixalist');
+Route::post('eventoescola/eventofaixa/faixagravarimport/{id}', 'EventoEscolaController@faixagravarimport');
+Route::post('eventoescola/eventofaixa/faixagravarmanual/{id}', 'EventoEscolaController@faixagravarmanual');
+Route::post('eventoescola/eventofaixa/faixagravar/{id}', 'EventoEscolaController@faixagravar');
+Route::get('eventoescola/eventofaixa/faixanew/{id}', 'EventoEscolaController@faixanew');
+Route::get('eventoescola', 'EventoEscolaController@index');
+Route::post('eventoescola/inserir', 'EventoEscolaController@store');
+Route::get('eventoescola/list', 'EventoEscolaController@list');
+Route::get('eventoescola/editar/{id}', 'EventoEscolaController@edit');
+Route::post('eventoescola/update/{id}', 'EventoEscolaController@update');
+Route::get('eventoescola/eventofaixa/{id}', 'EventoEscolaController@eventofaixa');
+Route::get('eventoescola/eventofaixa/RepasseForm/{id}/{action}', 'EventoEscolaController@RepasseForm');
 
 /*
 * AlunoCompra
@@ -84,22 +92,6 @@ Route::get('informativoacesso', 'InformativoAcessoController@index');
 Route::get('informativoacesso/list', 'InformativoAcessoController@list');
 Route::get('informativoacesso/editar/{id}', 'InformativoAcessoController@edit');
 Route::post('informativoacesso/update/{id}', 'InformativoAcessoController@update')->name('informativoacesso.update');
-
-/*
-* EventoEscola
- */
-Route::post('eventoescola/eventofaixa/faixagravarimport/{id}', 'EventoEscolaController@faixagravarimport');
-Route::post('eventoescola/eventofaixa/faixagravar/{id}', 'EventoEscolaController@faixagravar');
-Route::get('eventoescola/eventofaixa/faixanew/{id}', 'EventoEscolaController@faixanew');
-Route::get('eventoescola', 'EventoEscolaController@index');
-Route::post('eventoescola/inserir', 'EventoEscolaController@store');
-Route::get('eventoescola/list', 'EventoEscolaController@list');
-Route::get('eventoescola/editar/{id}', 'EventoEscolaController@edit');
-Route::post('eventoescola/update/{id}', 'EventoEscolaController@update');
-Route::get('eventoescola/eventofaixa/{id}', 'EventoEscolaController@eventofaixa');
-Route::get('eventoescola/eventofaixa/faixaslist/{id}', 'EventoEscolaController@eventofaixalist');
-
-
 
 /*
 * Evento

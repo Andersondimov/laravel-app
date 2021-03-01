@@ -40,10 +40,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="Status">Status</label>
-                    <select class="form-control" name="EventoStatus">
-                        <option value="1">Auto</option>
-                    </select>
+                    <input type="hidden" class="form-check-input" name="EventoStatus" value="1">
                 </div>
                 <div class="form-group">
                     <div class="form-group">
