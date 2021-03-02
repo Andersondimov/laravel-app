@@ -27,7 +27,7 @@
                         <tr>
                             <td>{{ $escola->Escola }}</td>
                             <td>{{ $escola->EscolaCod }}</td>
-                            <td id="campoCNPJ">{{ $escola->EscolaCNPJ }}</td>
+                            <td class="campoCNPJ">{{ $escola->EscolaCNPJ }}</td>
                             <td>{{ $escola->Rede }}</td>
                             <td>
                                 @if($escola->EscolaStatus == 1)
@@ -67,7 +67,7 @@
             <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
 
             <script>
-                $("#campoCNPJ").mask("99.999.999/9999-99");
+                $(".campoCNPJ").mask("99.999.999/9999-99");
 
             </script>
     </body>

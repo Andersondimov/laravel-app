@@ -123,6 +123,15 @@ Route::get('perfil/editar/{id}', 'PerfilController@edit');
 Route::post('perfil/update/{id}', 'PerfilController@update');
 
 /*
+ * Traducao
+ */
+Route::post('traducao/inserir', 'TraducaoController@store');
+Route::get('traducao', 'TraducaoController@index');
+Route::get('traducao/list', 'TraducaoController@list');
+Route::get('traducao/editar/{id}', 'TraducaoController@edit');
+Route::post('traducao/update/{id}', 'TraducaoController@update');
+
+/*
  * Escola
  */
 Route::get('escola', 'EscolaController@index');
