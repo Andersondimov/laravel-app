@@ -27,7 +27,7 @@
                         <tr>
                             <td>{{ $escola->Escola }}</td>
                             <td>{{ $escola->EscolaCod }}</td>
-                            <td>{{ $escola->EscolaCNPJ }}</td>
+                            <td id="campoCNPJ">{{ $escola->EscolaCNPJ }}</td>
                             <td>{{ $escola->Rede }}</td>
                             <td>
                                 @if($escola->EscolaStatus == 1)
@@ -61,5 +61,14 @@
                 </form>
             </div>
         </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
+
+            <script>
+                $("#campoCNPJ").mask("99.999.999/9999-99");
+
+            </script>
     </body>
 </html>

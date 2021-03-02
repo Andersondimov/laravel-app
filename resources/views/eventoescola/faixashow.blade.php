@@ -129,11 +129,11 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Parânmetro - Número</label>
+                            <label for="exampleInputEmail1">Parâmetro - Número</label>
                             <input type="number" class="form-control" min="1" max="9999999" name="Ponto" id="validationCustom01">
                         </div>
                         <div class="form-group">
-                            <label for="DataFIm">Parânmetro - Data</label>
+                            <label for="DataFIm">Parâmetro - Data</label>
                             <div class="input-group " id="calendarioFim">
                                 <input type="date" class="form-control" name="DT" placeholder="dd/mm/aaaa" id="validationCustom01">
                                 <div class="input-group-addon">

@@ -52,7 +52,7 @@
             </div>
             <div class="form-group">
                 <label for="validationCustom01">Celular</label>
-                <input type="text" class="form-control" name="UsuarioCelular" id="validationCustom01" required maxlength="15" @if(isset($usuario))value="{{ old('', $usuario->UsuarioCelular) }}"@endif />
+                <input type="text" class="form-control" name="UsuarioCelular" id="campoCelular" maxlength="15" required @if(isset($usuario))value="{{ old('', $usuario->UsuarioCelular) }}"@endif />
             </div>
             <div class="form-group">
                 <label for="validationCustom01">Matrícula Usuário</label>

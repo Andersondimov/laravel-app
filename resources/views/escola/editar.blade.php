@@ -46,7 +46,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInpvalidationCustom01utEmail1">Escola CNPJ</label>
-                    <input type="text" class="form-control" name="EscolaCNPJ" id="validationCustom01" required @if(isset($escola))value="{{ old('', $escola->EscolaCNPJ) }}"@endif />
+                    <input type="text" class="form-control" name="EscolaCNPJ" id="campoCNPJ" id="validationCustom01" required @if(isset($escola))value="{{ old('', $escola->EscolaCNPJ) }}"@endif />
                     <div class="valid-feedback">Tudo certo!</div>
                 </div>
                 <div class="form-group">

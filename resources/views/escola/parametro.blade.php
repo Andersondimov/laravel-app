@@ -63,10 +63,6 @@
                     <input type="text" class="form-control" id="campoCelularPix" name="EscolaCelularPix"  @if(isset($escola))value="{{ old('', $escola->EscolaCelularPix) }}"@endif />
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Nome Moeda Escola</label>
-                    <input type="text" class="form-control" id="EscolaNomeMoeda" name="EscolaNomeMoeda" @if(isset($escola))value="{{ old('', $escola->EscolaCelularPix) }}"@endif >
-                </div>
-                <div class="form-group">
                     <label for="exampleInputEmail1">Escola CNPJ</label>
                     <input type="text" class="form-control" name="EscolaCNPJ" id="campoCNPJ" @if(isset($escola))value="{{ old('', $escola->EscolaCNPJ) }}"@endif />
                 </div>
