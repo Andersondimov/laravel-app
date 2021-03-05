@@ -151,3 +151,7 @@ Route::get('rede/list', 'RedeController@list');
 Route::get('rede/editar/{id}', 'RedeController@edit');
 Route::post('rede/update/{id}', 'RedeController@update');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
