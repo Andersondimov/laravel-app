@@ -1,4 +1,11 @@
-@extends('layout.app')
+@extends('layout.layout')
+
+@section('title', 'Home')
+
+@section('breadcrumb')
+    @parent
+@endsection
+
 @section('content')
         @if (session('status'))
             <div class="alert-success">

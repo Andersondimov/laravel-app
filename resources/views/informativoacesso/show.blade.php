@@ -1,4 +1,11 @@
-@extends('layout.app')
+@extends('layout.layout')
+
+@section('title', 'Home')
+
+@section('breadcrumb')
+    @parent
+@endsection
+
 @section('content')
         <div class="bd-example">
             <h1 class="bd-title" id="content">Informativo de Acesso</h1>
