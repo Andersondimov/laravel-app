@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>INSPINIA | Dashboard</title>
+    <title>Dashboard  - @yield('title')</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -270,29 +270,34 @@
 			</div>
 			
 			<!-- breadcrumb -->
-            <div class="row wrapper border-bottom white-bg page-heading">
-                <div class="col-lg-10">
-                    <h2>Buttons</h2>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="index.html">Home</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            <a>UI Elements</a>
-                        </li>
-                        <li class="breadcrumb-item active">
-                            <strong>Buttons</strong>
-                        </li>
-                    </ol>
-                </div>
-                <div class="col-lg-2">
+            @section('sidebar')
+                <div class="row wrapper border-bottom white-bg page-heading">
+                    <div class="col-lg-10">
+                        <h2>Buttons</h2>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="index.html">Home</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a>UI Elements</a>
+                            </li>
+                            <li class="breadcrumb-item active">
+                                <strong>Buttons</strong>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="col-lg-2">
 
+                    </div>
                 </div>
-            </div>
+            @show
+            
 			<!-- fim breadcrumb -->
         <div class="row wrapper wrapper-content animated fadeInRight">
           <!-- content -->
-		  
+            @section('content')
+                <h1> Teste 1234</h1>
+            @show
 		  
 		  <!-- fcontent -->
         </div>
