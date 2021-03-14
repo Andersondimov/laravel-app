@@ -1,9 +1,24 @@
 @extends('layout.layout')
 
-@section('title', 'Home')
+@section('title', 'Cadastrar Tradução')
 
 @section('breadcrumb')
-    @parent
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Cadastrar Tradução</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('traducao.list') }}">Lista Tradução </a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Cadastrar Tradução</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
 @endsection
 
 @section('content')
@@ -29,6 +44,4 @@
                 </div>
             </form>
         </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
 @endsection

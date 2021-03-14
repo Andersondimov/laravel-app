@@ -1,17 +1,29 @@
 @extends('layout.layout')
 
-@section('title', 'Home')
+@section('title', 'Editar Rede')
 
 @section('breadcrumb')
-    @parent
-@endsection
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Editar Rede</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('rede.list') }}">Lista Rede </a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Editar Rede</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
 
+    </div>
+</div>
+@endsection
 @section('content')
 <form role="form" method="post" action="{{url('rede/update/'.$rede->RedeID)}}">
     @csrf
     <div class="bd-example">
-        <h1 class="bd-title" id="content">Rede</h1>
-        <form>
             <div class="form-group">
                 <label for="validationCustom01">Nome da Rede</label>
                 <input type="text" class="form-control" name="Rede" id="validationCustom01" required @if(isset($rede))value="{{ old('', $rede->Rede) }}"@endif placeholder="Name" />

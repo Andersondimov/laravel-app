@@ -1,16 +1,35 @@
 @extends('layout.layout')
-
-@section('title', 'Home')
-
-@section('breadcrumb')
-    @parent
+@section('style')
+    <link href="{{ url('css/plugins/iCheck/custom.css') }}" rel="stylesheet">
 @endsection
 
+@section('title', 'Escola - Cadastrar Parâmetro')
+
+@section('breadcrumb')
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Cadastro Parâmetro</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('escola.list') }}">Lista Escola</a>
+            </li>
+            <li class="breadcrumb-item">
+               <a href="{{ route('escola.editar', [$escola->EscolaID]) }}">Editar Escola</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Cadastrar Parâmetro</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+@endsection
 @section('content')
         <form role="form" method="post" enctype="multipart/form-data" action="{{url('escola/updateparams/'.$escola->EscolaID)}}">
             @csrf
             <div class="bd-example">
-                <h1 class="bd-title" id="content">Cadastro de Parâmetros – Escola</h1>
                 <fieldset disabled>
                     <div class="form-group">
                         <label for="RedeID">Rede</label>
@@ -81,14 +100,18 @@
                     <label for="TelaID"><b>Eventos Relacionados</b></label>
                     <div class="form-check">
                         @foreach ( $escola['Eventos'] as $Evento )
-                            <input type="checkbox" class="form-check-input" name="EventoID[{{$Evento->EventoID}}]" value="{{$Evento->EventoID}}"
-                                   @if(isset($escola['EscolaEventos']) && count($escola['EscolaEventos']) > 0)
-                                        @foreach ( $escola['EscolaEventos'] as $escolaEvento )
-                                            @if($Evento->EventoID == $escolaEvento->EventoID) checked @endif
-                                        @endforeach
-                                    @endif
-                            >
-                            <label class="form-check-label" for="exampleCheck1">{{$Evento->Evento}}</label><br>
+                            <div class="i-checks">
+                                <label>
+                                    <input type="checkbox" class="form-check-input" name="EventoID[{{$Evento->EventoID}}]" value="{{$Evento->EventoID}}"
+                                    @if(isset($escola['EscolaEventos']) && count($escola['EscolaEventos']) > 0)
+                                         @foreach ( $escola['EscolaEventos'] as $escolaEvento )
+                                             @if($Evento->EventoID == $escolaEvento->EventoID) checked @endif
+                                         @endforeach
+                                     @endif
+                             > <i></i>
+                                {{$Evento->Evento}}
+                                </label>
+                            </div>
                         @endforeach
                     </div>
                 </div>
@@ -132,15 +155,21 @@
                 </fieldset>
             </div>
         </form>
+@endsection
 
+@section('script')
+<script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
-
-        <script>
-            $("#campoTelefone").mask("(99) 9999-9999");
-            $("#campoCelular").mask("(99) 09999-9999");
-            $("#campoCNPJ").mask("99.999.999/9999-99");
-
-        </script>
+<script src="{{ url('js/plugins/iCheck/icheck.min.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        $("#campoTelefone").mask("(99) 9999-9999");
+        $("#campoCelular").mask("(99) 09999-9999");
+        $("#campoCNPJ").mask("99.999.999/9999-99");
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green'
+        });
+    });
+</script>
+    
 @endsection

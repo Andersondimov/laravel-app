@@ -1,13 +1,27 @@
 @extends('layout.layout')
 
-@section('title', 'Home')
+@section('title', 'Cadastrar Informativo Acesso ')
 
 @section('breadcrumb')
-    @parent
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Cadastrar Informativo Acesso </h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('informativoacesso.list') }}">Lista Informativo Acesso </a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Cadastrar Informativo Acesso </strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
 @endsection
 
 @section('content')
-    <h1 class="bd-title" id="content">Informativo de Acesso</h1>
     <form role="form" method="post" action="{{action('InformativoAcessoController@store')}}">
         @csrf
         @include('informativoacesso.input')

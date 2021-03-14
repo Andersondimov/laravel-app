@@ -13,6 +13,8 @@
 
     <link href="{{ url('css/animate.css') }}" rel="stylesheet">
     <link href="{{ url('css/style.css') }}" rel="stylesheet">
+    @yield('style')
+
 
 </head>
 
@@ -295,10 +297,32 @@
 			<!-- fim breadcrumb -->
         <div class="row wrapper wrapper-content animated fadeInRight">
           <!-- content -->
-            @section('content')
-                <h1> Teste 1234</h1>
-            @show
-		  
+            <div class="col-lg-12">
+                <div class="ibox">
+                    <div class="ibox-content p-md">
+                        @if (session('status'))
+                            <div class="alert alert-success alert-dismissable">
+                                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                        @if ($errors->any())
+                        <div class="alert alert-danger alert-dismissable">
+                            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+
+                        @section('content')
+                            <h1> Teste 1234</h1>
+                        @show
+                    </div>
+                </div>
+            </div>
 		  <!-- fcontent -->
         </div>
         <div class="footer">
@@ -324,8 +348,7 @@
     <!-- Custom and plugin javascript -->
     <script src="{{ url('js/inspinia.js') }}"></script>
     <script src="{{ url('js/plugins/pace/pace.min.js') }}"></script>
-
-
+    @yield('script')
 </body>
 
 </html>

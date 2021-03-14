@@ -1,17 +1,29 @@
 @extends('layout.layout')
 
-@section('title', 'Home')
+@section('title', 'Cadastrar Tela')
 
 @section('breadcrumb')
-    @parent
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Cadastrar Tela</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('tela.list') }}">Lista Tela </a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Cadastrar Tela</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
 @endsection
 
 @section('content')
     <form role="form" method="post" action="{{action('TelaController@store')}}">
         @csrf
-    <div class="bd-example">
-        <h1 class="bd-title" id="content">Tela</h1>
-        <form>
             <div class="form-group">
                 <label for="exampleInputEmail1">Nome da Tela</label>
                 <input type="text" class="form-control" name="Tela" placeholder="Name" id="validationCustom01" required >
@@ -44,5 +56,4 @@
                 </div>
             </fieldset>
         </form>
-    </div>
 @endsection

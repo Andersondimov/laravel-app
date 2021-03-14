@@ -1,17 +1,29 @@
 @extends('layout.layout')
 
-@section('title', 'Home')
+@section('title', 'Cadastrar Usuário')
 
 @section('breadcrumb')
-    @parent
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Cadastrar Usuário</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('usuario.list') }}">Lista Usuário</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Cadastrar Usuário</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
 @endsection
 
 @section('content')
     <form role="form" method="post" action="{{action('UsuarioController@store')}}">
         @csrf
-    <div class="bd-example">
-        <h1 class="bd-title" id="content">Usuario</h1>
-        <form>
             <div class="form-group">
                 <label for="PerfilID">Perfil</label>
                 <select class="form-control" name="PerfilID">
@@ -81,7 +93,7 @@
                 </div>
             </fieldset>
         </form>
-    </div>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>

@@ -1,16 +1,27 @@
 @extends('layout.layout')
 
-@section('title', 'Home')
+@section('title', 'Lista Evento')
 
 @section('breadcrumb')
-    @parent
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Editar Evento</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">
+                <strong>Lista Evento</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
 @endsection
 
 @section('content')
     <form role="form" method="post" action="{{action('EventoController@store')}}">
         @csrf
         <div class="bd-example">
-            <h1 class="bd-title" id="content">Eventos</h1>
             <form>
                 <div class="form-group">
                     <label for="UsuarioID">Usuario</label>

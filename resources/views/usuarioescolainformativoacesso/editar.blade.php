@@ -2,15 +2,31 @@
 
 @section('title', 'Home')
 
+@section('title', 'Editar Usuario Escola Informativo Acesso')
+
 @section('breadcrumb')
-    @parent
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Editar Usuario Escola Informativo Acesso</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('usuarioescolainformativoacesso.list') }}">Usuario Escola Informativo Acesso</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Editar Usuario Escola Informativo Acesso</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
 @endsection
 
 @section('content')
         <div class="bd-example">
             <form role="form" method="post" action="{{url('usuarioescolainformativoacesso/update/'.$usuarioescolainformativoacesso->UsuarioEscolaInformativoAcessoID)}}">
                 @csrf
-                <h1 class="bd-title" id="content">Usuario Escola Informativo Acesso</h1>
                 <div class="form-group">
                     <label for="UsuarioEscolaID">Usuario Escola</label>
                     <select class="form-control" name="UsuarioEscolaID">

@@ -1,16 +1,30 @@
 @extends('layout.layout')
 
-@section('title', 'Home')
+@section('title', 'Editar Evento')
 
 @section('breadcrumb')
-    @parent
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Editar Evento</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('evento.list') }}">Lista Evento</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Editar Evento</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
 @endsection
 
 @section('content')
         <div class="bd-example">
             <form role="form" method="post" action="{{url('evento/update/'.$evento->EventoID)}}">
                 @csrf
-                <h1 class="bd-title" id="content">Evento</h1>
                 <div class="form-group">
                     <label for="UsuarioID">Usuario</label>
                     <select class="form-control" name="UsuarioID">

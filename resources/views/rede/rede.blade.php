@@ -1,17 +1,30 @@
 @extends('layout.layout')
 
-@section('title', 'Home')
+@section('title', 'Cadastrar Rede')
 
 @section('breadcrumb')
-    @parent
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Cadastrar Rede</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('rede.list') }}">Lista Rede </a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Cadastrar Rede</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
 @endsection
 
 @section('content')
     <form role="form" method="post" action="{{action('RedeController@store')}}">
         @csrf
     <div class="bd-example">
-        <h1 class="bd-title" id="content">Rede</h1>
-        <form>
             <div class="form-group">
                 <label for="exampleInputEmail1">Nome da Rede</label>
                 <input type="text" class="form-control" name="Rede" placeholder="Name" id="validationCustom01" required >

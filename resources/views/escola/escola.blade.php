@@ -1,16 +1,30 @@
 @extends('layout.layout')
 
-@section('title', 'Home')
+@section('title', 'Cadastrar Escola')
 
 @section('breadcrumb')
-    @parent
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Cadastrar Escola</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('escola.list') }}">Lista Escola</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Cadastrar Escola</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
 @endsection
 
 @section('content')
     <form role="form" method="post" action="{{action('EscolaController@store')}}">
         @csrf
     <div class="bd-example">
-        <h1 class="bd-title" id="content">Escola</h1>
         <form>
             <div class="form-group">
                 <label for="RedeID">Rede</label>
@@ -125,17 +139,15 @@
             </fieldset>
         </form>
     </div>
+@endsection
+@section('script')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
-
-        <script>
-            $("#campoTelefone").mask("(99) 9999-9999");
-            $("#campoCelular").mask("(99) 09999-9999");
-            $("#campoCNPJ").mask("99.999.999/9999-99");
-
-        </script>
-
+    <script>
+        $("#campoTelefone").mask("(99) 9999-9999");
+        $("#campoCelular").mask("(99) 09999-9999");
+        $("#campoCNPJ").mask("99.999.999/9999-99");
+    </script>
 @endsection

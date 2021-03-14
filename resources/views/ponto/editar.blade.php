@@ -1,16 +1,30 @@
 @extends('layout.layout')
 
-@section('title', 'Home')
+@section('title', 'Editar Ponto')
 
 @section('breadcrumb')
-    @parent
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Editar Ponto</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('ponto.list') }}">Lista Ponto </a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Editar Ponto</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
 @endsection
 
 @section('content')
     <div class="bd-example">
         <form role="form" method="post" action="{{url('ponto/update/'.$ponto->PontoID)}}">
             @csrf
-            <h1 class="bd-title" id="content">Ponto</h1>
             <div class="form-group">
                 <label for="UsuarioEscolaID">Usuario Escola</label>
                 <select class="form-control" name="UsuarioEscolaID">

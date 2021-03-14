@@ -1,16 +1,33 @@
 @extends('layout.layout')
+@section('style')
+    <link href="{{ url('css/plugins/iCheck/custom.css') }}" rel="stylesheet">
+@endsection
 
-@section('title', 'Home')
+
+@section('title', 'Cadastrar Perfil Tela')
 
 @section('breadcrumb')
-    @parent
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Cadastrar Perfil Tela</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('perfiltela.list') }}">Lista Perfil Tela </a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Cadastrar Perfil Tela</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
 @endsection
 
 @section('content')
     <form role="form" method="post" action="{{action('PerfilTelaController@store')}}">
         @csrf
-    <div class="bd-example">
-        <h1 class="bd-title" id="content">Perfil Tela</h1>
             <div class="form-group">
                 <label for="PerfilID">Perfil</label>
                 <select class="form-control" name="PerfilID">
@@ -23,12 +40,16 @@
                 <label for="TelaID">Tela</label>
                 <div class="form-check">
                     @foreach ( $Dados->TelaID as $Tela )
-                        <input type="checkbox" class="form-check-input" name="TelaID[{{$Tela->TelaID}}]" value="{{$Tela->TelaID}}">
-                        <label class="form-check-label" for="exampleCheck1">{{$Tela->Tela}}</label><br>
+                        <div class="i-checks">
+                            <label>
+                                <input type="checkbox" class="form-check-input" name="TelaID[{{$Tela->TelaID}}]" value="{{$Tela->TelaID}}">
+                                <i></i> {{$Tela->Tela}}
+                            </label>
+                        </div>
                     @endforeach
                 </div>
             </div>
-            <div class="form-group">
+                <div class="form-group">
                     <label for="Status">Status</label>
                     <select class="form-control" name="PerfilTelaStatus">
                         <option value="1">Ativo</option>
@@ -37,7 +58,6 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">OK</button>
                 </div>
-            </div>
             <fieldset disabled>
                 <div class="form-group row">
                     <div class="col-sm-10">
@@ -55,6 +75,15 @@
                     </div>
                 </div>
             </fieldset>
-        </form>
-    </div>
+    </form>
+@endsection
+@section('script')
+    <script src="{{ url('js/plugins/iCheck/icheck.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green'
+            });
+        });
+    </script>
 @endsection

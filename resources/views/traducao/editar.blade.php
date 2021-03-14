@@ -1,17 +1,29 @@
 @extends('layout.layout')
 
-@section('title', 'Home')
+@section('title', 'Editar Tradução')
 
 @section('breadcrumb')
-    @parent
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Editar Tradução</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('traducao.list') }}">Lista Tradução </a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Editar Tradução</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
 @endsection
 
 @section('content')
 <form role="form" method="post" action="{{url('traducao/update/'.$traducao->TraducaoID)}}">
     @csrf
-    <div class="bd-example">
-        <h1 class="bd-title" id="content">Alterar</h1>
-        <form>
             <div class="form-group">
                 <label for="validationCustom01">Br</label>
                 <input type="text" class="form-control" name="TraducaoTextoBr" id="validationCustom01" required @if(isset($traducao))value="{{ old('', $traducao->TraducaoTextoBr) }}"@endif  />
@@ -28,5 +40,4 @@
                 <button type="submit" class="btn btn-primary">OK</button>
             </div>
         </form>
-    </div>
 @endsection

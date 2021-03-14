@@ -1,16 +1,30 @@
 @extends('layout.layout')
 
-@section('title', 'Perfil')
+@section('title', 'Editar Perfil')
 
 @section('breadcrumb')
-    @parent
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Editar Perfil </h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('perfil.list') }}">Lista Perfil </a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Editar Perfil </strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
 @endsection
 
 @section('content')
 <form role="form" method="post" action="{{url('perfil/update/'.$perfil->PerfilID)}}">
     @csrf
     <div class="bd-example">
-        <h1 class="bd-title" id="content">Perfil</h1>
         <form>
             <div class="form-group">
                 <label for="validationCustom01">Nome do Perfil</label>

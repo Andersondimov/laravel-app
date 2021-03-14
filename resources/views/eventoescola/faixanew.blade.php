@@ -1,17 +1,27 @@
 @extends('layout.layout')
 
-@section('title', 'Home')
+@section('title', 'Cadastrar Faixa - Evento Escola')
 
 @section('breadcrumb')
-    @parent
+<div class="col-lg-10">
+    <h2>Cadastrar Faixa</h2>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ route('eventoescola.list') }}">Lista Evento Escola</a>
+        </li>
+        <li class="breadcrumb-item active">
+            <strong>Cadastrar Faixa</strong>
+        </li>
+    </ol>
+</div>
+<div class="col-lg-2">
+
+</div>
 @endsection
 
 @section('content')
     <form role="form" method="post" action="{{url('eventoescola/eventofaixa/faixagravar/'.$Dados[0]->EventoEscolaID)}}">
         @csrf
-    <div class="bd-example">
-        <h1 class="bd-title" id="content">Faixa</h1>
-        <form>
             <div class="form-group">
                 <fieldset disabled>
                     <div class="form-group">
@@ -79,10 +89,9 @@
                 </div>
             </div>
         </form>
-    </div>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
+@endsection
+@section('script')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
 @endsection

@@ -1,16 +1,32 @@
 @extends('layout.layout')
+@section('style')
+    <link href="{{ url('css/plugins/iCheck/custom.css') }}" rel="stylesheet">
+@endsection
 
-@section('title', 'Home')
+@section('title', 'Editar Perfil Tela')
 
 @section('breadcrumb')
-    @parent
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Editar Perfil Tela</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('perfiltela.list') }}">Lista Perfil Tela </a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Editar Perfil Tela</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
 @endsection
 
 @section('content')
         <form role="form" method="post" action="{{url('perfiltela/update/'.$PerfilTelas['IDS'][0]->PerfilID)}}">
             @csrf
-            <div class="bd-example">
-                <h1 class="bd-title" id="content">Perfil Tela</h1>
                 <div class="form-group">
                     <label for="PerfilID">Perfil</label>
                     <select class="form-control">
@@ -23,14 +39,18 @@
                     <div class="form-check">
                         
                         @foreach ( $PerfilTelas['Telas'] as $Tela )
-                            <input type="checkbox" class="form-check-input" name="TelaID[{{$Tela->TelaID}}]" value="{{$Tela->TelaID}}"
-                            @if(isset($PerfilTelas[0]) && count($PerfilTelas[0]) > 0)
-                                @foreach ( $PerfilTelas[0] as $PerfilTela )
-                                    @if($Tela->TelaID == $PerfilTela->TelaID) checked @endif
-                                @endforeach
-                            @endif
-                            >
-                            <label class="form-check-label" for="exampleCheck1">{{$Tela->Tela}}</label><br>
+                            <div class="i-checks">
+                                <label>
+                                    <input type="checkbox" class="form-check-input" name="TelaID[{{$Tela->TelaID}}]" value="{{$Tela->TelaID}}"
+                                    @if(isset($PerfilTelas[0]) && count($PerfilTelas[0]) > 0)
+                                        @foreach ( $PerfilTelas[0] as $PerfilTela )
+                                            @if($Tela->TelaID == $PerfilTela->TelaID) checked @endif
+                                        @endforeach
+                                    @endif
+                                    >
+                                    <i></i> {{$Tela->Tela}}
+                                </label>
+                            </div>
                         @endforeach
                     </div>
                 </div>
@@ -65,6 +85,16 @@
                         </div>
                     </div>
                 </fieldset>
-            </div>
         </form>
+@endsection
+
+@section('script')
+    <script src="{{ url('js/plugins/iCheck/icheck.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green'
+            });
+        });
+    </script>
 @endsection

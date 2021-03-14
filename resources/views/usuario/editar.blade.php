@@ -1,16 +1,30 @@
 @extends('layout.layout')
 
-@section('title', 'Home')
+@section('title', 'Editar Usuário')
 
 @section('breadcrumb')
-    @parent
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Editar Usuário</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('usuario.list') }}">Lista Usuário</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Editar Usuário</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
 @endsection
 
 @section('content')
     <div class="bd-example">
         <form role="form" method="post" action="{{url('usuario/update/'.$usuario->UsuarioID)}}">
             @csrf
-            <h1 class="bd-title" id="content">Usuario</h1>
             <div class="form-group">
                 <label for="PerfilID">Perfil</label>
                 <select class="form-control" name="PerfilID">
@@ -80,10 +94,10 @@
             </fieldset>
         </form>
     </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
-    <script>
-            $("#campoCelular").mask("(99) 09999-9999");
-    </script>
+@endsection
+@section('script')
+<script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
+<script>
+        $("#campoCelular").mask("(99) 09999-9999");
+</script>
 @endsection

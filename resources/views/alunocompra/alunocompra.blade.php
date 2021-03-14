@@ -1,16 +1,30 @@
 @extends('layout.layout')
 
-@section('title', 'Home')
+@section('title', 'Cadastrar Aluno Compra')
 
 @section('breadcrumb')
-    @parent
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Cadastrar Aluno Compra</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('alunocompra.list') }}">Lista Aluno Compra</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Casdastrar</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
 @endsection
 
 @section('content')
         <form role="form" method="post" action="{{action('AlunoCompraController@store')}}">
         @csrf
         <div class="bd-example">
-            <h1 class="bd-title" id="content">Aluno Compra</h1>
             <form>
                 <div class="form-group">
                     <label for="validationCustom01">Usuario Escola</label>
@@ -45,6 +59,4 @@
                 </fieldset>
             </form>
         </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
 @endsection

@@ -1,16 +1,29 @@
 @extends('layout.layout')
 
-@section('title', 'Home')
+@section('title', 'Editar Usuário Aluno')
 
 @section('breadcrumb')
-    @parent
-@endsection
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Editar Usuário Aluno</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('usuario.list') }}">Lista Usuário</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Editar Usuário Aluno</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
 
+    </div>
+</div>
+@endsection
 @section('content')
     <div class="bd-example">
         <form role="form" method="post" action="{{url('usuario/updatealuno/'.$usuario->UsuarioID)}}">
             @csrf
-            <h1 class="bd-title" id="content">Usuario</h1>
             <fieldset disabled>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Login do Usuario</label>

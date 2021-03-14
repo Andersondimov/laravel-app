@@ -1,15 +1,29 @@
 @extends('layout.layout')
 
-@section('title', 'Home')
+@section('title', 'Editar Aluno Compra')
 
 @section('breadcrumb')
-    @parent
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Editar Aluno Compra</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('alunocompra.list') }}">Lista Aluno Compra</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Editar</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
 @endsection
 
 @section('content')
         <form role="form" method="post" action="{{url('alunocompra/update/'.$alunocompra->AlunoCompraID)}}">
             @csrf
-            <h1 class="bd-title" id="content">Aluno Compra</h1>
             <div class="form-group">
                 <label for="UsuarioEscolaID">Nome Usuario</label>
                 <select class="form-control" name="UsuarioEscolaID">
@@ -45,10 +59,4 @@
             </fieldset>
         </form>
     </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
-    <script>
-            $("#campoCelular").mask("(99) 09999-9999");
-    </script>
 @endsection
