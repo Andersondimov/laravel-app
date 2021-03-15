@@ -44,98 +44,98 @@
                         IN+
                     </div>
                 </li>
-                    <li>
+                    <li id="eventoescola">
                         <a href="index.html"><i class="fa fa-address-book"></i> <span class="nav-label">Evento Escola</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="{{ route('eventoescola.index') }}">Cadastrar</a></li>
                             <li><a href="{{ route('eventoescola.list') }}">Listar</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li id="alunocompra">
                         <a href="#"><i class="fa fa-drivers-license"></i> <span class="nav-label">Aluno Compra</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="{{ route('alunocompra.index') }}">Cadastrar</a></li>
                             <li><a href="{{ route('alunocompra.list') }}">Listar</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li id="ponto">
                         <a href="#"><i class="fa fa-eercast"></i> <span class="nav-label">Ponto</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="{{ route('ponto.index') }}">Cadastrar</a></li>
                             <li><a href="{{ route('ponto.list') }}">Listar</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li id="usuarioescolainformativoacesso">
                         <a href="#"><i class="fa fa-user-circle"></i> <span class="nav-label">Usuário Escola Acesso</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="{{ route('usuarioescolainformativoacesso.index') }}">Cadastrar</a></li>
                             <li><a href="{{ route('usuarioescolainformativoacesso.list') }}">Listar</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li id="usuarioescola">
                         <a href="#"><i class="fa fa-user-circle-o"></i> <span class="nav-label">Usuário Escola</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="{{ route('usuarioescola.index') }}">Cadastrar</a></li>
                             <li><a href="{{ route('usuarioescola.list') }}">Listar</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li id="perfiltela">
                         <a href="#"><i class="fa fa-window-restore"></i> <span class="nav-label">Perfil Tela</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="{{ route('perfiltela.index') }}">Cadastrar</a></li>
                             <li><a href="{{ route('perfiltela.list') }}">Listar</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li id="tela">
                         <a href="#"><i class="fa fa-window-maximize"></i> <span class="nav-label">Tela</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="{{ route('tela.index') }}">Cadastrar</a></li>
                             <li><a href="{{ route('tela.list') }}">Listar</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li id="informativoacesso">
                         <a href="#"><i class="fa fa-plug"></i> <span class="nav-label">Informativo Acesso</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="{{ route('informativoacesso.index') }}">Cadastrar</a></li>
                             <li><a href="{{ route('informativoacesso.list') }}">Listar</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li id="evento">
                         <a href="#"><i class="fa fa-twitch"></i> <span class="nav-label">Evento</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="{{ route('evento.index') }}">Cadastrar</a></li>
                             <li><a href="{{ route('evento.list') }}">Listar</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li id="usuario">
                         <a href="#"><i class="fa fa-user-o"></i> <span class="nav-label">Usuário</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="{{ route('usuario.index') }}">Cadastrar</a></li>
                             <li><a href="{{ route('usuario.list') }}">Listar</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li id="perfil">
                         <a href="#"><i class="fa fa-id-card"></i> <span class="nav-label">Perfil</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="{{ route('escola.index') }}">Cadastrar</a></li>
                             <li><a href="{{ route('perfil.list') }}">Listar</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li id="escola">
                         <a href="#"><i class="fa fa-building"></i> <span class="nav-label">Escola</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="{{ route('escola.index') }}">Cadastrar</a></li>
                             <li><a href="{{ route('escola.list') }}">Listar</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li id="traducao">
                         <a href="#"><i class="fa fa-arrows-h"></i> <span class="nav-label">Tradução</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="{{ route('traducao.index') }}">Cadastrar</a></li>
                             <li><a href="{{ route('traducao.list') }}">Listar</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li id="rede">
                         <a href="#"><i class="fa fa-code-fork"></i> <span class="nav-label">Rede</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="{{ route('rede.index') }}">Cadastrar</a></li>
@@ -348,6 +348,15 @@
     <!-- Custom and plugin javascript -->
     <script src="{{ url('js/inspinia.js') }}"></script>
     <script src="{{ url('js/plugins/pace/pace.min.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            let parteUrl = window.location.href.split('/');
+            let idLi = '#'+parteUrl[3];
+            $(idLi).addClass('active');
+
+            $(idLi +" ul").addClass('in');
+        })
+    </script>
     @yield('script')
 </body>
 
