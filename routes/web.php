@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 /*
+* Carteira
+ */
+Route::get('carteira', 'AlunoCarteiraController@index')->name('carteira.index');
+Route::get('escolacarteira', 'EscolaCarteiraController@index')->name('escolacarteira.index');
+
+/*
 * EventoEscola
  */
 Route::get('eventoescola/eventofaixa/faixaslist/{id}/{action}', 'EventoEscolaController@eventofaixalist')->name('eventoescola.faixaslist');
