@@ -24,8 +24,6 @@
 @section('content')
 <form role="form" method="post" action="{{url('perfil/update/'.$perfil->PerfilID)}}">
     @csrf
-    <div class="bd-example">
-        <form>
             <div class="form-group">
                 <label for="validationCustom01">Nome do Perfil</label>
                 <input type="text" class="form-control" name="Perfil" id="validationCustom01" required @if(isset($perfil))value="{{ old('', $perfil->Perfil) }}"@endif placeholder="Name" />
@@ -69,5 +67,4 @@
                 </div>
             </fieldset>
         </form>
-    </div>
 @endsection

@@ -23,10 +23,6 @@
 
 @section('content')
         <form role="form" method="post" action="{{action('TraducaoController@store')}}">
-        @csrf
-        <div class="bd-example">
-            <h1 class="bd-title" id="content">Tradução</h1>
-            <form>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Br</label>
                     <input type="text" class="form-control" name="TraducaoTextoBr" id="validationCustom01" required >
@@ -43,5 +39,4 @@
                     <button type="submit" class="btn btn-primary">OK</button>
                 </div>
             </form>
-        </div>
 @endsection

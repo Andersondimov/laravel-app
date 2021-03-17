@@ -1,4 +1,3 @@
-<div class="bd-example">
     <div class="form-group">
         <label for="informativo">Escola</label>
         <select class="form-control" name="EscolaID">
@@ -36,4 +35,3 @@
     <div class="form-group">
         <button type="submit" class="btn btn-primary">OK</button>
     </div>
-</div>

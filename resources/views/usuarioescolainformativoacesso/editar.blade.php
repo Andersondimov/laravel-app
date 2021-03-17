@@ -24,7 +24,6 @@
 @endsection
 
 @section('content')
-        <div class="bd-example">
             <form role="form" method="post" action="{{url('usuarioescolainformativoacesso/update/'.$usuarioescolainformativoacesso->UsuarioEscolaInformativoAcessoID)}}">
                 @csrf
                 <div class="form-group">
@@ -56,8 +55,4 @@
                     <button type="submit" class="btn btn-primary">OK</button>
                 </div>
             </form>
-        </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
-        <script>
 @endsection

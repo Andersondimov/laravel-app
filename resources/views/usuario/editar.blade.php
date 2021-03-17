@@ -22,7 +22,6 @@
 @endsection
 
 @section('content')
-    <div class="bd-example">
         <form role="form" method="post" action="{{url('usuario/update/'.$usuario->UsuarioID)}}">
             @csrf
             <div class="form-group">
@@ -93,7 +92,6 @@
                 </div>
             </fieldset>
         </form>
-    </div>
 @endsection
 @section('script')
 <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>

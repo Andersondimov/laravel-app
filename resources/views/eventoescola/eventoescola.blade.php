@@ -24,7 +24,6 @@
 @section('content')
         <form role="form" method="post" action="{{action('EventoEscolaController@store')}}">
             @csrf
-            <div class="bd-example">
                 <div class="form-group">
                     <label for="EscolaID">Escola</label>
                     <select class="form-control" name="EscolaID">
@@ -50,6 +49,5 @@
                         <button type="submit" class="btn btn-primary">OK</button>
                     </div>
                 </div>
-            </div>
         </form>
 @endsection

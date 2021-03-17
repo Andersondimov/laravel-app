@@ -24,8 +24,6 @@
 @section('content')
     <form role="form" method="post" action="{{action('PerfilController@store')}}">
         @csrf
-    <div class="bd-example">
-        <form>
             <div class="form-group">
                 <label for="exampleInputEmail1">Nome do Perfil</label>
                 <input type="text" class="form-control" name="Perfil" placeholder="Name" id="validationCustom01" required >
@@ -65,5 +63,4 @@
                 </div>
             </fieldset>
         </form>
-    </div>
 @endsection

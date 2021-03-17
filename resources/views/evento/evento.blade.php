@@ -21,8 +21,6 @@
 @section('content')
     <form role="form" method="post" action="{{action('EventoController@store')}}">
         @csrf
-        <div class="bd-example">
-            <form>
                 <div class="form-group">
                     <label for="UsuarioID">Usuario</label>
                     <select class="form-control" name="UsuarioID">
@@ -68,5 +66,4 @@
                     </div>
                 </fieldset>
             </form>
-        </div>
 @endsection

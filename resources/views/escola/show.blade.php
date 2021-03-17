@@ -23,8 +23,6 @@
 @endsection
 
 @section('content')
-            @csrf
-        <div class="bd-example">
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-hover dataTables-example" >
                     <thead>
@@ -78,7 +76,6 @@
                     <button type="submit" class="btn btn-primary">NOVO</button>
                 </form>
             </div>
-        </div>
 @endsection
 
 @section('script')

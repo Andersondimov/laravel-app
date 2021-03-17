@@ -24,7 +24,6 @@
 @section('content')
         <form role="form" method="post" action="{{url('escola/update/'.$escola->EscolaID)}}">
             @csrf
-            <div class="bd-example">
                 <div class="form-group">
                     <label for="RedeID">Rede</label>
                     <select class="form-control" name="RedeID">
@@ -133,7 +132,6 @@
                         </div>
                     </div>
                 </fieldset>
-            </div>
         </form>
 @endsection
 @section('script')

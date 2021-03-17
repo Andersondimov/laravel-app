@@ -22,7 +22,6 @@
 @endsection
 
 @section('content')
-    <div class="bd-example">
         <form role="form" method="post" action="{{url('ponto/update/'.$ponto->PontoID)}}">
             @csrf
             <div class="form-group">
@@ -71,11 +70,10 @@
                 </div>
             </fieldset>
         </form>
-    </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
-    <script>
-            $("#campoCelular").mask("(99) 09999-9999");
-    </script>
+@endsection
+@section('script')
+<script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
+<script>
+        $("#campoCelular").mask("(99) 09999-9999");
+</script>
 @endsection

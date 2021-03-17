@@ -21,7 +21,6 @@
 </div>
 @endsection
 @section('content')
-    <div class="bd-example">
         <form role="form" method="post" action="{{url('usuario/updatealuno/'.$usuario->UsuarioID)}}">
             @csrf
             <fieldset disabled>
@@ -74,5 +73,4 @@
                 </div>
             </fieldset>
         </form>
-    </div>
 @endsection

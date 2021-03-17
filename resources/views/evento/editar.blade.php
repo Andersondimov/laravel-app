@@ -22,7 +22,6 @@
 @endsection
 
 @section('content')
-        <div class="bd-example">
             <form role="form" method="post" action="{{url('evento/update/'.$evento->EventoID)}}">
                 @csrf
                 <div class="form-group">
@@ -77,5 +76,4 @@
                     </div>
                 </fieldset>
             </form>
-        </div>
 @endsection

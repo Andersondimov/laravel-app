@@ -24,7 +24,6 @@
 @section('content')
 <form role="form" method="post" action="{{url('tela/update/'.$tela->TelaID)}}">
     @csrf
-    <div class="bd-example">
             <div class="form-group">
                 <label for="exampleInputEmail1">Nome da Tela</label>
                 <input type="text" class="form-control" name="Tela" id="validationCustom01" required @if(isset($tela))value="{{ old('', $tela->Tela) }}"@endif placeholder="Name" />
@@ -62,5 +61,4 @@
                 </div>
             </fieldset>
         </form>
-    </div>
 @endsection

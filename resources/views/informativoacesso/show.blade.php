@@ -23,7 +23,6 @@
 
 
 @section('content')
-        <div class="bd-example">
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-hover dataTables-example" >
                 <thead>
@@ -55,7 +54,6 @@
                     <button type="submit" class="btn btn-primary">NOVO</button>
                 </form>
             </div>
-        </div>
 @endsection
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>

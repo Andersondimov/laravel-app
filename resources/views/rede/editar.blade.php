@@ -22,8 +22,7 @@
 @endsection
 @section('content')
 <form role="form" method="post" action="{{url('rede/update/'.$rede->RedeID)}}">
-    @csrf
-    <div class="bd-example">
+            @csrf
             <div class="form-group">
                 <label for="validationCustom01">Nome da Rede</label>
                 <input type="text" class="form-control" name="Rede" id="validationCustom01" required @if(isset($rede))value="{{ old('', $rede->Rede) }}"@endif placeholder="Name" />
@@ -70,5 +69,4 @@
                 </div>
             </fieldset>
         </form>
-    </div>
 @endsection

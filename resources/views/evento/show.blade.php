@@ -26,7 +26,6 @@
 
 @section('content')
             @csrf
-        <div class="bd-example">
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-hover dataTables-example" >
                 <thead>
@@ -64,7 +63,6 @@
                 @endif
                 </tbody>
             </table>
-        </div>
             <div class="form-group">
                 <form role="form" method="get" action="{{action('EventoController@index')}}">
                     <button type="submit" class="btn btn-primary">NOVO</button>

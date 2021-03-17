@@ -29,7 +29,6 @@
 @section('content')
         <form role="form" method="post" enctype="multipart/form-data" action="{{url('escola/updateparams/'.$escola->EscolaID)}}">
             @csrf
-            <div class="bd-example">
                 <fieldset disabled>
                     <div class="form-group">
                         <label for="RedeID">Rede</label>
@@ -153,7 +152,6 @@
                         </div>
                     </div>
                 </fieldset>
-            </div>
         </form>
 @endsection
 
