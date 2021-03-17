@@ -58,5 +58,4 @@
                 </div>
             </fieldset>
         </form>
-    </div>
 @endsection
