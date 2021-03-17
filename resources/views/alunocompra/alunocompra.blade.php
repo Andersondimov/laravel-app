@@ -22,10 +22,8 @@
 @endsection
 
 @section('content')
-        <form role="form" method="post" action="{{action('AlunoCompraController@store')}}">
-        @csrf
-        <div class="bd-example">
-            <form>
+            <form role="form" method="post" action="{{action('AlunoCompraController@store')}}">
+                @csrf
                 <div class="form-group">
                     <label for="validationCustom01">Usuario Escola</label>
                     <select class="form-control" name="UsuarioEscolaID" >
@@ -58,5 +56,4 @@
                     </div>            
                 </fieldset>
             </form>
-        </div>
 @endsection
