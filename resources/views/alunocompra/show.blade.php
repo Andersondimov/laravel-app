@@ -23,9 +23,8 @@
 
 @section('content')
         @csrf
-        <div class="bd-example">
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover dataTables-example" >
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover dataTables-example" >
                 <thead>
                 <tr>
                     <th>Usuario Nome</th>
@@ -52,11 +51,10 @@
                 </tbody>
             </table>
         </div>
-            <div class="form-group">
-                <form role="form" method="get" action="{{action('AlunoCompraController@index')}}">
-                    <button type="submit" class="btn btn-primary">NOVO</button>
-                </form>
-            </div>
+        <div class="form-group">
+            <form role="form" method="get" action="{{action('AlunoCompraController@index')}}">
+                <button type="submit" class="btn btn-primary">NOVO</button>
+            </form>
         </div>
 @endsection
 
