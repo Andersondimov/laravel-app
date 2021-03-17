@@ -11,11 +11,9 @@
     <link href="{{ url('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ url('font-awesome/css/font-awesome.css') }}" rel="stylesheet">
 
-    <link href="{{ url('css/animate.css') }}" rel="stylesheet">
+    <link href="{{ url('css/animate.css') }}" rel="stylesheet"> 
     <link href="{{ url('css/style.css') }}" rel="stylesheet">
     @yield('style')
-
-
 </head>
 
 <body>
@@ -146,7 +144,6 @@
             </ul>
         </div>
     </nav>
-
         <div id="page-wrapper" class="gray-bg">
 			<div class="row border-bottom">
 				<!-- nav topo-->
@@ -154,17 +151,17 @@
 					<div class="navbar-header">
 						<a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
 						<form role="search" class="navbar-form-custom" action="search_results.html">
-							<div class="form-group">
+							<div class="form-group" style="display: none">
 								<input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
 							</div>
 						</form>
 					</div>
 					<ul class="nav navbar-top-links navbar-right">
 						<li>
-							<span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>
+							<span class="m-r-sm text-muted welcome-message"></span>
 						</li>
-						<li class="dropdown">
-							<a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <li class="dropdown">
+							<a class="dropdown-toggle count-info" data-toggle="dropdown" href="#" style="display: none">
 								<i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
 							</a>
 							<ul class="dropdown-menu dropdown-messages">
@@ -182,32 +179,6 @@
 								</li>
 								<li class="dropdown-divider"></li>
 								<li>
-									<div class="dropdown-messages-box">
-										<a class="dropdown-item float-left" href="profile.html">
-											<img alt="image" class="rounded-circle" src="img/a4.jpg">
-										</a>
-										<div class="media-body ">
-											<small class="float-right text-navy">5h ago</small>
-											<strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
-											<small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
-										</div>
-									</div>
-								</li>
-								<li class="dropdown-divider"></li>
-								<li>
-									<div class="dropdown-messages-box">
-										<a class="dropdown-item float-left" href="profile.html">
-											<img alt="image" class="rounded-circle" src="img/profile.jpg">
-										</a>
-										<div class="media-body ">
-											<small class="float-right">23h ago</small>
-											<strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
-											<small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small>
-										</div>
-									</div>
-								</li>
-								<li class="dropdown-divider"></li>
-								<li>
 									<div class="text-center link-block">
 										<a href="mailbox.html" class="dropdown-item">
 											<i class="fa fa-envelope"></i> <strong>Read All Messages</strong>
@@ -217,7 +188,7 @@
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+							<a class="dropdown-toggle count-info" data-toggle="dropdown" href="#" style="display: none">
 								<i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
 							</a>
 							<ul class="dropdown-menu dropdown-alerts">
@@ -225,24 +196,6 @@
 									<a href="mailbox.html" class="dropdown-item">
 										<div>
 											<i class="fa fa-envelope fa-fw"></i> You have 16 messages
-											<span class="float-right text-muted small">4 minutes ago</span>
-										</div>
-									</a>
-								</li>
-								<li class="dropdown-divider"></li>
-								<li>
-									<a href="profile.html" class="dropdown-item">
-										<div>
-											<i class="fa fa-twitter fa-fw"></i> 3 New Followers
-											<span class="float-right text-muted small">12 minutes ago</span>
-										</div>
-									</a>
-								</li>
-								<li class="dropdown-divider"></li>
-								<li>
-									<a href="grid_options.html" class="dropdown-item">
-										<div>
-											<i class="fa fa-upload fa-fw"></i> Server Rebooted
 											<span class="float-right text-muted small">4 minutes ago</span>
 										</div>
 									</a>
