@@ -77,7 +77,7 @@
         $(document).ready(function(){
             $('.dataTables-example').DataTable({
                 language: {
-                    url: "http://cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+                    url: "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
                 },
                 
                 pageLength: 25,
