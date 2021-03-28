@@ -19,8 +19,84 @@
 @endsection
 
 @section('content')
-    @csrf
-    <div class="bd-example">
+
+<div class="ibox ">
+    <div class="home">
+        @if(isset($EscolaAlunoCarteiraTot) && $EscolaAlunoCarteiraTot != '')
+        Total de Pontos: {{$EscolaAlunoCarteiraTot}}
+    @endif
+    </div>
+
+    <div class="ibox-content" id="ibox-content">
+        <div id="vertical-timeline" class="vertical-container dark-timeline center-orientation">
+            @php
+                $c = 0;
+            @endphp
+
+            @foreach ( $EscolaAlunoCarteira as $dados )
+
+                @php
+                    $c++;
+
+                    $icon = '';
+
+                    switch ($dados->Action) {
+                        case 'Compra':
+                            $icon = 'fa fa-usd';
+                            break;
+                        case 'Gerado':
+                            $icon = 'fa fa-snowflake-o';
+                            break;
+                        case 'Troca':
+                            $icon = 'fa fa-exchange';
+                            break;
+                        default:
+                            $icon = 'fa fa-briefcase';
+                            break;
+                    }
+                @endphp
+
+                <div class="vertical-timeline-block">
+                    <div class="vertical-timeline-icon navy-bg">
+                        <i class="{{ $icon }}"></i>
+                    </div>
+
+                    <div class="vertical-timeline-content">
+                        <h2>{{$dados->Action}}</h2>
+                        <p>{{$dados->QTD}}<br />
+                            Aluno: {{ $dados->Aluno }}
+                        </p>
+                        <span class="vertical-date">
+                            {{ \Carbon\Carbon::parse($dados->DT)->format('d/m/Y H:i:s') }}
+                        </span>
+                    </div>
+                </div>
+            
+            @endforeach
+
+            @if ($c == 0)
+                <h3>Não há movimentações em sua carteira</h3>
+            @endif
+
+        </div>
+    </div>
+</div>
+@endsection 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <!-- <div class="bd-example">
         <div class="bd-example">
             @if(isset($EscolaAlunoCarteiraTot) && $EscolaAlunoCarteiraTot != '')
                 Total de Pontos: {{$EscolaAlunoCarteiraTot}}
@@ -77,4 +153,4 @@
             </table>
         </div>
     </div>
-@endsection
+-->

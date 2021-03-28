@@ -18,53 +18,83 @@
 </div>
 @endsection
 
+
 @section('content')
-    @csrf
-    <div class="bd-example">
-        <div class="bd-example">
-            @if(isset($AlunoCarteiraTot) && $AlunoCarteiraTot != '')
-                Total de Pontos: {{$AlunoCarteiraTot}}
+
+<div class="ibox ">
+    <div class="home">
+        @if(isset($AlunoCarteiraTot) && $AlunoCarteiraTot != '')
+            Total de Pontos: {{$AlunoCarteiraTot}}
+        @endif
+    </div>
+
+    <div class="ibox-content" id="ibox-content">
+        <div id="vertical-timeline" class="vertical-container dark-timeline center-orientation">
+            @php
+                $c = 0;
+            @endphp
+
+                @foreach ( $AlunoCarteira as $dados )
+
+                @php
+                    $c++;
+                    switch ($dados->Action) {
+                        case 'Compra':
+                            $icon = 'fa fa-usd';
+                            break;
+                        case 'Gerado':
+                            $icon = 'fa fa-snowflake-o';
+                            break;
+                        case 'Troca':
+                            $icon = 'fa fa-exchange';
+                            break;
+                        default:
+                            $icon = 'fa fa-briefcase';
+                            break;
+                    }
+                @endphp
+
+                <div class="vertical-timeline-block">
+                    <div class="vertical-timeline-icon navy-bg">
+                        <i class="{{ $icon }}"></i>
+                    </div>
+
+                    <div class="vertical-timeline-content">
+                        <h2>{{$dados->Action}}</h2>
+                        <p>{{$dados->QTD}}<br />
+                            Aluno: {{ $dados->Aluno ?? $dados->Nome }}
+                        </p>
+                        <span class="vertical-date">
+                            {{ \Carbon\Carbon::parse($dados->DT)->format('d/m/Y H:i:s') }}
+                        </span>
+                    </div>
+                </div>
+            
+            @endforeach
+
+            @if ($c == 0)
+                <h3>Não há movimentações em sua carteira</h3>
             @endif
-        </div>
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered table-hover dataTables-example" >
-                <thead>
-                <tr>
-                    <th>Aluno</th>
-                    <th>Ponto Recebido</th>
-                    <th>Compras</th>
-                    <th>Data</th>
-                </tr>
-                </thead>
-                <tbody>
-                @if(count($AlunoCarteira)>0)
-                    @foreach ( $AlunoCarteira as $dados )
-                        <tr>
-                            <td>{{ $dados->Nome }}</td>
-                            <td>
-                                @if($dados->Action == 'Recebido')
-                                    {{ $dados->QTD }}
-                                @else
-                                    -
-                                @endif
-                            </td>
-                            <td>
-                                @if($dados->Action == 'Compra')
-                                    {{ $dados->QTD }}
-                                @else
-                                    -
-                                @endif
-                            </td>
-                            <td>{{ \Carbon\Carbon::parse($dados->DT)->format('d/m/Y H:i:s') }}</td>
-                        </tr>
-                    @endforeach
-                @else
-                    <tr>
-                        <td colspan="4">Não há movimentações em sua carteira</td>
-                    </tr>
-                @endif
-                </tbody>
-            </table>
+
         </div>
     </div>
-@endsection
+</div>
+@endsection 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
