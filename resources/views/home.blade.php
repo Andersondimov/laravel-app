@@ -3,9 +3,10 @@
 @section('title', 'Home')
 
 @section('breadcrumb')
-    @parent
 @endsection
 
 @section('content')
-  <p>Aqui é vai o conteudo</p>  
+    <h1>
+        Seja bem vindo!
+    </h1>
 @endsection

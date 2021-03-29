@@ -1,4 +1,7 @@
 @extends('layout.layout')
+@section('style')
+    <link href="{{ url('css/plugins/iCheck/custom.css') }}" rel="stylesheet">
+@endsection
 
 @section('title', 'Cadastrar Escola Evento')
 
@@ -36,8 +39,13 @@
                     <label for="EventoID">Evento</label>
                     <div class="form-check">
                         @foreach ( $Dados->EventoID as $Evento )
-                            <input type="checkbox" class="form-check-input" name="EventoID[{{$Evento->EventoID}}]" value="{{$Evento->EventoID}}">
-                            <label class="form-check-label" for="exampleCheck1">{{$Evento->Evento}}</label><br>
+
+                        <div class="i-checks">
+                            <label>
+                                <input type="checkbox" class="form-check-input" name="EventoID[{{$Evento->EventoID}}]" value="{{$Evento->EventoID}}" />
+                               <i></i> {{$Evento->Evento}}
+                            </label>
+                        </div>
                         @endforeach
                     </div>
                 </div>
@@ -50,4 +58,15 @@
                     </div>
                 </div>
         </form>
+@endsection
+
+@section('script')
+<script src="{{ url('js/plugins/iCheck/icheck.min.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green'
+        });
+    });
+</script>
 @endsection

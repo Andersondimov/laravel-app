@@ -1,4 +1,7 @@
 @extends('layout.layout')
+@section('style')
+    <link href="{{ url('css/plugins/iCheck/custom.css') }}" rel="stylesheet">
+@endsection
 
 @section('title', 'Editar Evento Escola')
 
@@ -37,14 +40,17 @@
                     <label for="EventoID">Evento</label>
                     <div class="form-check">
                         @foreach ( $EventoEscolas['Eventos'] as $Evento )
-                            <input type="checkbox" class="form-check-input" name="EventoID[{{$Evento->EventoID}}]" value="{{$Evento->EventoID}}"
-                            @if(isset($EventoEscolas[0]) && count($EventoEscolas[0]) > 0)
-                                @foreach ( $EventoEscolas[0] as $EventoEscola )
-                                    @if($Evento->EventoID == $EventoEscola->EventoID) checked @endif
-                                @endforeach
-                            @endif
-                            >
-                            <label class="form-check-label" for="exampleCheck1">{{$Evento->Evento}}</label><br>
+                            <div class="i-checks">
+                                <label>
+                                    <input type="checkbox" class="form-check-input" name="EventoID[{{$Evento->EventoID}}]" value="{{$Evento->EventoID}}"
+                                    @if(isset($EventoEscolas[0]) && count($EventoEscolas[0]) > 0)
+                                        @foreach ( $EventoEscolas[0] as $EventoEscola )
+                                            @if($Evento->EventoID == $EventoEscola->EventoID) checked @endif
+                                        @endforeach
+                                    @endif
+                                    ><i></i> {{$Evento->Evento}}
+                                </label>
+                            </div>
                         @endforeach
                     </div>
                 </div>
@@ -53,4 +59,15 @@
                 </div>
             </div>
         </form>
+@endsection
+
+@section('script')
+<script src="{{ url('js/plugins/iCheck/icheck.min.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green'
+        });
+    });
+</script>
 @endsection
