@@ -1,47 +1,56 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html>
+
 <head>
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/components/forms/">
-    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="https://getbootstrap.com/docs/4.0/assets/css/docs.min.css" rel="stylesheet">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title> Login</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
 </head>
-<body>
-@if (session('status'))
-    <div class="alert-success">
-        {{ session('status') }}
+
+<body class="gray-bg">
+    @if (session('status'))
+        <div class="alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
+    <div class="error">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
     </div>
-@endif
-<div class="error">
-    <ul>
-        @foreach($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-<form method="POST" action="{{ route('login') }}">
-    @csrf
-    <div class="bd-example">
-        <div class="form-group row">
-            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Login') }}</label>
-            <div class="col-md-6">
-                <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Senha') }}</label>
-            <div class="col-md-6">
-                <input id="password" type="password" class="form-control " name="password" required autocomplete="current-password">
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-md-8 offset-md-4">
-                <button type="submit" class="btn btn-primary">
-                    Logar
-                </button>
-            </div>
+
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+        <div>
+            <form class="m-t" role="form" action="{{ route('login') }}" method="POST">
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="UsarioEmail" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="UsuarioSenha" required="">
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+            </form>
         </div>
     </div>
-</form>
+
+    <!-- Mainly scripts -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+
 </body>
+
 </html>
+
 
