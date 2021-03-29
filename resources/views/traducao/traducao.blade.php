@@ -23,7 +23,8 @@
 
 @section('content')
         <form role="form" method="post" action="{{action('TraducaoController@store')}}">
-                <div class="form-group">
+            @csrf
+            <div class="form-group">
                     <label for="exampleInputEmail1">Br</label>
                     <input type="text" class="form-control" name="TraducaoTextoBr" id="validationCustom01" required >
                 </div>
