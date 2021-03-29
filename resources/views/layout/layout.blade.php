@@ -26,23 +26,30 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element">
-                        <img alt="image" class="rounded-circle" src="img/profile_small.jpg"/>
+                        <img alt="image" class="rounded-circle" style="border: 1px solid #fff" src="{{ url('img/user.png') }}"/>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="block m-t-xs font-bold">David Williams</span>
-                            <span class="text-muted text-xs block">Art Director <b class="caret"></b></span>
+                            <span class="block m-t-xs font-bold">{{ Auth::user()->UsuarioLogin }}</span>
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a class="dropdown-item" href="profile.html">Profile</a></li>
-                            <li><a class="dropdown-item" href="contacts.html">Contacts</a></li>
-                            <li><a class="dropdown-item" href="mailbox.html">Mailbox</a></li>
                             <li class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="login.html">Logout</a></li>
+                            <li>
+                                <form action="{{ route('logout') }}" method="post">
+                                    @csrf
+                                    <input type="submit" id="logout" value="Logout" class="dropdown-item">
+                                </form>
+                            </li>
                         </ul>
                     </div>
                     <div class="logo-element">
                         IN+
                     </div>
                 </li>
+                    <li id="carteira">
+                        <a href="{{  route('carteira.index') }}"><i class="fa fa-pie-chart"></i> <span class="nav-label">Carteira Aluno</span>  </a>
+                    </li>
+                    <li id="escolacarteira">
+                        <a href="{{  route('escolacarteira.index') }}"><i class="fa fa-pie-chart"></i> <span class="nav-label">Carteira Escola</span>  </a>
+                    </li>
                     <li id="eventoescola">
                         <a href="index.html"><i class="fa fa-address-book"></i> <span class="nav-label">Evento Escola</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -215,7 +222,7 @@
 
 
 						<li>
-							<a href="login.html">
+							<a href="javascript:$('#logout').trigger('click');">
 								<i class="fa fa-sign-out"></i> Log out
 							</a>
 						</li>
@@ -279,10 +286,8 @@
             </div>
 		  <!-- fcontent -->
         </div>
-        <div class="footer">
-            <div class="float-right">
-                10GB of <strong>250GB</strong> Free.
-            </div>
+        <div class="footer" style="display: none">
+
             <div>
                 <strong>Copyright</strong> Example Company &copy; 2014-2018
             </div>
