@@ -33,11 +33,12 @@
     <div class="middle-box text-center loginscreen animated fadeInDown">
         <div>
             <form class="m-t" role="form" action="{{ route('login') }}" method="POST">
+                @csrf
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="UsarioEmail" required="">
+                    <input type="email" class="form-control" name="UsuarioEmail"  placeholder="Usuario" required="">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="UsuarioSenha" required="">
+                    <input type="password" class="form-control" name="UsuarioSenha" placeholder="Senha" required="">
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
             </form>
