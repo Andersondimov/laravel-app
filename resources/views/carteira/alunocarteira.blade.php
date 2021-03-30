@@ -21,62 +21,94 @@
 
 @section('content')
 
-<div class="ibox ">
-    <div class="home">
-        @if(isset($AlunoCarteiraTot) && $AlunoCarteiraTot != '')
-            Total de Pontos: {{$AlunoCarteiraTot}}
-        @endif
-    </div>
 
-    <div class="ibox-content" id="ibox-content">
-        <div id="vertical-timeline" class="vertical-container dark-timeline center-orientation">
-            @php
-                $c = 0;
-            @endphp
+<div class="row">
+    <div class="col-md-9">
+        <div class="ibox ">
+            <div class="ibox-content animated rollIn" id="ibox-content">
+                <div id="vertical-timeline" class="vertical-container dark-timeline center-orientation">
+                    @php
+                        $c = 0;
+                    @endphp
 
-                @foreach ( $AlunoCarteira as $dados )
+                        @foreach ( $AlunoCarteira as $dados )
 
-                @php
-                    $c++;
-                    switch ($dados->Action) {
-                        case 'Compra':
-                            $icon = 'fa fa-usd';
-                            break;
-                        case 'Gerado':
-                            $icon = 'fa fa-snowflake-o';
-                            break;
-                        case 'Troca':
-                            $icon = 'fa fa-exchange';
-                            break;
-                        default:
-                            $icon = 'fa fa-briefcase';
-                            break;
-                    }
-                @endphp
+                        @php
+                            $c++;
+                            switch ($dados->Action) {
+                                case 'Compra':
+                                    $icon = 'fa fa-usd';
+                                    break;
+                                case 'Gerado':
+                                    $icon = 'fa fa-snowflake-o';
+                                    break;
+                                case 'Troca':
+                                    $icon = 'fa fa-exchange';
+                                    break;
+                                default:
+                                    $icon = 'fa fa-briefcase';
+                                    break;
+                            }
+                        @endphp
 
-                <div class="vertical-timeline-block">
-                    <div class="vertical-timeline-icon navy-bg">
-                        <i class="{{ $icon }}"></i>
-                    </div>
+                        <div class="vertical-timeline-block">
+                            <div class="vertical-timeline-icon navy-bg">
+                                <i class="{{ $icon }}"></i>
+                            </div>
 
-                    <div class="vertical-timeline-content">
-                        <h2>{{$dados->Action}}</h2>
-                        <p>{{$dados->QTD}}<br />
-                            Aluno: {{ $dados->Aluno ?? $dados->Nome }}
-                        </p>
-                        <span class="vertical-date">
-                            {{ \Carbon\Carbon::parse($dados->DT)->format('d/m/Y H:i:s') }}
-                        </span>
-                    </div>
+                            <div class="vertical-timeline-content">
+                                @if ($dados->Action == 'Compra')
+                                    <div class="alert alert-warning">
+                                        <h5>{{$dados->Action}}</h5>
+                                    </div>
+                                @else
+                                    <div class="alert alert-success">
+                                        <h5>{{$dados->Action}}</h5>
+                                    </div>
+                                @endif
+
+                                <p>
+                                    <button class="btn-primary dim btn-default-dim" type="button"><i class="fa fa-dollar"></i>
+                                        {{$dados->QTD}}
+                                    </button>
+                                </p>
+                                <p>
+                                    <button class="btn-primary dim btn-default-dim" type="button"><i class="fa fa-user"></i>&nbsp;&nbsp;
+                                        {{ $dados->Aluno ?? $dados->Nome }}
+                                    </button>
+
+                                </p>
+                                <span class="vertical-date">
+                                    <p class="text-info">{{ \Carbon\Carbon::parse($dados->DT)->format('d/m/Y H:i:s') }}</p>
+                                </span>
+                            </div>
+                        </div>
+
+                    @endforeach
+
+                    @if ($c == 0)
+                        <h3>Não há movimentações em sua carteira</h3>
+                    @endif
+
                 </div>
-            
-            @endforeach
-
-            @if ($c == 0)
-                <h3>Não há movimentações em sua carteira</h3>
-            @endif
-
+            </div>
         </div>
+    </div>
+    <div class="col-md-3">
+        @if(isset($AlunoCarteiraTot) && $AlunoCarteiraTot != '')
+        <div class="widget style1 yellow-bg">
+            <div class="row">
+                <div class="col-4">
+                    <i class="fa fa-dollar fa-5x"></i>
+                </div>
+                <div class="col-8 text-right">
+                    <span> Total de Pontos </span>
+                    <h2 class="font-bold">{{$AlunoCarteiraTot}}</h2>
+                </div>
+            </div>
+            @endif
+        </div>
+
     </div>
 </div>
 @endsection 
