@@ -2,10 +2,12 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Usuario extends Model
+class Usuario extends Authenticatable
 {
+    use Notifiable;
     public $timestamps = false;
     protected $primaryKey = 'UsuarioID';
 
@@ -34,4 +36,9 @@ class Usuario extends Model
     ];
     
     protected $table = 'Usuario';
+
+    public function getAuthPassword()
+    {
+        return $this->UsuarioSenha;
+    }
 }

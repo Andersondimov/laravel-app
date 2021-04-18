@@ -32,11 +32,7 @@
                             <span class="text-muted text-xs block">Administrador<b class="caret"></b></span>
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a class="dropdown-item" href="profile.html">Profile</a></li>
-                            <li><a class="dropdown-item" href="contacts.html">Contacts</a></li>
-                            <li><a class="dropdown-item" href="mailbox.html">Mailbox</a></li>
-                            <li class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="login.html">Logout</a></li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
                         </ul>
                     </div>
                     <div class="logo-element">
@@ -164,7 +160,7 @@
 
 
 						<li>
-							<a href="login.html">
+							<a href="/logout    ">
 								<i class="fa fa-sign-out"></i> Log out
 							</a>
 						</li>
