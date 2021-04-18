@@ -70,28 +70,17 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
-       // $this->validateLogin($request);
+       $this->validateLogin($request);
 
-        // If the class is using the ThrottlesLogins trait, we can automatically throttle
-        // the login attempts for this application. We'll key this by the username and
-        // the IP address of the client making these requests into this application.
-        if (method_exists($this, 'hasTooManyLoginAttempts') &&
-            $this->hasTooManyLoginAttempts($request)) {
-            $this->fireLockoutEvent($request);
+       $credential = $request->only(['UsuarioEmail','UsuarioSenha']);
 
-            return $this->sendLockoutResponse($request);
-        }
+       if(Auth::attempt($credential, false)){
+           redirect('/home');
+       }
 
-        if ($this->attemptLogin($request)) {
-            return $this->sendLoginResponse($request);
-        }
+        return redirect()->back()
+            ->with('status', 'Erro ao tentar logar, favor tentar novamente mais tarde! ');
 
-        // If the login attempt was unsuccessful we will increment the number of attempts
-        // to login and redirect the user back to the login form. Of course, when this
-        // user surpasses their maximum number of attempts they will get locked out.
-        $this->incrementLoginAttempts($request);
-
-        return $this->sendFailedLoginResponse($request);
     }
 
     /**
@@ -183,27 +172,10 @@ class LoginController extends Controller
     }
 
 
-    /**
-     * Log the user out of the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
-     */
-    public function logout(Request $request)
+    public function logout()
     {
-        $this->guard()->logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        if ($response = $this->loggedOut($request)) {
-            return $response;
-        }
-
-        return $request->wantsJson()
-            ? new JsonResponse([], 204)
-            : redirect('/login');
+        Auth::logout();
+        return redirect('/login');
     }
 
     /**
