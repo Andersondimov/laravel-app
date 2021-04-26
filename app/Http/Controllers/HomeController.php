@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class HomeController extends Controller
 {
@@ -21,8 +22,29 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        $Menu = DB::table('Usuario')
+            ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
+            ->join('PerfilTela','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
+            ->join('Tela','Tela.TelaID', '=', 'PerfilTela.TelaID')
+            ->where('Usuario.UsuarioEmail', '=', $request->session()->get('UsuarioEmail'))
+            ->get('Tela');
+
+        return view('home', ['menu' => $Menu]);
+    }
+
+    public function telasLiberadas($request)
+    {
+        $Menu = DB::table('Usuario')
+            ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
+            ->join('PerfilTela','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
+            ->join('Tela','Tela.TelaID', '=', 'PerfilTela.TelaID')
+            ->where('Usuario.UsuarioEmail', '=', $request->session()->get('UsuarioEmail'))
+            ->get('Tela');
+
+        //dd($Menu,$request->session()->get('UsuarioEmail'));
+
+        return $Menu;
     }
 }

@@ -39,54 +39,93 @@
                         IN+
                     </div>
                 </li>
-                <li id="rede">
-                    <a href="{{ route('rede.list') }}"><i class="fa fa-code-fork"></i> <span class="nav-label">Rede</span></a>
-                </li>
-                <li id="escola">
-                    <a href="{{ route('escola.list') }}"><i class="fa fa-building"></i> <span class="nav-label">Escola</span></a>
-                </li>
-                <li id="ponto">
-                    <a href="{{ route('ponto.list') }}"><i class="fa fa-eercast"></i> <span class="nav-label">Ponto</span></a>
-                </li>
-                <li id="escolacarteira">
-                    <a href="{{ route('escolacarteira.index') }}"><i class="fa fa-money"></i> <span class="nav-label">Carteira Escola</span></a>
-                </li>
-                <li id="usuario">
-                    <a href="{{ route('usuario.list') }}"><i class="fa fa-user-o"></i> <span class="nav-label">Usuário</span></a>
-                </li>
-                <li id="usuarioescola">
-                    <a href="{{ route('usuarioescola.list') }}"><i class="fa fa-user-circle-o"></i> <span class="nav-label">Usuário Escola</span></a>
-                </li>
-                <li id="evento">
-                    <a href="{{ route('evento.list') }}"><i class="fa fa-twitch"></i> <span class="nav-label">Evento</span></a>
-                </li>
-                <li id="eventoescola">
-                    <a href="{{ route('eventoescola.list') }}"><i class="fa fa-address-book"></i> <span class="nav-label">Evento Escola</span></a>
-                </li>
-                <li id="carteira">
-                    <a href="{{ route('carteira.index') }}"><i class="fa fa-money"></i> <span class="nav-label">Aluno Carteira</span></a>
-                </li>
-                <li id="alunocompra">
-                    <a href="{{ route('alunocompra.list') }}"><i class="fa fa-drivers-license"></i> <span class="nav-label">Aluno Compra</span></a>
-                </li>
-                <li id="informativoacesso">
-                    <a href="{{ route('informativoacesso.list') }}"><i class="fa fa-plug"></i> <span class="nav-label">Informativo Acesso</span></a>
-                </li>
-                <li id="usuarioescolainformativoacesso">
-                    <a href="{{ route('usuarioescolainformativoacesso.list') }}"><i class="fa fa-user-circle"></i> <span class="nav-label">Usuário Info Acesso</span></a>
-                </li>
-                <li id="tela">
-                    <a href="{{ route('tela.list') }}"><i class="fa fa-window-maximize"></i> <span class="nav-label">Tela</span></a>
-                </li>
-                <li id="perfil">
-                    <a href="{{ route('perfil.list') }}"><i class="fa fa-id-card"></i> <span class="nav-label">Perfil</span></a>
-                </li>
-                <li id="perfiltela">
-                    <a href="{{ route('perfiltela.list') }}"><i class="fa fa-window-restore"></i> <span class="nav-label">Perfil Tela</span></a>
-                </li>
-                <li id="traducao">
-                    <a href="{{ route('traducao.list') }}"><i class="fa fa-arrows-h"></i> <span class="nav-label">Tradução</span></a>
-                </li>
+                @if(!isset($menu))
+                    <?php
+                        $menu = app(\App\Http\Controllers\HomeController::class)->telasLiberadas(app('request')) ;
+                    ?>
+                @endif
+                @foreach ( $menu as $menuItem )
+                    @if('rede' == $menuItem->Tela)
+                        <li id="rede">
+                            <a href="{{ route('rede.list') }}"><i class="fa fa-code-fork"></i> <span class="nav-label">Rede</span></a>
+                        </li>
+                    @endif
+                    @if('escola' == $menuItem->Tela)
+                        <li id="escola">
+                            <a href="{{ route('escola.list') }}"><i class="fa fa-building"></i> <span class="nav-label">Escola</span></a>
+                        </li>
+                    @endif
+                    @if('ponto' == $menuItem->Tela)
+                        <li id="ponto">
+                            <a href="{{ route('ponto.list') }}"><i class="fa fa-eercast"></i> <span class="nav-label">Ponto</span></a>
+                        </li>
+                    @endif
+                    @if('escolacarteira' == $menuItem->Tela)
+                        <li id="escolacarteira">
+                            <a href="{{ route('escolacarteira.index') }}"><i class="fa fa-money"></i> <span class="nav-label">Carteira Escola</span></a>
+                        </li>
+                    @endif
+                    @if('usuario' == $menuItem->Tela)
+                        <li id="usuario">
+                            <a href="{{ route('usuario.list') }}"><i class="fa fa-user-o"></i> <span class="nav-label">Usuário</span></a>
+                        </li>
+                    @endif
+                    @if('usuarioescola' == $menuItem->Tela)
+                        <li id="usuarioescola">
+                            <a href="{{ route('usuarioescola.list') }}"><i class="fa fa-user-circle-o"></i> <span class="nav-label">Usuário Escola</span></a>
+                        </li>
+                    @endif
+                    @if('evento' == $menuItem->Tela)
+                        <li id="evento">
+                            <a href="{{ route('evento.list') }}"><i class="fa fa-twitch"></i> <span class="nav-label">Evento</span></a>
+                        </li>
+                    @endif
+                    @if('eventoescola' == $menuItem->Tela)
+                        <li id="eventoescola">
+                            <a href="{{ route('eventoescola.list') }}"><i class="fa fa-address-book"></i> <span class="nav-label">Evento Escola</span></a>
+                        </li>
+                    @endif
+                    @if('carteira' == $menuItem->Tela)
+                        <li id="carteira">
+                            <a href="{{ route('carteira.index') }}"><i class="fa fa-money"></i> <span class="nav-label">Aluno Carteira</span></a>
+                        </li>
+                    @endif
+                    @if('alunocompra' == $menuItem->Tela)
+                        <li id="alunocompra">
+                            <a href="{{ route('alunocompra.list') }}"><i class="fa fa-drivers-license"></i> <span class="nav-label">Aluno Compra</span></a>
+                        </li>
+                    @endif
+                    @if('informativoacesso' == $menuItem->Tela)
+                        <li id="informativoacesso">
+                            <a href="{{ route('informativoacesso.list') }}"><i class="fa fa-plug"></i> <span class="nav-label">Informativo Acesso</span></a>
+                        </li>
+                    @endif
+                    @if('usuarioescolainformativoacesso' == $menuItem->Tela)
+                        <li id="usuarioescolainformativoacesso">
+                            <a href="{{ route('usuarioescolainformativoacesso.list') }}"><i class="fa fa-user-circle"></i> <span class="nav-label">Usuário Info Acesso</span></a>
+                        </li>
+                    @endif
+                    @if('tela' == $menuItem->Tela)
+                        <li id="tela">
+                            <a href="{{ route('tela.list') }}"><i class="fa fa-window-maximize"></i> <span class="nav-label">Tela</span></a>
+                        </li>
+                    @endif
+                    @if('perfil' == $menuItem->Tela)
+                        <li id="perfil">
+                            <a href="{{ route('perfil.list') }}"><i class="fa fa-id-card"></i> <span class="nav-label">Perfil</span></a>
+                        </li>
+                    @endif
+                    @if('perfiltela' == $menuItem->Tela)
+                        <li id="perfiltela">
+                            <a href="{{ route('perfiltela.list') }}"><i class="fa fa-window-restore"></i> <span class="nav-label">Perfil Tela</span></a>
+                        </li>
+                    @endif
+                    @if('traducao' == $menuItem->Tela)
+                        <li id="traducao">
+                            <a href="{{ route('traducao.list') }}"><i class="fa fa-arrows-h"></i> <span class="nav-label">Tradução</span></a>
+                        </li>
+                    @endif
+                @endforeach
             </ul>
         </div>
     </nav>

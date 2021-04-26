@@ -70,11 +70,15 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
+       $dados = $request->request->all();
+
        $this->validateLogin($request);
+
 
        $credential = $request->only(['UsuarioEmail','UsuarioSenha']);
 
        if(Auth::attempt($credential, false)){
+           $request->session()->put('UsuarioEmail', $dados['UsuarioEmail']);
            redirect('/home');
        }
 

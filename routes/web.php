@@ -161,8 +161,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('rede/update/{id}', 'RedeController@update')->name('rede.update');
 
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/logout', 'Auth\LoginController@logout');
 
 });
-
 Auth::routes();
 
