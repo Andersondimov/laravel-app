@@ -29,7 +29,12 @@ class HomeController extends Controller
             ->join('PerfilTela','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
             ->join('Tela','Tela.TelaID', '=', 'PerfilTela.TelaID')
             ->where('Usuario.UsuarioEmail', '=', $request->session()->get('UsuarioEmail'))
-            ->get('Tela');
+            ->select(
+                'Tela.Tela'
+                ,'Usuario.UsuarioNome'
+                ,'Perfil.Perfil'
+            )
+            ->get();
 
         return view('home', ['menu' => $Menu]);
     }
@@ -41,7 +46,12 @@ class HomeController extends Controller
             ->join('PerfilTela','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
             ->join('Tela','Tela.TelaID', '=', 'PerfilTela.TelaID')
             ->where('Usuario.UsuarioEmail', '=', $request->session()->get('UsuarioEmail'))
-            ->get('Tela');
+            ->select(
+                'Tela.Tela'
+                ,'Usuario.UsuarioNome'
+                ,'Perfil.Perfil'
+            )
+            ->get();
 
         //dd($Menu,$request->session()->get('UsuarioEmail'));
 

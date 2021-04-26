@@ -26,10 +26,17 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element">
+                        @if(!isset($menu))
+                            <?php
+                                $nome = app(\App\Http\Controllers\HomeController::class)->telasLiberadas(app('request')) ;
+                            ?>
+                        @else
+                            <?php $nome = $menu; ?>
+                        @endif
                         <img alt="image" class="rounded-circle" src="img/profile_small.jpg"/>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="block m-t-xs font-bold">Fernando Bremen</span>
-                            <span class="text-muted text-xs block">Administrador<b class="caret"></b></span>
+                            <span class="block m-t-xs font-bold">{{ $nome[0]->UsuarioNome }}</span>
+                            <span class="text-muted text-xs block">{{ $nome[0]->Perfil }}<b class="caret"></b></span>
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li><a class="dropdown-item" href="/logout">Logout</a></li>
