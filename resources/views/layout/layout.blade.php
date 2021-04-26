@@ -43,7 +43,7 @@
                         </ul>
                     </div>
                     <div class="logo-element">
-                        IN+
+                        
                     </div>
                 </li>
                 @if(!isset($menu))
