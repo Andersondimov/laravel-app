@@ -7,6 +7,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use DB;
 use Illuminate\Foundation\Auth as S;
 
 
@@ -74,11 +75,21 @@ class LoginController extends Controller
 
        $this->validateLogin($request);
 
-
-       $credential = $request->only(['UsuarioEmail','UsuarioSenha']);
+       $credential = $request->only(['UsuarioLogin','UsuarioSenha']);
 
        if(Auth::attempt($credential, false)){
-           $request->session()->put('UsuarioEmail', $dados['UsuarioEmail']);
+           $dadosUser = $this->BuascaDadosUser($dados['UsuarioLogin']);
+           $request->session()->put('UsuarioEmail', $dadosUser[0]->UsuarioEmail);
+           $request->session()->put('UsuarioNome', $dadosUser[0]->UsuarioNome);
+           $request->session()->put('UsuarioID', $dadosUser[0]->UsuarioID);
+           $request->session()->put('UsuarioLogin', $dadosUser[0]->UsuarioLogin);
+           $request->session()->put('Perfil', $dadosUser[0]->Perfil);
+           $request->session()->put('PerfilID', $dadosUser[0]->PerfilID);
+           $request->session()->put('Escola', $dadosUser[0]->Escola);
+           $request->session()->put('EscolaID', $dadosUser[0]->EscolaID);
+           $request->session()->put('Rede', $dadosUser[0]->Rede);
+           $request->session()->put('RedeID', $dadosUser[0]->RedeID);
+
            redirect('/home');
        }
 
@@ -98,9 +109,34 @@ class LoginController extends Controller
     protected function validateLogin(Request $request)
     {
         $request->validate([
-            'UsuarioEmail' => 'required|string',
+            'UsuarioLogin' => 'required|string',
             'UsuarioSenha' => 'required|string',
         ]);
+    }
+
+    protected function BuascaDadosUser($UsuarioLogin)
+    {
+        $user = DB::table('Usuario')
+            ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
+            ->join('UsuarioEscola','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
+            ->join('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
+            ->join('Rede','Escola.RedeID', '=', 'Rede.RedeID')
+            ->where('Usuario.UsuarioLogin', '=', $UsuarioLogin)
+            ->select(
+                'Usuario.UsuarioNome'
+                ,'Usuario.UsuarioID'
+                ,'Usuario.UsuarioLogin'
+                ,'Usuario.UsuarioEmail'
+                ,'Perfil.Perfil'
+                ,'Perfil.PerfilID'
+                ,'Escola.Escola'
+                ,'Escola.EscolaID'
+                ,'Rede.Rede'
+                ,'Rede.RedeID'
+            )
+            ->get();
+
+        return $user;
     }
 
     /**
@@ -124,7 +160,7 @@ class LoginController extends Controller
      */
     protected function credentials(Request $request)
     {
-        return $request->only('UsuarioEmail', 'UsuarioSenha');
+        return $request->only('UsuarioLogin', 'UsuarioSenha');
     }
 
     /**
