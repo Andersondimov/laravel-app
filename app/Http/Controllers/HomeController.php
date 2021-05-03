@@ -27,11 +27,14 @@ class HomeController extends Controller
         $Menu = DB::table('Usuario')
             ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
             ->join('PerfilTela','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
-            ->join('Tela','Tela.TelaID', '=', 'PerfilTela.TelaID')
-            ->where('Usuario.UsuarioEmail', '=', $request->session()->get('UsuarioEmail'))
+            ->leftjoin('UsuarioEscola','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
+            ->leftjoin('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
+            ->leftjoin('Tela','Tela.TelaID', '=', 'PerfilTela.TelaID')
+            ->where('Usuario.UsuarioID', '=', $request->session()->get('UsuarioID'))
             ->select(
                 'Tela.Tela'
                 ,'Usuario.UsuarioNome'
+                ,'Escola.Escola'
                 ,'Perfil.Perfil'
             )
             ->get();
@@ -44,11 +47,14 @@ class HomeController extends Controller
         $Menu = DB::table('Usuario')
             ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
             ->join('PerfilTela','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
-            ->join('Tela','Tela.TelaID', '=', 'PerfilTela.TelaID')
-            ->where('Usuario.UsuarioEmail', '=', $request->session()->get('UsuarioEmail'))
+            ->leftjoin('UsuarioEscola','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
+            ->leftjoin('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
+            ->leftjoin('Tela','Tela.TelaID', '=', 'PerfilTela.TelaID')
+            ->where('Usuario.UsuarioID', '=', $request->session()->get('UsuarioID'))
             ->select(
                 'Tela.Tela'
                 ,'Usuario.UsuarioNome'
+                ,'Escola.Escola'
                 ,'Perfil.Perfil'
             )
             ->get();

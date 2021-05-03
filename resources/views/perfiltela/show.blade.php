@@ -28,7 +28,7 @@
                 <tr>
                     <th>Perfil</th>
                     <th>Status</th>
-                    <th>Atualizar</th>
+                    <th>Acessos</th>
                 </tr>
                 </thead>
                 <tbody>

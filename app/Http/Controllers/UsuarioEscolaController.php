@@ -21,11 +21,15 @@ class UsuarioEscolaController extends Controller
                 )
                 ->get();
         $Dados->UsuarioNome =DB::table('Usuario')
-                ->select(   
+                ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
+                ->leftjoin('UsuarioEscola','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
+                ->select(
                     'Usuario.UsuarioID',
                     'Usuario.UsuarioNome'
                 )
-                ->get();
+            ->whereNull('UsuarioEscola.UsuarioId')
+            ->whereNotIn('Perfil.PerfilCod', ['adm','master'])
+            ->get();
         
         return view('usuarioescola/usuarioescola', compact('Dados'));
 
@@ -109,57 +113,22 @@ class UsuarioEscolaController extends Controller
             'Usuario.UsuarioNome'
         )
         ->get();
+
         $UsuarioEscolas['Usuarios'] =DB::table('Usuario')
-                ->select(
+            ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
+            ->leftJoin('UsuarioEscola', function ($join) use ($UsuarioEscolaID) {
+                $join->on('Usuario.UsuarioID','=','UsuarioEscola.UsuarioID')
+                    ->Where('UsuarioEscola.EscolaID', '<>', $UsuarioEscolaID);
+            })
+            ->select(
                     'Usuario.UsuarioNome',
                     'Usuario.UsuarioID'
                 )
-                ->get();
+            ->whereNull('UsuarioEscola.UsuarioId')
+            ->whereNotIn('Perfil.PerfilCod', ['adm','master'])
+            ->get();
         return view('usuarioescola/editar', compact('UsuarioEscolas'));
 
-        $PerfilTelas['IDS'] =DB::table('PerfilTela')
-        ->join('Perfil','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
-        ->join('Tela','PerfilTela.TelaID', '=', 'Tela.TelaID')
-        ->where('Perfil.PerfilID', $PerfilTelaID)
-        ->select(
-            'PerfilTela.PerfilTelaStatus',
-            'PerfilTela.PerfilTelaDTAtivacao',
-            'PerfilTela.PerfilTelaDTInativacao',
-            'PerfilTela.PerfilTelaDTBloqueio',
-            'PerfilTela.PerfilID',
-            'Perfil.Perfil'
-        )->groupby(
-            'PerfilTela.PerfilTelaStatus',
-            'PerfilTela.PerfilTelaDTAtivacao',
-            'PerfilTela.PerfilTelaDTInativacao',
-            'PerfilTela.PerfilTelaDTBloqueio',
-            'PerfilTela.PerfilID',
-            'Perfil.Perfil'
-        )
-        ->get();
-        $PerfilTelas[] =DB::table('PerfilTela')
-        ->join('Perfil','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
-        ->join('Tela','PerfilTela.TelaID', '=', 'Tela.TelaID')
-        ->where('Perfil.PerfilID', $PerfilTelaID)
-        ->select(
-            'PerfilTela.PerfilTelaID',
-            'PerfilTela.PerfilTelaStatus',
-            'PerfilTela.PerfilTelaDTAtivacao',
-            'PerfilTela.PerfilTelaDTInativacao',
-            'PerfilTela.PerfilTelaDTBloqueio',
-            'Tela.TelaID',
-            'Tela.Tela',
-            'PerfilTela.PerfilID',
-            'Perfil.Perfil'
-        )
-        ->get();
-        $PerfilTelas['Telas'] =DB::table('Tela')
-                ->select(
-                    'Tela.TelaID',
-                    'Tela.Tela'
-                )
-                ->get();
-        return view('perfiltela/editar', compact('PerfilTelas'));
     }
 
     public function update(UsuarioEscolaAlter $request, $id)

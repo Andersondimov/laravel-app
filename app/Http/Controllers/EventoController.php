@@ -74,6 +74,7 @@ class EventoController extends Controller
         
         $evento = Evento::findOrFail($id);
         $evento->UsuarioID = request('UsuarioID');
+        $evento->Evento = request('Evento');
         $evento->EventoCod = request('EventoCod');
         $evento->EventoStatus = request('EventoStatus');
 

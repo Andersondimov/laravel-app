@@ -28,8 +28,8 @@
                 <thead>
                 <tr>
                     <th>Escola</th>
-                    <th>Atualizar</th>
-                    <th>Lista Eventos</th>
+                    <th>Eventos</th>
+                    <th>Faixas de Eventos / Repasse de Pontos</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -41,7 +41,7 @@
                                     <a href="{{ url('eventoescola/editar/'.$eventoescola->EscolaID) }}">Alterar</a>
                                 </td>
                                 <td>
-                                    <a href="{{ url('eventoescola/eventofaixa/'.$eventoescola->EscolaID) }}">Faixas eventos escola</a>
+                                    <a href="{{ url('eventoescola/eventofaixa/'.$eventoescola->EscolaID) }}">Alterar</a>
                                 </td>
                             </tr>
                         @endforeach

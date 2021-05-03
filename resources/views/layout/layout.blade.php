@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex">
 
-    <title>Dashboard  - @yield('title')</title>
+    <title>My Digital Stickers  - @yield('title')</title>
 
     <link href="{{ url('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ url('font-awesome/css/font-awesome.css') }}" rel="stylesheet">
@@ -37,6 +37,9 @@
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="block m-t-xs font-bold">{{ $nome[0]->UsuarioNome }}</span>
                             <span class="text-muted text-xs block">{{ $nome[0]->Perfil }}<b class="caret"></b></span>
+                            @if($nome[0]->Escola)
+                                <span class="text-muted text-xs block">{{ $nome[0]->Escola }}<b class="caret"></b></span>
+                            @endif
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li><a class="dropdown-item" href="/logout">Logout</a></li>

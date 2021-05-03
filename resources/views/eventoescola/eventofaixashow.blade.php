@@ -31,9 +31,9 @@
                 <tr>
                     <th>Escola</th>
                     <th>Evento</th>
-                    <th>Administrar</th>
-                    <th>Importar Arquivo (Repasse de Ponto)</th>
-                    <th>Repasse de Ponto Manual</th>
+                    <th>Faixas</th>
+                    <th>Repasse de Pontos - Arquivo</th>
+                    <th>Repasse de Pontos - Manual</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -43,10 +43,10 @@
                                 <td>{{ $eventoescola->Escola }}</td>
                                 <td>{{ $eventoescola->Evento }}</td>
                                 <td>
-                                    <a href="{{ url('eventoescola/eventofaixa/faixaslist/'.$eventoescola->EventoEscolaID).'/1' }}">Faixas</a>
+                                    <a href="{{ url('eventoescola/eventofaixa/faixaslist/'.$eventoescola->EventoEscolaID).'/1' }}">Administrar</a>
                                 </td>
                                 <td>
-                                    <a href="{{ url('eventoescola/eventofaixa/faixaslist/'.$eventoescola->EventoEscolaID).'/2' }}">importar</a>
+                                    <a href="{{ url('eventoescola/eventofaixa/faixaslist/'.$eventoescola->EventoEscolaID).'/2' }}">Importar</a>
                                 </td>
                                 <td>
                                     <a href="{{ url('eventoescola/eventofaixa/RepasseForm/'.$eventoescola->EventoEscolaID).'/3' }}">Repassar</a>

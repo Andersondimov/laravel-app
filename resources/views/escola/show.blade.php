@@ -32,8 +32,8 @@
                             <th>Escola CNPJ</th>
                             <th>Rede</th>
                             <th>Status</th>
-                            <th>Atualizar</th>
-                            <th>Parametros</th>
+                            <th>Dados da Escola</th>
+                            <th>Parâmetros</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,7 +59,7 @@
                                     <a href="{{ url('escola/editar/'.$escola->EscolaID) }}">Alterar</a>
                                 </td>
                                 <td>
-                                    <a href="{{ url('escola/editarparams/'.$escola->EscolaID) }}">Parametros</a>
+                                    <a href="{{ url('escola/editarparams/'.$escola->EscolaID) }}">Alterar</a>
                                 </td>
                             </tr>
                         @endforeach

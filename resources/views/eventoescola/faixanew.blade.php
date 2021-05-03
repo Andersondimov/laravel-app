@@ -53,6 +53,10 @@
                 <div class="form-group">
                     <h2 id="content">Parâmetros - Faixa</h2>
                     <div class="form-group">
+                        <a id="Data" href="#">Data </a> /
+                        <a id="Numero" href="#">Número </a>
+                    </div>
+                    <div style="display: none" id="ParamDataIni" class="form-group">
                         <label for="DataFIm">Data Ini</label>
                         <div class="input-group " id="calendarioIni">
                             <input type="date" class="form-control" name="FaixaEventoDTIni" placeholder="dd/mm/aaaa" id="validationCustom01">
@@ -61,7 +65,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div style="display: none" id="ParamDataFim" class="form-group">
                         <label for="DataFIm">Data Fim</label>
                         <div class="input-group " id="calendarioFim">
                             <input type="date" class="form-control" name="FaixaEventoDTFim" placeholder="dd/mm/aaaa" id="validationCustom01">
@@ -70,11 +74,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div id="ParamNumIni" class="form-group">
                         <label for="DataFIm">Num Ini</label>
                         <input type="number" class="form-control" name="FaixaEventoNumIni" min="1" max="100" />
                     </div>
-                    <div class="form-group">
+                    <div id="ParamNumFim" class="form-group">
                         <label for="DataFIm">Num Fim</label>
                         <input type="number" class="form-control" name="FaixaEventoNumFim" min="1" max="100" />
                     </div>
@@ -94,4 +98,22 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $("#Data").click(function(){
+                $("#ParamDataIni").show();
+                $("#ParamDataFim").show();
+                $("#ParamNumIni").hide();
+                $("#ParamNumFim").hide();
+            });
+            $("#Numero").click(function(){
+                $("#ParamDataIni").hide();
+                $("#ParamDataFim").hide();
+                $("#ParamNumIni").show();
+                $("#ParamNumFim").show();
+            });
+        });
+    </script>
 @endsection

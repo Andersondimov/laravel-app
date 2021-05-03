@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Usuario;
+use App\UsuarioEscola;
 use DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\Usuario\UsuarioCreate;
@@ -11,14 +12,28 @@ use App\Http\Requests\Usuario\UsuarioAlterAluno;
 
 class UsuarioController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $Perfis =DB::table('Perfil')
+        if($request->session()->get('PerfilCod') != 'adm' && $request->session()->get('PerfilCod') != 'master'){
+            $Perfis =DB::table('Perfil')
                 ->select(
                     'Perfil.PerfilID',
                     'Perfil.Perfil'
                 )
-                ->get();
+                ->whereNotIn('Perfil.PerfilCod', ['adm','master'])
+                ->get()
+            ;
+        }
+        else{
+            $Perfis =DB::table('Perfil')
+                ->select(
+                    'Perfil.PerfilID',
+                    'Perfil.Perfil'
+                )
+                ->get()
+            ;
+        }
+
         return view('usuario/usuario', compact('Perfis'));
     }
 
@@ -47,6 +62,17 @@ class UsuarioController extends Controller
         }
         $usuario->UsuarioStatus = request('UsuarioStatus');
         $usuario->save();
+
+
+        //*****Escola Usuario*****
+
+        if($request->session()->get('EscolaID') > 0) {
+            $usuarioescola = new UsuarioEscola;
+            $usuarioescola->UsuarioEscolaStatus = 1;
+            $usuarioescola->UsuarioID = $usuario->UsuarioID;
+            $usuarioescola->EscolaID = $request->session()->get('EscolaID');
+            $usuarioescola->save();
+        }
 
         return redirect()->back()
             ->with('status', 'Usuário criado com sucesso!');
@@ -81,15 +107,30 @@ class UsuarioController extends Controller
         return view('usuario/show', compact('Usuarios'));
     }
 
-    public function edit($UsuarioID)
+    public function edit($UsuarioID, Request $request)
     {
         $usuario = Usuario::findOrFail($UsuarioID);
-        $usuario['Perfil'] = DB::table('Perfil')
-        ->select(
-            'Perfil.PerfilID',
-            'Perfil.Perfil'
-        )
-        ->get();
+
+        if($request->session()->get('PerfilCod') != 'adm' && $request->session()->get('PerfilCod') != 'master'){
+            $usuario['Perfil'] =DB::table('Perfil')
+                ->select(
+                    'Perfil.PerfilID',
+                    'Perfil.Perfil'
+                )
+                ->whereNotIn('Perfil.PerfilCod', ['adm','master'])
+                ->get()
+            ;
+        }
+        else{
+            $usuario['Perfil'] =DB::table('Perfil')
+                ->select(
+                    'Perfil.PerfilID',
+                    'Perfil.Perfil'
+                )
+                ->get()
+            ;
+        }
+
         return view('usuario/editar', compact('usuario'));
     }
 

@@ -47,7 +47,7 @@ class EventoEscolaController extends Controller
 
         foreach($request->EventoID as $eventoID){
             $eventoescola = new EventoEscola;
-            $eventoescola->EventoStatus = $request->EventoStatus;
+            $eventoescola->EventoStatus = 1;
             $eventoescola->EscolaID = $request->EscolaID;
             $eventoescola->EventoID = $eventoID;
 
@@ -126,7 +126,7 @@ class EventoEscolaController extends Controller
         if(isset($request->EventoID) && count($request->EventoID) > 0){
             foreach($request->EventoID as $eventoID){
                 $eventoescola = new EventoEscola;
-                $eventoescola->EventoStatus = $request->EventoStatus;
+                $eventoescola->EventoStatus = 1;
                 $eventoescola->EventoID = $eventoID;
                 $eventoescola->EscolaID = $id;
 

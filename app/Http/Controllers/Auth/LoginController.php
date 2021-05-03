@@ -84,6 +84,7 @@ class LoginController extends Controller
            $request->session()->put('UsuarioID', $dadosUser[0]->UsuarioID);
            $request->session()->put('UsuarioLogin', $dadosUser[0]->UsuarioLogin);
            $request->session()->put('Perfil', $dadosUser[0]->Perfil);
+           $request->session()->put('PerfilCod', $dadosUser[0]->PerfilCod);
            $request->session()->put('PerfilID', $dadosUser[0]->PerfilID);
            $request->session()->put('Escola', $dadosUser[0]->Escola);
            $request->session()->put('EscolaID', $dadosUser[0]->EscolaID);
@@ -118,9 +119,9 @@ class LoginController extends Controller
     {
         $user = DB::table('Usuario')
             ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
-            ->join('UsuarioEscola','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
-            ->join('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
-            ->join('Rede','Escola.RedeID', '=', 'Rede.RedeID')
+            ->leftjoin('UsuarioEscola','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
+            ->leftjoin('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
+            ->leftjoin('Rede','Escola.RedeID', '=', 'Rede.RedeID')
             ->where('Usuario.UsuarioLogin', '=', $UsuarioLogin)
             ->select(
                 'Usuario.UsuarioNome'
@@ -129,6 +130,7 @@ class LoginController extends Controller
                 ,'Usuario.UsuarioEmail'
                 ,'Perfil.Perfil'
                 ,'Perfil.PerfilID'
+                ,'Perfil.PerfilCod'
                 ,'Escola.Escola'
                 ,'Escola.EscolaID'
                 ,'Rede.Rede'
