@@ -4,18 +4,18 @@
 @endsection
 
 
-@section('title', 'Cadastrar Perfil Tela')
+@section('title', 'Associar perfil x tela')
 
 @section('breadcrumb')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Cadastrar Perfil Tela</h2>
+        <h2>Associar perfil x tela</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('perfiltela.list') }}">Lista Perfil Tela </a>
+                <a href="{{ route('perfiltela.list') }}">Lista perfil x tela </a>
             </li>
             <li class="breadcrumb-item active">
-                <strong>Cadastrar Perfil Tela</strong>
+                <strong>Associar perfil x tela</strong>
             </li>
         </ol>
     </div>

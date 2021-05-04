@@ -1,14 +1,14 @@
 @extends('layout.layout')
 
-@section('title', 'Carteira Aluno')
+@section('title', 'Extrato do aluno')
 
 @section('breadcrumb')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Carteira Aluno</h2>
+        <h2>Extrato do aluno</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('carteira.index') }}">Carteira Aluno</a>
+                <a href="{{ route('carteira.index') }}">Extrato do aluno</a>
             </li>
         </ol>
     </div>

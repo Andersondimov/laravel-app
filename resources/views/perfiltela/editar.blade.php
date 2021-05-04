@@ -3,7 +3,7 @@
     <link href="{{ url('css/plugins/iCheck/custom.css') }}" rel="stylesheet">
 @endsection
 
-@section('title', 'Editar Perfil Tela')
+@section('title', 'Editar perfil x tela')
 
 @section('breadcrumb')
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -11,10 +11,10 @@
         <h2>Editar Perfil Tela</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('perfiltela.list') }}">Lista Perfil Tela </a>
+                <a href="{{ route('perfiltela.list') }}">Lista perfil x tela </a>
             </li>
             <li class="breadcrumb-item active">
-                <strong>Editar Perfil Tela</strong>
+                <strong>Editar perfil x tela</strong>
             </li>
         </ol>
     </div>

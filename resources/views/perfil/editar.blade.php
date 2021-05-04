@@ -1,17 +1,17 @@
 @extends('layout.layout')
 
-@section('title', 'Editar Perfil')
+@section('title', 'Editar perfil')
 
 @section('breadcrumb')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Editar Perfil </h2>
+        <h2>Editar perfil </h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('perfil.list') }}">Lista Perfil </a>
+                <a href="{{ route('perfil.list') }}">Lista perfil </a>
             </li>
             <li class="breadcrumb-item active">
-                <strong>Editar Perfil </strong>
+                <strong>Editar perfil </strong>
             </li>
         </ol>
     </div>

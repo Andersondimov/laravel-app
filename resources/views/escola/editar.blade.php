@@ -1,17 +1,17 @@
 @extends('layout.layout')
 
-@section('title', 'Editar Escola')
+@section('title', 'Editar escola')
 
 @section('breadcrumb')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Editar Escola</h2>
+        <h2>Editar escola</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('escola.list') }}">Lista Escola</a>
+                <a href="{{ route('escola.list') }}">Lista escola / Parâmetros</a>
             </li>
             <li class="breadcrumb-item active">
-                <strong>Editar</strong>
+                <strong>Editar escola</strong>
             </li>
         </ol>
     </div>

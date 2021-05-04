@@ -3,15 +3,15 @@
     <link href="{{ url('css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
 @endsection
 
-@section('title', 'Lista Usuario Escola Informativo Acesso')
+@section('title', 'Lista log informativo de acesso')
 
 @section('breadcrumb')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Lista Usuario Escola Informativo Acesso</h2>
+        <h2>Lista log informativo de acesso</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item active">
-                <strong>Lista Usuario Escola Informativo Acesso</strong>
+                <strong>Lista log informativo de acesso</strong>
             </li>
         </ol>
     </div>
@@ -27,10 +27,8 @@
                     <thead>
                     <tr>
                         <th>Usuario</th>
-                        <th>ID Data Ativacao</th>
-                        <th>Informativo Acesso</th>
+                        <th>Data Ativação</th>
                         <th>Status</th>
-                        <th>Atualizar</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -45,25 +43,17 @@
                                         @else($usuarioescolainformativoacesso->UsuarioEscolaInformativoAcesso == 2)
                                             Não Aprovado
                                         @endif
-                                    </td>        
-                                    <td>
-                                        <a href="{{ url('usuarioescolainformativoacesso/editar/'.$usuarioescolainformativoacesso->UsuarioEscolaInformativoAcessoID) }}">Alterar</a>
                                     </td>
                                 </tr>
                             @endforeach
                         @else
                             <tr>
-                                <td colspan="5">Nenhum Usuario Escola Cadastrado</td>
+                                <td colspan="3">Nenhum cadastrado</td>
                             </tr>
                         @endif
                     </tbody>
                 </table>
             </div>
-                <div class="form-group">
-                    <form role="form" method="get" action="{{action('UsuarioEscolaInformativoAcessoController@index')}}">
-                        <button type="submit" class="btn btn-primary">NOVO</button>
-                    </form>
-                </div>
 @endsection
 
 @section('script')

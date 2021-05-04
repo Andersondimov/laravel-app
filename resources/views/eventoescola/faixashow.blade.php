@@ -2,17 +2,17 @@
 @section('style')
     <link href="{{ url('css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
 @endsection
-@section('title', 'Lista Faixa - Evento Escola')
+@section('title', 'Repasse de pontos')
 
 @section('breadcrumb')
 <div class="col-lg-10">
-    <h2>Lista Faixa</h2>
+    <h2>Repasse de pontos</h2>
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="{{ route('eventoescola.list') }}">Lista Evento Escola</a>
+            <a href="{{ route('eventoescola.list') }}">Lista eventos da escola</a>
         </li>
         <li class="breadcrumb-item active">
-            <strong>Lista Faixa</strong>
+            <strong>Repasse de pontos</strong>
         </li>
     </ol>
 </div>

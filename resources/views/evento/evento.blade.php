@@ -1,14 +1,14 @@
 @extends('layout.layout')
 
-@section('title', 'Lista Evento')
+@section('title', 'Cadastro de evento')
 
 @section('breadcrumb')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Editar Evento</h2>
+        <h2>Cadastro de evento</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item active">
-                <strong>Lista Evento</strong>
+                <strong>Lista evento</strong>
             </li>
         </ol>
     </div>

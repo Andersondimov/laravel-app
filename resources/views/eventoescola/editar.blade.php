@@ -3,18 +3,18 @@
     <link href="{{ url('css/plugins/iCheck/custom.css') }}" rel="stylesheet">
 @endsection
 
-@section('title', 'Editar Evento Escola')
+@section('title', 'Editar eventos da escola')
 
 @section('breadcrumb')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Editar Evento Escola</h2>
+        <h2>Editar eventos da escola</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('eventoescola.list') }}">Lista Evento Escola</a>
+                <a href="{{ route('eventoescola.list') }}">Lista eventos da escola</a>
             </li>
             <li class="breadcrumb-item active">
-                <strong>Editar Evento Escola</strong>
+                <strong>Editar eventos da escola</strong>
             </li>
         </ol>
     </div>

@@ -3,15 +3,15 @@
     <link href="{{ url('css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
 @endsection
 
-@section('title', 'Lista Tradução')
+@section('title', 'Lista tabela para tradução de idiomas')
 
 @section('breadcrumb')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Lista Tradução</h2>
+        <h2>Lista tabela para tradução de idiomas</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item active">
-                <strong>Lista Tradução</strong>
+                <strong>Lista tabela para tradução de idiomas</strong>
             </li>
         </ol>
     </div>

@@ -57,6 +57,7 @@ class HomeController extends Controller
                 ,'Escola.Escola'
                 ,'Perfil.Perfil'
             )
+            ->orderBy('Tela.TelaOrdem')
             ->get();
 
         //dd($Menu,$request->session()->get('UsuarioEmail'));

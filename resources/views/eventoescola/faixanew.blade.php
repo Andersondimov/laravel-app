@@ -1,16 +1,16 @@
 @extends('layout.layout')
 
-@section('title', 'Cadastrar Faixa - Evento Escola')
+@section('title', 'Cadastro de faixas eventos')
 
 @section('breadcrumb')
 <div class="col-lg-10">
-    <h2>Cadastrar Faixa</h2>
+    <h2>Cadastro de faixas eventos</h2>
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="{{ route('eventoescola.list') }}">Lista Evento Escola</a>
+            <a href="{{ route('eventoescola.list') }}">Lista eventos da escola</a>
         </li>
         <li class="breadcrumb-item active">
-            <strong>Cadastrar Faixa</strong>
+            <strong>Cadastro de faixas eventos</strong>
         </li>
     </ol>
 </div>

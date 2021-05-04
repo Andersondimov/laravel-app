@@ -3,15 +3,15 @@
     <link href="{{ url('css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
 @endsection
 
-@section('title', 'Perfil - Lista')
+@section('title', 'Lista Perfil')
 
 @section('breadcrumb')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Lista Perfil</h2>
+        <h2>Lista perfil</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item active">
-                <strong>Lista Perfil</strong>
+                <strong>Lista perfil</strong>
             </li>
         </ol>
     </div>

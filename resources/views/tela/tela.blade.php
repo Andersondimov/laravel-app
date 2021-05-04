@@ -1,17 +1,17 @@
 @extends('layout.layout')
 
-@section('title', 'Cadastrar Tela')
+@section('title', 'Cadastro de tela')
 
 @section('breadcrumb')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Cadastrar Tela</h2>
+        <h2>Cadastro de tela</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ route('tela.list') }}">Lista Tela </a>
             </li>
             <li class="breadcrumb-item active">
-                <strong>Cadastrar Tela</strong>
+                <strong>Cadastro de tela</strong>
             </li>
         </ol>
     </div>
