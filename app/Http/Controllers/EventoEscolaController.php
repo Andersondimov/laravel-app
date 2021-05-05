@@ -16,15 +16,27 @@ use App\Http\Requests\EventoEscola\EventoEscolaFaixaCreate;
 
 class EventoEscolaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $Dados = new EventoEscola;
-        $Dados->EscolaID =DB::table('Escola')
+        if($request->session()->get('PerfilCod') == 'master' || $request->session()->get('PerfilCod') == 'adm'){
+            $Dados->EscolaID =DB::table('Escola')
                 ->select(
-                    'Escola.EscolaID',      
+                    'Escola.EscolaID',
                     'Escola.Escola'
                 )
                 ->get();
+        }
+        else{
+        $escolaId = $request->session()->get('EscolaID');
+            $Dados->EscolaID =DB::table('Escola')
+                ->select(
+                    'Escola.EscolaID',
+                    'Escola.Escola'
+                )
+                ->where('Escola.EscolaID', '=', $escolaId)
+                ->get();
+    }
         $Dados->EventoID =DB::table('Evento')
                 ->select(
                     'Evento.EventoID',   
@@ -63,9 +75,10 @@ class EventoEscolaController extends Controller
         return view('myarticlesview',['articles'=>$articles]);
     }
 
-    public function list()
+    public function list(Request $request)
     {
-        $EventoEscolas =DB::table('EventoEscola')
+        if($request->session()->get('PerfilCod') == 'master' || $request->session()->get('PerfilCod') == 'adm'){
+            $EventoEscolas =DB::table('EventoEscola')
                 ->join('Escola','EventoEscola.EscolaID', '=', 'Escola.EscolaID')
                 ->select(
                     'EventoEscola.EventoStatus',
@@ -73,6 +86,20 @@ class EventoEscolaController extends Controller
                     'Escola.Escola'
                 )->groupby('Escola.Escola','EventoEscola.EscolaID', 'EventoEscola.EventoStatus')
                 ->get();
+        }
+        else{
+            $escolaId = $request->session()->get('EscolaID');
+            $EventoEscolas =DB::table('EventoEscola')
+                ->join('Escola','EventoEscola.EscolaID', '=', 'Escola.EscolaID')
+                ->select(
+                    'EventoEscola.EventoStatus',
+                    'EventoEscola.EscolaID',
+                    'Escola.Escola'
+                )->groupby('Escola.Escola','EventoEscola.EscolaID', 'EventoEscola.EventoStatus')
+                ->where('Escola.EscolaID', '=', $escolaId)
+                ->get();
+        }
+
         return view('eventoescola/show', compact('EventoEscolas'));
     }
 

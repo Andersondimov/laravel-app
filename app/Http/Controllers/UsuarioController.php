@@ -84,9 +84,10 @@ class UsuarioController extends Controller
         $Usuarios = Usuario::all();
     }
 
-    public function list()
+    public function list(Request $request)
     {
-        $Usuarios =DB::table('Usuario')
+        if($request->session()->get('PerfilCod') == 'adm' || $request->session()->get('PerfilCod') == 'master'){
+            $Usuarios =DB::table('Usuario')
                 ->join('Perfil','Usuario.PerfilID', '=', 'Perfil.PerfilID')
                 ->select(
                     'Usuario.UsuarioID',
@@ -104,6 +105,53 @@ class UsuarioController extends Controller
                     'Perfil.Perfil'
                 )
                 ->get();
+        }
+        elseif($request->session()->get('PerfilCod') == 'secret_escola' && $request->session()->get('PerfilCod') == 'gestor_escola'){
+            $escolaid = $request->session()->get('EscolaID');
+            $Usuarios =DB::table('Usuario')
+                ->join('Perfil','Usuario.PerfilID', '=', 'Perfil.PerfilID')
+                ->join('UsuarioEscola','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
+                ->select(
+                    'Usuario.UsuarioID',
+                    'Usuario.UsuarioNome',
+                    'Usuario.UsuarioLogin',
+                    'Usuario.UsuarioStatus',
+                    'Usuario.UsuarioDTAtivacao',
+                    'Usuario.UsuarioDTInativacao',
+                    'Usuario.UsuarioDTBloqueio',
+                    'Usuario.UsuarioCelular',
+                    'Usuario.UsuarioEmail',
+                    'Usuario.UsuarioMatricula',
+                    'Usuario.PerfilID',
+                    'Perfil.PerfilCod',
+                    'Perfil.Perfil'
+                )
+                ->where('UsuarioEscola.EscolaID','=',$escolaid)
+                ->get();
+        }
+        else{
+            $usuarioid = $request->session()->get('UsuarioID');
+            $Usuarios =DB::table('Usuario')
+                ->join('Perfil','Usuario.PerfilID', '=', 'Perfil.PerfilID')
+                ->join('UsuarioEscola','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
+                ->select(
+                    'Usuario.UsuarioID',
+                    'Usuario.UsuarioNome',
+                    'Usuario.UsuarioLogin',
+                    'Usuario.UsuarioStatus',
+                    'Usuario.UsuarioDTAtivacao',
+                    'Usuario.UsuarioDTInativacao',
+                    'Usuario.UsuarioDTBloqueio',
+                    'Usuario.UsuarioCelular',
+                    'Usuario.UsuarioEmail',
+                    'Usuario.UsuarioMatricula',
+                    'Usuario.PerfilID',
+                    'Perfil.PerfilCod',
+                    'Perfil.Perfil'
+                )
+                ->where('Usuario.UsuarioID','=',$usuarioid)
+                ->get();
+        }
         return view('usuario/show', compact('Usuarios'));
     }
 

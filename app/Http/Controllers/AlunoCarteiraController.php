@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use DB;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class AlunoCarteiraController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $usuarioId = $request->session()->get('EscolaID');
         $AlunoCarteiraRecebido =DB::table('PontoRecebido')
             ->join('UsuarioEscola','PontoRecebido.UsuarioEscolaID', '=', 'UsuarioEscola.UsuarioEscolaID')
             ->join('Usuario','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
@@ -21,6 +23,7 @@ class AlunoCarteiraController extends Controller
                 ,'PontoRecebido.PontoRecebidoDTAtivacao as DT'
 
             )
+            ->where('Usuario.UsuarioID', '=', $usuarioId)
             ->where('Perfil.PerfilCod', '=', 'al')
             ->where('PontoRecebido.PontoRecebidoStatus',1);
 
@@ -35,6 +38,7 @@ class AlunoCarteiraController extends Controller
                 ,'AlunoCompra.AlunoCompraQuantidade as QTD'
                 ,'AlunoCompra.AlunoCompraDTAtivacao as DT'
             )
+            ->where('Usuario.UsuarioID', '=', $usuarioId)
             ->where('Perfil.PerfilCod', '=', 'al')
             ->where('AlunoCompra.AlunoCompraStatus',1)
             ->union($AlunoCarteiraRecebido)
@@ -48,6 +52,7 @@ class AlunoCarteiraController extends Controller
             ->select(
                 DB::raw("coalesce(SUM(PontoRecebido.PontoRecebidoQuantidade),0) as qtd")
             )
+            ->where('Usuario.UsuarioID', '=', $usuarioId)
             ->where('Perfil.PerfilCod', '=', 'al')
             ->where('PontoRecebido.PontoRecebidoStatus',1)
             ->get();
@@ -59,6 +64,7 @@ class AlunoCarteiraController extends Controller
             ->select(
                 DB::raw("coalesce(SUM(AlunoCompra.AlunoCompraQuantidade),0) as qtd")
             )
+            ->where('Usuario.UsuarioID', '=', $usuarioId)
             ->where('Perfil.PerfilCod', '=', 'al')
             ->where('AlunoCompra.AlunoCompraStatus',1)
             ->get();
@@ -68,7 +74,4 @@ class AlunoCarteiraController extends Controller
         return view('carteira/alunocarteira', compact('AlunoCarteira','AlunoCarteiraTot'));
     }
 
-
-
-    
 }

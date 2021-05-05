@@ -68,9 +68,10 @@ class EscolaController extends Controller
             ->with('status', 'Escola criada com sucesso!');
     }
 
-    public function list()
+    public function list(Request $request)
     {
-        $Escolas =DB::table('Escola')
+        if($request->session()->get('PerfilCod') == 'master' || $request->session()->get('PerfilCod') == 'adm'){
+            $Escolas =DB::table('Escola')
                 ->join('Rede','Escola.RedeID', '=', 'Rede.RedeID')
                 ->select(
                     'Escola.EscolaID',
@@ -91,20 +92,59 @@ class EscolaController extends Controller
                     'Rede.Rede'
                 )
                 ->get();
+        }
+        else{
+            $escolaId = $request->session()->get('EscolaID');
+            $Escolas =DB::table('Escola')
+                ->join('Rede','Escola.RedeID', '=', 'Rede.RedeID')
+                ->select(
+                    'Escola.EscolaID',
+                    'Escola.Escola',
+                    'Escola.EscolaCod',
+                    'Escola.EscolaStatus',
+                    'Escola.EscolaDTAtivacao',
+                    'Escola.EscolaDTInativacao',
+                    'Escola.EscolaDTBloqueio',
+                    'Escola.EscolaValorFixo',
+                    'Escola.EscolaValorVaviavel',
+                    'Escola.EscolaMotivoBloqueio',
+                    'Escola.EscolaCelular',
+                    'Escola.EscolaCNPJ',
+                    'Escola.EscolaCelularPix',
+                    'Escola.EscolaNomeMoeda',
+                    'Escola.RedeID',
+                    'Rede.Rede'
+                )
+                ->where('Escola.EscolaID', '=', $escolaId)
+                ->get();
+        }
+
         return view('escola/show', compact('Escolas'));
     }
 
-    public function edit($EscolaID)
+    public function edit($EscolaID, Request $request)
     {
         $escola = Escola::findOrFail($EscolaID);
         $escola->EscolaValorFixo = str_replace(".",',',$escola->EscolaValorFixo);
         $escola->EscolaValorVaviavel = str_replace(".",',',$escola->EscolaValorVaviavel);
-        $escola['Rede'] = DB::table('Rede')
-        ->select(
-            'Rede.RedeID',
-            'Rede.Rede'
-        )
-        ->get();
+        if($request->session()->get('PerfilCod') == 'master' || $request->session()->get('PerfilCod') == 'adm') {
+            $escola['Rede'] = DB::table('Rede')
+                ->select(
+                    'Rede.RedeID',
+                    'Rede.Rede'
+                )
+                ->get();
+        }
+        else{
+            $redeId = $request->session()->get('RedeID');
+            $escola['Rede'] = DB::table('Rede')
+                ->select(
+                    'Rede.RedeID',
+                    'Rede.Rede'
+                )
+                ->where('Rede.RedeID', '=', $redeId)
+                ->get();
+        }
         return view('escola/editar', compact('escola'));
     }
 

@@ -10,12 +10,13 @@ use App\Http\Requests\Ponto\PontoAlter;
 
 class PontoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $UsuarioEscolas =DB::table('UsuarioEscola')
-                ->join('Usuario','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
-                ->join('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
-                ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
+        if($request->session()->get('PerfilCod') == 'master' || $request->session()->get('PerfilCod') == 'adm') {
+            $UsuarioEscolas = DB::table('UsuarioEscola')
+                ->join('Usuario', 'Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
+                ->join('Escola', 'Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
+                ->join('Perfil', 'Perfil.PerfilID', '=', 'Usuario.PerfilID')
                 ->select(
                     'UsuarioEscola.UsuarioEscolaID',
                     'Usuario.UsuarioNome',
@@ -24,6 +25,22 @@ class PontoController extends Controller
                 ->where('Perfil.PerfilCod', '!=', 'al')
                 ->orderby('Escola.Escola', 'ASC')
                 ->get();
+        }else{
+            $escolaId = $request->session()->get('EscolaID');
+            $UsuarioEscolas = DB::table('UsuarioEscola')
+                ->join('Usuario', 'Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
+                ->join('Escola', 'Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
+                ->join('Perfil', 'Perfil.PerfilID', '=', 'Usuario.PerfilID')
+                ->select(
+                    'UsuarioEscola.UsuarioEscolaID',
+                    'Usuario.UsuarioNome',
+                    'Escola.Escola'
+                )
+                ->where('Perfil.PerfilCod', '!=', 'al')
+                ->where('Escola.EscolaID', '=', $escolaId)
+                ->orderby('Escola.Escola', 'ASC')
+                ->get();
+        }
         return view('ponto/ponto', compact('UsuarioEscolas'));
     }
 
@@ -54,11 +71,12 @@ class PontoController extends Controller
         $Pontos = Ponto::all();
     }
 
-    public function list()
+    public function list(Request $request)
     {
-        $Pontos =DB::table('Ponto')
-                ->join('UsuarioEscola','Ponto.UsuarioEscolaID', '=', 'UsuarioEscola.UsuarioEscolaID')
-                ->join('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
+        if($request->session()->get('PerfilCod') == 'master' || $request->session()->get('PerfilCod') == 'adm') {
+            $Pontos = DB::table('Ponto')
+                ->join('UsuarioEscola', 'Ponto.UsuarioEscolaID', '=', 'UsuarioEscola.UsuarioEscolaID')
+                ->join('Escola', 'Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
                 ->select(
                     'Ponto.PontoID',
                     'Ponto.PontoQuantidade',
@@ -72,25 +90,62 @@ class PontoController extends Controller
                     'Escola.Escola'
                 )
                 ->get();
+        }
+        else{
+            $escolaId = $request->session()->get('EscolaID');
+            $Pontos = DB::table('Ponto')
+                ->join('UsuarioEscola', 'Ponto.UsuarioEscolaID', '=', 'UsuarioEscola.UsuarioEscolaID')
+                ->join('Escola', 'Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
+                ->select(
+                    'Ponto.PontoID',
+                    'Ponto.PontoQuantidade',
+                    'Ponto.PontoStatus',
+                    'Ponto.PontoDTAtivacao',
+                    'Ponto.PontoDTInativacao',
+                    'Ponto.PontoDTBloqueio',
+                    'Ponto.PontoOperacao',
+                    'Ponto.UsuarioEscolaID',
+                    'UsuarioEscola.UsuarioID',
+                    'Escola.Escola'
+                )
+                ->where('Escola.EscolaID', '=', $escolaId)
+                ->get();
+        }
         return view('ponto/show', compact('Pontos'));
     }
 
-    public function edit($PontoID)
+    public function edit($PontoID, Request $request)
     {
         $ponto = Ponto::findOrFail($PontoID);
-        $ponto['UsuarioEscola'] = DB::table('UsuarioEscola')
-        ->join('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
-        ->join('Usuario','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
-        ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
 
-        ->select(
-            'UsuarioEscola.UsuarioEscolaID',
-            'Usuario.UsuarioNome',
-            'Escola.Escola'
-            
-        )
-        ->where('Perfil.PerfilCod', '!=', 'al')
-        ->get();
+        if($request->session()->get('PerfilCod') == 'master' || $request->session()->get('PerfilCod') == 'adm') {
+            $ponto['UsuarioEscola'] = DB::table('UsuarioEscola')
+                ->join('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
+                ->join('Usuario','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
+                ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
+                ->select(
+                    'UsuarioEscola.UsuarioEscolaID',
+                    'Usuario.UsuarioNome',
+                    'Escola.Escola'
+                )
+                ->where('Perfil.PerfilCod', '!=', 'al')
+                ->get();
+        }
+        else{
+            $escolaId = $request->session()->get('EscolaID');
+            $ponto['UsuarioEscola'] = DB::table('UsuarioEscola')
+                ->join('Escola','Escola.EscolaID', '=', 'UsuarioEscola.EscolaID')
+                ->join('Usuario','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
+                ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
+                ->select(
+                    'UsuarioEscola.UsuarioEscolaID',
+                    'Usuario.UsuarioNome',
+                    'Escola.Escola'
+                )
+                ->where('Escola.EscolaID', '=', $escolaId)
+                ->where('Perfil.PerfilCod', '!=', 'al')
+                ->get();
+        }
         return view('ponto/editar', compact('ponto'));
     }
 

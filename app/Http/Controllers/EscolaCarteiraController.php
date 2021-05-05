@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use DB;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+
 
 class EscolaCarteiraController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $escolaId = $request->session()->get('EscolaID');
         $EscolaPonto =DB::table('Ponto')
             ->join('UsuarioEscola','Ponto.UsuarioEscolaID', '=', 'UsuarioEscola.UsuarioEscolaID')
             ->join('Usuario','Usuario.UsuarioID', '=', 'UsuarioEscola.UsuarioID')
@@ -23,7 +26,7 @@ class EscolaCarteiraController extends Controller
 
             )
             ->where('Perfil.PerfilCod', '<>', 'al')
-            ->where('Escola.EscolaID', '=', 1)
+            ->where('Escola.EscolaID', '=', $escolaId)
             ->where('Ponto.PontoStatus',1);
 
         $EscolaAlunoCarteiraRecebido =DB::table('PontoRecebido')
@@ -40,7 +43,7 @@ class EscolaCarteiraController extends Controller
 
             )
             ->where('Perfil.PerfilCod', '=', 'al')
-            ->where('Escola.EscolaID', '=', 1)
+            ->where('Escola.EscolaID', '=', $escolaId)
             ->where('PontoRecebido.PontoRecebidoStatus',1);
 
         $EscolaAlunoCarteira =DB::table('AlunoCompra')
@@ -57,7 +60,7 @@ class EscolaCarteiraController extends Controller
             )
             ->where('Perfil.PerfilCod', '=', 'al')
             ->where('AlunoCompra.AlunoCompraStatus',1)
-            ->where('Escola.EscolaID', '=', 1)
+            ->where('Escola.EscolaID', '=', $escolaId)
             ->union($EscolaAlunoCarteiraRecebido)
             ->union($EscolaPonto)
             ->orderby('DT', 'DESC')
@@ -73,7 +76,7 @@ class EscolaCarteiraController extends Controller
 
             )
             ->where('Perfil.PerfilCod', '<>', 'al')
-            ->where('Escola.EscolaID', '=', 1)
+            ->where('Escola.EscolaID', '=', $escolaId)
             ->where('Ponto.PontoStatus',1)
             ->get();
 
@@ -86,7 +89,7 @@ class EscolaCarteiraController extends Controller
                 DB::raw("coalesce(SUM(PontoRecebido.PontoRecebidoQuantidade),0) as qtd")
             )
             ->where('Perfil.PerfilCod', '=', 'al')
-            ->where('Escola.EscolaID', '=', 1)
+            ->where('Escola.EscolaID', '=', $escolaId)
             ->where('PontoRecebido.PontoRecebidoStatus',1)
             ->get();
 
@@ -99,7 +102,7 @@ class EscolaCarteiraController extends Controller
                 DB::raw("coalesce(SUM(AlunoCompra.AlunoCompraQuantidade),0) as qtd")
             )
             ->where('Perfil.PerfilCod', '=', 'al')
-            ->where('Escola.EscolaID', '=', 1)
+            ->where('Escola.EscolaID', '=', $escolaId)
             ->where('AlunoCompra.AlunoCompraStatus',1)
             ->get();
 
@@ -108,7 +111,4 @@ class EscolaCarteiraController extends Controller
         return view('carteira/escolacarteira', compact('EscolaAlunoCarteira', 'EscolaAlunoCarteiraTot'));
     }
 
-
-
-    
 }
