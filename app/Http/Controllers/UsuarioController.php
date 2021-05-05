@@ -286,5 +286,23 @@ class UsuarioController extends Controller
 
     }
 
+    public function permissaoAcesso($request){
+
+        $AcessoCad = DB::table('Usuario')
+            ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
+            ->join('PerfilTela','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
+            ->leftjoin('Tela','Tela.TelaID', '=', 'PerfilTela.TelaID')
+            ->where('Usuario.UsuarioID', '=', $request->session()->get('UsuarioID'))
+            ->select(
+                'Tela.Tela'
+            )
+            ->where('Tela.Tela', '=', 'cadusuario')
+            ->get();
+
+        //dd($Menu,$request->session()->get('UsuarioEmail'));
+
+        return $AcessoCad;
+    }
+
 
 }

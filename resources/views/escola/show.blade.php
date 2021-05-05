@@ -24,6 +24,9 @@
 
 @section('content')
             <div class="table-responsive">
+                <?php
+                    $AcessoCad = app(\App\Http\Controllers\EscolaController::class)->permissaoAcesso(app('request'));
+                ?>
                 <table class="table table-striped table-bordered table-hover dataTables-example" >
                     <thead>
                         <tr>
@@ -32,7 +35,11 @@
                             <th>Escola CNPJ</th>
                             <th>Rede</th>
                             <th>Status</th>
-                            <th>Dados da Escola</th>
+                            @foreach ( $AcessoCad as $AcessoCadItem )
+                                @if($AcessoCadItem->Tela)
+                                    <th>Dados da Escola</th>
+                                @endif
+                            @endforeach
                             <th>Parâmetros</th>
                         </tr>
                     </thead>
@@ -55,9 +62,14 @@
                                         Prospect
                                     @endif
                                 </td>
-                                <td>
-                                    <a href="{{ url('escola/editar/'.$escola->EscolaID) }}">Alterar</a>
-                                </td>
+                                @foreach ( $AcessoCad as $AcessoCadItem )
+                                    @if($AcessoCadItem->Tela)
+                                        <td>
+                                            <a href="{{ url('escola/editar/'.$escola->EscolaID) }}">Alterar</a>
+                                        </td>
+                                    @endif
+                                @endforeach
+
                                 <td>
                                     <a href="{{ url('escola/editarparams/'.$escola->EscolaID) }}">Alterar</a>
                                 </td>
@@ -71,11 +83,16 @@
                 </tbody>
             </table>
             </div>
-            <div class="form-group">
-                <form role="form" method="get" action="{{action('EscolaController@index')}}">
-                    <button type="submit" class="btn btn-primary">NOVO</button>
-                </form>
-            </div>
+            @foreach ( $AcessoCad as $AcessoCadItem )
+                @if($AcessoCadItem->Tela)
+                    <div class="form-group">
+                        <form role="form" method="get" action="{{action('EscolaController@index')}}">
+                            <button type="submit" class="btn btn-primary">NOVO</button>
+                        </form>
+                    </div>
+                @endif
+            @endforeach
+
 @endsection
 
 @section('script')

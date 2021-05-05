@@ -443,4 +443,22 @@ class EventoEscolaController extends Controller
         return redirect()->back()
             ->with('status', 'Repasse realizado!');
     }
+
+    public function permissaoAcesso($request){
+
+        $AcessoCad = DB::table('Usuario')
+            ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
+            ->join('PerfilTela','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
+            ->leftjoin('Tela','Tela.TelaID', '=', 'PerfilTela.TelaID')
+            ->where('Usuario.UsuarioID', '=', $request->session()->get('UsuarioID'))
+            ->select(
+                'Tela.Tela'
+            )
+            ->where('Tela.Tela', '=', 'administrarfaixaevento')
+            ->get();
+
+        //dd($Menu,$request->session()->get('UsuarioEmail'));
+
+        return $AcessoCad;
+    }
 }

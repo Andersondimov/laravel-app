@@ -24,12 +24,19 @@
 @section('content')
             @csrf
             <div class="table-responsive">
+                <?php
+                    $AcessoCad = app(\App\Http\Controllers\EventoEscolaController::class)->permissaoAcesso(app('request'));
+                ?>
                 <table class="table table-striped table-bordered table-hover dataTables-example" >
                 <thead>
                 <tr>
                     <th>Escola</th>
                     <th>Eventos</th>
-                    <th>Faixas de Eventos / Repasse de Pontos</th>
+                    @foreach ( $AcessoCad as $AcessoCadItem )
+                        @if($AcessoCadItem->Tela)
+                            <th>Faixas de Eventos / Repasse de Pontos</th>
+                        @endif
+                    @endforeach
                 </tr>
                 </thead>
                 <tbody>
@@ -40,9 +47,14 @@
                                 <td>
                                     <a href="{{ url('eventoescola/editar/'.$eventoescola->EscolaID) }}">Alterar</a>
                                 </td>
-                                <td>
-                                    <a href="{{ url('eventoescola/eventofaixa/'.$eventoescola->EscolaID) }}">Alterar</a>
-                                </td>
+                                @foreach ( $AcessoCad as $AcessoCadItem )
+                                    @if($AcessoCadItem->Tela)
+                                        <td>
+                                            <a href="{{ url('eventoescola/eventofaixa/'.$eventoescola->EscolaID) }}">Alterar</a>
+                                        </td>
+                                    @endif
+                                @endforeach
+
                             </tr>
                         @endforeach
                     @else

@@ -23,6 +23,9 @@
 
 @section('content')
             <div class="table-responsive">
+                <?php
+                    $AcessoCad = app(\App\Http\Controllers\UsuarioController::class)->permissaoAcesso(app('request'));
+                ?>
                 <table class="table table-striped table-bordered table-hover dataTables-example" >
                 <thead>
                 <tr>
@@ -31,7 +34,11 @@
                     <th>Login</th>
                     <th>Email</th>
                     <th>Status</th>
-                    <th>Atualizar</th>
+                    @foreach ( $AcessoCad as $AcessoCadItem )
+                        @if($AcessoCadItem->Tela)
+                            <th>Atualizar</th>
+                        @endif
+                    @endforeach
                     <th>Dados do Usuário</th>
                 </tr>
                 </thead>
@@ -52,9 +59,13 @@
                                     Bloqueado
                                 @endif
                             </td>
-                            <td>
-                                <a href="{{ url('usuario/editar/'.$usuario->UsuarioID) }}">Alterar</a>
-                            </td>
+                            @foreach ( $AcessoCad as $AcessoCadItem )
+                                @if($AcessoCadItem->Tela)
+                                    <td>
+                                        <a href="{{ url('usuario/editar/'.$usuario->UsuarioID) }}">Alterar</a>
+                                    </td>
+                                @endif
+                            @endforeach
                             <td>
                                 <a href="{{ url('usuario/editaraluno/'.$usuario->UsuarioID) }}">Alterar</a>
                             </td>
@@ -68,11 +79,16 @@
                 </tbody>
             </table>
         </div>
-            <div class="form-group">
-                <form role="form" method="get" action="{{action('UsuarioController@index')}}">
-                    <button type="submit" class="btn btn-primary">NOVO</button>
-                </form>
-            </div>
+            @foreach ( $AcessoCad as $AcessoCadItem )
+                @if($AcessoCadItem->Tela)
+                    <div class="form-group">
+                        <form role="form" method="get" action="{{action('UsuarioController@index')}}">
+                            <button type="submit" class="btn btn-primary">NOVO</button>
+                        </form>
+                    </div>
+                @endif
+            @endforeach
+
 @endsection
 
 @section('script')

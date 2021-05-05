@@ -345,4 +345,22 @@ class EscolaController extends Controller
         $escola->delete();
         return redirect()->route('escola.index')->with('alert-success', 'Escola deletada com sucesso!');
     }
+
+    public function permissaoAcesso($request){
+
+        $AcessoCad = DB::table('Usuario')
+            ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
+            ->join('PerfilTela','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
+            ->leftjoin('Tela','Tela.TelaID', '=', 'PerfilTela.TelaID')
+            ->where('Usuario.UsuarioID', '=', $request->session()->get('UsuarioID'))
+            ->select(
+                'Tela.Tela'
+            )
+            ->where('Tela.Tela', '=', 'cadescola')
+            ->get();
+
+        //dd($Menu,$request->session()->get('UsuarioEmail'));
+
+        return $AcessoCad;
+    }
 }
