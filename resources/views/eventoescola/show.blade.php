@@ -73,11 +73,16 @@
                 </tbody>
             </table>
         </div>
-            <div class="form-group">
-                <form role="form" method="get" action="{{action('EventoEscolaController@index')}}">
-                    <button type="submit" class="btn btn-primary">NOVO</button>
-                </form>
-            </div>
+            @foreach ( $AcessoCad as $AcessoCadItem )
+                @if($AcessoCadItem->Tela)
+                    <div class="form-group">
+                        <form role="form" method="get" action="{{action('EventoEscolaController@index')}}">
+                            <button type="submit" class="btn btn-primary">NOVO</button>
+                        </form>
+                    </div>
+                @endif
+            @endforeach
+
 @endsection
 
 @section('script')
