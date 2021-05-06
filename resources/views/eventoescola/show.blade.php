@@ -73,8 +73,8 @@
                 </tbody>
             </table>
         </div>
-            @foreach ( $AcessoCad as $AcessoCadItem )
-                @if($AcessoCadItem->Tela)
+            @foreach ( $AcessoCadEve as $AcessoCadEveItem )
+                @if($AcessoCadEveItem->Tela)
                     <div class="form-group">
                         <form role="form" method="get" action="{{action('EventoEscolaController@index')}}">
                             <button type="submit" class="btn btn-primary">NOVO</button>
