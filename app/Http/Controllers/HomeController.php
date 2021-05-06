@@ -37,6 +37,7 @@ class HomeController extends Controller
                 ,'Escola.Escola'
                 ,'Perfil.Perfil'
             )
+            ->orderBy('Tela.TelaOrdem')
             ->get();
 
         return view('home', ['menu' => $Menu]);
