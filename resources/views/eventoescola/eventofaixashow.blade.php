@@ -26,14 +26,31 @@
 
 @section('content')
         <div class="table-responsive">
+            <?php
+            $AcessoCadM = app(\App\Http\Controllers\EventoEscolaController::class)->permissaoAcessoPontoManual(app('request'));
+            $AcessoCadArq = app(\App\Http\Controllers\EventoEscolaController::class)->permissaoAcessoPontoArquivo(app('request'));
+            $AcessoCadA = app(\App\Http\Controllers\EventoEscolaController::class)->permissaoAcessoA(app('request'));
+            ?>
             <table class="table table-striped table-bordered table-hover dataTables-example" >
                 <thead>
                 <tr>
                     <th>Escola</th>
                     <th>Evento</th>
-                    <th>Faixas</th>
-                    <th>Repasse de Pontos - Arquivo</th>
-                    <th>Repasse de Pontos - Manual</th>
+                    @foreach ( $AcessoCadA as $AcessoCadAItem )
+                        @if($AcessoCadAItem->Tela)
+                            <th>Faixas</th>
+                        @endif
+                    @endforeach
+                    @foreach ( $AcessoCadArq as $AcessoCadArqItem )
+                        @if($AcessoCadArqItem->Tela)
+                            <th>Repasse de Pontos - Arquivo</th>
+                        @endif
+                    @endforeach
+                    @foreach ( $AcessoCadM as $AcessoCadMItem )
+                        @if($AcessoCadMItem->Tela)
+                            <th>Repasse de Pontos - Manual</th>
+                        @endif
+                    @endforeach
                 </tr>
                 </thead>
                 <tbody>
@@ -42,15 +59,27 @@
                             <tr>
                                 <td>{{ $eventoescola->Escola }}</td>
                                 <td>{{ $eventoescola->Evento }}</td>
-                                <td>
-                                    <a href="{{ url('eventoescola/eventofaixa/faixaslist/'.$eventoescola->EventoEscolaID).'/1' }}">Administrar</a>
-                                </td>
-                                <td>
-                                    <a href="{{ url('eventoescola/eventofaixa/faixaslist/'.$eventoescola->EventoEscolaID).'/2' }}">Importar</a>
-                                </td>
-                                <td>
-                                    <a href="{{ url('eventoescola/eventofaixa/RepasseForm/'.$eventoescola->EventoEscolaID).'/3' }}">Repassar</a>
-                                </td>
+                                @foreach ( $AcessoCadA as $AcessoCadAItem )
+                                    @if($AcessoCadAItem->Tela)
+                                        <td>
+                                            <a href="{{ url('eventoescola/eventofaixa/faixaslist/'.$eventoescola->EventoEscolaID).'/1' }}">Administrar</a>
+                                        </td>
+                                    @endif
+                                @endforeach
+                                @foreach ( $AcessoCadArq as $AcessoCadArqItem )
+                                    @if($AcessoCadArqItem->Tela)
+                                        <td>
+                                            <a href="{{ url('eventoescola/eventofaixa/faixaslist/'.$eventoescola->EventoEscolaID).'/2' }}">Importar</a>
+                                        </td>
+                                    @endif
+                                @endforeach
+                                @foreach ( $AcessoCadM as $AcessoCadMItem )
+                                    @if($AcessoCadMItem->Tela)
+                                        <td>
+                                            <a href="{{ url('eventoescola/eventofaixa/RepasseForm/'.$eventoescola->EventoEscolaID).'/3' }}">Repassar</a>
+                                        </td>
+                                    @endif
+                                @endforeach
                             </tr>
                         @endforeach
                     @else

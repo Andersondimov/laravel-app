@@ -461,4 +461,76 @@ class EventoEscolaController extends Controller
 
         return $AcessoCad;
     }
+
+    public function permissaoAcessoA($request){
+
+        $AcessoCad = DB::table('Usuario')
+            ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
+            ->join('PerfilTela','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
+            ->leftjoin('Tela','Tela.TelaID', '=', 'PerfilTela.TelaID')
+            ->where('Usuario.UsuarioID', '=', $request->session()->get('UsuarioID'))
+            ->select(
+                'Tela.Tela'
+            )
+            ->where('Tela.Tela', '=', 'administrarfaixaeventonew')
+            ->get();
+
+        //dd($Menu,$request->session()->get('UsuarioEmail'));
+
+        return $AcessoCad;
+    }
+
+    public function permissaoAcessoEventoEscola($request){
+
+        $AcessoCad = DB::table('Usuario')
+            ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
+            ->join('PerfilTela','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
+            ->leftjoin('Tela','Tela.TelaID', '=', 'PerfilTela.TelaID')
+            ->where('Usuario.UsuarioID', '=', $request->session()->get('UsuarioID'))
+            ->select(
+                'Tela.Tela'
+            )
+            ->where('Tela.Tela', '=', 'cadeventoescola')
+            ->get();
+
+        //dd($Menu,$request->session()->get('UsuarioEmail'));
+
+        return $AcessoCad;
+    }
+
+    public function permissaoAcessoPontoManual($request){
+
+        $AcessoCad = DB::table('Usuario')
+            ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
+            ->join('PerfilTela','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
+            ->leftjoin('Tela','Tela.TelaID', '=', 'PerfilTela.TelaID')
+            ->where('Usuario.UsuarioID', '=', $request->session()->get('UsuarioID'))
+            ->select(
+                'Tela.Tela'
+            )
+            ->where('Tela.Tela', '=', 'repassedepontosmanual')
+            ->get();
+
+        //dd($Menu,$request->session()->get('UsuarioEmail'));
+
+        return $AcessoCad;
+    }
+
+    public function permissaoAcessoPontoArquivo($request){
+
+        $AcessoCad = DB::table('Usuario')
+            ->join('Perfil','Perfil.PerfilID', '=', 'Usuario.PerfilID')
+            ->join('PerfilTela','PerfilTela.PerfilID', '=', 'Perfil.PerfilID')
+            ->leftjoin('Tela','Tela.TelaID', '=', 'PerfilTela.TelaID')
+            ->where('Usuario.UsuarioID', '=', $request->session()->get('UsuarioID'))
+            ->select(
+                'Tela.Tela'
+            )
+            ->where('Tela.Tela', '=', 'repassedepontosarquivo')
+            ->get();
+
+        //dd($Menu,$request->session()->get('UsuarioEmail'));
+
+        return $AcessoCad;
+    }
 }

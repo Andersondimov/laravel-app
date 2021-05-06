@@ -26,12 +26,17 @@
             <div class="table-responsive">
                 <?php
                     $AcessoCad = app(\App\Http\Controllers\EventoEscolaController::class)->permissaoAcesso(app('request'));
+                    $AcessoCadEve = app(\App\Http\Controllers\EventoEscolaController::class)->permissaoAcessoEventoEscola(app('request'));
                 ?>
                 <table class="table table-striped table-bordered table-hover dataTables-example" >
                 <thead>
                 <tr>
                     <th>Escola</th>
-                    <th>Eventos</th>
+                    @foreach ( $AcessoCadEve as $AcessoCadEveItem )
+                        @if($AcessoCadEveItem->Tela)
+                            <th>Eventos</th>
+                        @endif
+                    @endforeach
                     @foreach ( $AcessoCad as $AcessoCadItem )
                         @if($AcessoCadItem->Tela)
                             <th>Faixas de Eventos / Repasse de Pontos</th>
@@ -44,9 +49,13 @@
                         @foreach ( $EventoEscolas as $eventoescola )
                             <tr>
                                 <td>{{ $eventoescola->Escola }}</td>
-                                <td>
-                                    <a href="{{ url('eventoescola/editar/'.$eventoescola->EscolaID) }}">Alterar</a>
-                                </td>
+                                @foreach ( $AcessoCadEve as $AcessoCadEveItem )
+                                    @if($AcessoCadEveItem->Tela)
+                                        <td>
+                                            <a href="{{ url('eventoescola/editar/'.$eventoescola->EscolaID) }}">Alterar</a>
+                                        </td>
+                                    @endif
+                                @endforeach
                                 @foreach ( $AcessoCad as $AcessoCadItem )
                                     @if($AcessoCadItem->Tela)
                                         <td>
@@ -54,7 +63,6 @@
                                         </td>
                                     @endif
                                 @endforeach
-
                             </tr>
                         @endforeach
                     @else
